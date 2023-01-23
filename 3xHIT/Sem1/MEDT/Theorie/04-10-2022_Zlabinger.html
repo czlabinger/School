@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+
+            var schueler =
+            [{
+                name: "Christof Zlabinger",
+                alter: "16",
+                eigenberechtigt: true,
+                kontostand: "100€",
+                telefonnummer: ["067761302210", "067761322130"],
+                hallo: function() {
+                    alert(JSON.stringify(this));
+                }
+            }, 
+            {
+                name: "Matthias Kurz",
+                alter: "15",
+                eigenberechtigt: true,
+                kontostand: "100€",
+                telefonnummer: ["067757975778", "067758064368"],
+                hallo: function() {
+                    alert(JSON.stringify(this));
+                }
+            }]
+            
+            function check(){
+                schueler.forEach(element => {
+                    element.hallo();
+                });
+            }
+
+        </script>
+    </head>
+    <body">
+        <button onclick="check();">print</button>
+        
+    </body>
+</html>

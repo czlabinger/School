@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Schülerformular</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" ref="script">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+  </head>
+  <body style="text-align: center;">
+    
+    <div id="app">
+        <h1>Schülerformular {{ name }}</h1>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 col-md-4 col-lg-3">
+                    <label for="Name">Name:</label>
+                    <input v-model="name" type="text" id="Name" class="form-control">
+                </div>
+
+                <div class="col-sm-12 col-12 col-md-4 col-lg-3">
+                    <label for="Alter">Alter:</label>
+                    <input v-model="alter" type="number" id="Alter" class="form-control">
+                </div>
+
+                <div class="col-sm-12 col-12 col-md-4 col-lg-3">
+                    <label for="Eigenberechtigt">Eigenberechtigt:</label> <br>
+                    <input v-on:input="eigenberechtigt" type="checkbox" id="Eigenberechtigt" class="form-check-input" disabled>
+                </div>
+
+                <div class="col-sm-12 col-12 col-md-4 col-lg-3">
+                    <label for="Email">E-Mail:</label>
+                    <input v-model="email" type="email" id="Email" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button v-on:click="send();" style="margin-top: 2%;" type="submit" class="btn btn-primary"  >Speichern</button>
+                    <div id="1" name="out" style="color: red;">{{ invalidName }}</div>
+                    <div id="2" name="out" style="color: red;">{{ invalidAge }}</div>
+                    <div id="3" name="out" style="color: red;">{{ invalidEmail }}</div>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data:{
+                name: "",
+                alter: "",
+                email: "",
+            },
+            computed:{
+                eigenberechtigt(){
+                    if(this.alter>=18){
+                        document.getElementById("Eigenberechtigt").checked = true;
+                        return true;
+                    }
+                    document.getElementById("Eigenberechtigt").checked = false;
+                    return false;
+                },
+                invalidName(){
+                    if(this.name==""){
+                        return "Ungültiger Name!";
+                    }
+                    return "";
+                },
+                invalidAge(){
+                    if(this.alter<0){
+                        return "Ungültiges Alter!";
+                    }
+                    return"";
+                },
+                invalidEmail(){
+                    if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email))){
+                        return "Invalid E-Mail!";
+                    }
+                    return "";
+                }
+            },
+            methods:{
+                send(){
+
+                    if(this.alter>=0 && this.name != "" && (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email))){
+                        alert("Daten gespeichert!");
+                        this.eigenberechtigt = false;
+                        this.name = "";
+                        this.alter = "";
+                        this.email = "";
+                    }
+                }
+            }
+        });
+
+
+    </script>
+</html>

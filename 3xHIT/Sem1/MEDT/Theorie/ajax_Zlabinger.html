@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $("#out").load("https://www.boredapi.com/api/activity");
+                });
+            });
+          </script>
+    </head>
+
+    <body>
+
+        <div id="out"></div>
+
+        <button type="button">Load content</button>
+
+    </body>
+</html>

@@ -1,0 +1,24 @@
+h1 {
+    margin-top: 5%;
+    font-size: 300%;
+    color: rgb(179, 178, 178);
+}
+
+body {
+    background-image: url("./images/background.png");
+    background-size: cover;
+    text-align: center;
+}
+
+input {
+    margin-top: 2%;
+    color:rgb(179, 178, 178);
+}
+
+textarea {
+    border-radius: 1%;
+    background-color: rgb(22, 23, 23);
+    color: rgb(255, 255, 255);
+    font-size: large;
+    border-color: rgb(22, 23, 23);
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+
+            function Fahrzeug(geschwindigkeit, marke){
+                this.geschwindigkeit = geschwindigkeit;
+                this.marke = marke;
+
+                this.fahren = function(){
+                    for(var i = 0; i < geschwindigkeit; i++){
+                        console.log("Brumm");
+                    }
+                }
+
+
+                this.schneller = function(){
+                    this.geschwindigkeit++;
+                }
+            }
+
+            function Auto(geschwindigkeit, model){
+                this.geschwindigkeit = geschwindigkeit;
+                this.model = model;
+            }
+
+            function Fahrrad(geschwindigkeit){
+                this.geschwindigkeit = geschwindigkeit;
+
+                fahren = function(){
+                    for(var i = 0; i < geschwindigkeit; i++){
+                        console.log("Dingding");
+                    }
+                }
+            }
+
+            Auto.prototype = new Fahrzeug(7, "Marke 1");
+            Fahrrad.prototype = new Fahrzeug(2, "Marke 2");
+
+            var a = new Auto(7, "Model 1");
+            var f = new Fahrrad(2);
+
+        </script>
+    </head>
+    <body">
+        <button onclick="a.schneller();">schneller</button>
+        <button onclick="a.fahren();">fahren</button>
+
+        <br>
+
+        <button onclick="f.schneller();">schneller</button>
+        <button onclick="f.fahren();">fahren</button>
+    </body>
+</html>

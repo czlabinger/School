@@ -1,0 +1,34 @@
+Open Virtual Appliance
+Beinhaltet die Daten der VM
+Als tar archive
+Beinhaltet:
+    disk images (like VMDKs)
+    OVF descriptor
+        Open virtualisation Format
+        Open virtualisation Format descriptor beschreibt das VM archiv
+    XML-based text file
+    ISOs or other resource files
+    certificate files
+    MF manifest file
+
+Es muss beim Exportieren beachetet werden ob:
+    das NAT network und die macadresse exportiert werden sollen
+    Alle adressen und die macadresse sollen nicht mitexportoiert werden
+    Alle adressen und mac adresse behalten
+
+    Ob das ISO file beinhaltet werden solle
+    Ob ein manifest file gemacht werden soll
+
+    Name
+    Produkt
+    Produkt-URL
+    Anbieter
+    Anbieter-URL
+    Beschreibung
+    Lizenz
+
+
+
+Beim Importen uss beachtet werden dass:
+    Das richtige GastOS ausgewählt ist
+    Die MAC adresse und die Adressen importiert werden wenn nötig

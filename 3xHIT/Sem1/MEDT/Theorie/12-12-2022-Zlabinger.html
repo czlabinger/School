@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+
+            class Fahrzeug{
+                constructor(geschwindigkeit){
+                    this.geschwindigkeit = geschwindigkeit;
+                }
+
+                schneller(){
+                    this.geschwindigkeit++;
+                }
+                fahren(){
+                    for(var i = 0; i < this.geschwindigkeit; i++){
+                        console.log("Brumm");
+                   }
+                }
+            }
+            
+            class Auto extends Fahrzeug{
+                constructor(geschwindigkeit, modell){
+                    super(geschwindigkeit);
+                    this.modell = modell;
+                }
+            }
+
+            class Fahrrad extends Fahrzeug{
+
+                constructor(geschwindigkeit){
+                    super(geschwindigkeit);
+                }
+
+                fahren(){
+                    for(var i = 0; i < this.geschwindigkeit; i++){
+                        console.log("Dingding");
+                   }
+                }
+            }
+
+            var a = new Auto(7, "Model 1");
+            var f = new Fahrrad(2);
+
+        </script>
+    </head>
+    <body>
+        <button onclick="a.schneller();">schneller</button>
+        <button onclick="a.fahren();">fahren</button>
+
+        <br>
+
+        <button onclick="f.schneller();">schneller</button>
+        <button onclick="f.fahren();">fahren</button>
+    </body>
+</html>

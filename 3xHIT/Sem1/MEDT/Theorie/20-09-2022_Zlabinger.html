@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script>
+
+            function add(){
+                var input = document.getElementById("textInput").value;
+                var list = document.getElementById("list");
+                var entry = document.createElement('li');
+
+                entry.appendChild(document.createTextNode(input));
+                list.appendChild(entry);
+            }
+
+        </script>
+
+    </head>
+
+    <body>
+        <h1>Lieblingsessen</h1> <br />
+
+        <ul id="list">
+            <li>Pizza</li>
+        </ul>
+
+        <br />
+        <input type="text" id="textInput"> 
+        <button id="button" type="button" onclick="add();">Add</button>
+    </body>
+</html>
