@@ -1,0 +1,16 @@
+1)
+EOL bei Ubuntu 5 years
+dannach keine updates mehr und veraltete packages
+Link händisch austauschen
+Bild 1,2,3,4
+
+2)
+Nach stop nicht mehr erreichbar
+Nach start wieder erreichbar
+Gleich nach restart nicht erreichbar und kurz dannach wieder erreichbar
+
+überprüfen mittels systemctl status <Service>
+
+
+3)
+2
