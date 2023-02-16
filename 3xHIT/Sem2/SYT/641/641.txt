@@ -1,8 +1,7 @@
 1)
 EOL bei Ubuntu 5 years
 dannach keine updates mehr und veraltete packages
-Link händisch austauschen
-Bild 1,2,3,4
+Link händisch austauschen oder sudo do-release-upgrade
 
 2)
 Nach stop nicht mehr erreichbar
@@ -10,7 +9,23 @@ Nach start wieder erreichbar
 Gleich nach restart nicht erreichbar und kurz dannach wieder erreichbar
 
 überprüfen mittels systemctl status <Service>
+enablen mittels systemctl enable <Service>
+macht einen symlink
 
 
 3)
-2
+2 (bash & ps)
+ps axu
+htop zeigt cpu, mem, tasks, threads, uptime, average load, swap
+htop zeigt mehr weil auch alle subprocesses gezeigt werden
+
+4)
+-c gitb total aus
+-s gibt total für jedes argument aus
+
+df -h gibt für alle partitionen den speicher aus
+
+
+5)
+mittels systemctl -l status <Service>
+in /var/log/ gibt es mehrere logs welche auch ältere ereignisse beinhalten können und systemctl zeigt nur seit dem letzten start
