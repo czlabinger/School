@@ -1,0 +1,28 @@
+
+Collaborative Virtual Computer Lab (CVCLAB)
+
+Penn State Berks
+tcpdump
+
+tcpdump is a light-weight, command-line tool for network packet capturing and analysis.    
+
+In the following steps, you will use tcpdump to capture packets between your computer and a target computer (10.0.0.4). Before starting, use the ifconfig command to figure out your IP address and the name of your network interface and record them.  This activity will be completed in your Backtrack computer.
+
+<Your IP> = 10.0.106.107        <Your Interface> = wlan0
+
+
+    What will be the tcpdump command to capture web traffic from host 10.0.0.4 (web traffic to and from  host 10.0.0.4)?
+    tcpdump host 10.0.0.4 and port 80 
+
+    What will be the tcpdump command to capture web traffic to host 10.0.0.4?
+    tcpdump dst 10.0.0.4 and port 80
+
+    What will be the tcpdump command to capture web traffic from host 10.0.0.4?  
+    tcpdump src 10.0.0.4 and port 80
+
+    What will be the tcpdump command to capture all traffic originating from network 192.168.0.0 and headed to network 10.0.0.0?
+    tcpdump src net 192.168.0.0 and dst net 10.0.0.0
+
+    What will be the tcpdump command to save the output of the previous command into a file?
+
+    tcpdump src net 192.168.0.0 and dst net 10.0.0.0 -w /path/to/file
