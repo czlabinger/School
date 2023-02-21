@@ -2,5 +2,5 @@
 	path = 3xHIT/Sem2/SEW/genericstack-czlabinger
 	url = git@github.com:TGM-HIT/genericstack-czlabinger.git
 [submodule "3xHIT/Sem2/SEW/calcvm-czlabinger"]
-	path = "3xHIT/Sem2/SEW/calcvm-czlabinger"
-	url = "git@github.com:TGM-HIT/calcvm-czlabinger.git"
+	path = 3xHIT/Sem2/SEW/calcvm-czlabinger
+	url = git@github.com:TGM-HIT/calcvm-czlabinger.git
