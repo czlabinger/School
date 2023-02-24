@@ -11,16 +11,15 @@ class Fahrzeug:
 
 class Auto(Fahrzeug):
 
-    def __init__(self, geschwindigkeit, marke):
-        self.geschwindigkeit = geschwindigkeit
-        self.marke = marke
+    def __init__(self, geschwindigkeit, marke, model):
+        super().__init__(geschwindigkeit, marke)
+        self.model = model
 
 
 class Fahrrad(Fahrzeug):
 
     def __init__(self, geschwindigkeit, marke):
-        self.geschwindigkeit = geschwindigkeit
-        self.marke = marke
+        super().__init__(geschwindigkeit, marke)
 
     def fahren(self):
         for i in range(self.geschwindigkeit):
@@ -31,7 +30,7 @@ def main():
     fahreug = Fahrzeug(10, "Marke1")
     fahreug.fahren()
 
-    auto = Auto(20, "Marke2")
+    auto = Auto(20, "Marke2", "Model1")
     auto.fahren()
 
     fahrrad = Fahrrad(2, "Marke3")
