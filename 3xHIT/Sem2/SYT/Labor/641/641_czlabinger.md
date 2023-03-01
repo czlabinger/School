@@ -10,7 +10,7 @@
 1. [Installation von Webdiens](#installation-von-webdienst)
 2. [Dienste verwalten](#dienste-verwalten)
 3. [Arbeitsspeicher und Systemresourcen](#arbeitsspeicher-und-systemresourcen)
-4. [estplattenplatz](#festplattenplatz)
+4. [Festplattenplatz](#festplattenplatz)
 5. [Logdaten](#logdaten)
 6. [Netzwerkverbindungen](#netzwerkverbindungen)
 7. [Automatisierung und Task-Scheduler](#automatisierung-und-task-scheduler)
