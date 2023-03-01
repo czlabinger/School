@@ -99,7 +99,7 @@ htop zeigt cpu, mem, tasks, threads, uptime, average load, swap
 
 ### Warum zeigt htop z.B. für den Apache-Webserver mehr Prozesse an als ps? ###
 
-Da htop auch subprozesse anzeigt
+Da htop auch threads anzeigt 
 
 ### Mittels htop lassen sich auch Prozesse beenden. Starte in einem neuen Reiter die Ausgabe von Zufallsbytes mit dem Befehl cat /dev/urandom. Finde diesen neuen, laufenden Prozess in htop und beende diesen mittels den möglichen Funktionen im Prozessbetrachter. ###
 
