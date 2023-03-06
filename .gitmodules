@@ -4,3 +4,6 @@
 [submodule "3xHIT/Sem2/SEW/calcvm-czlabinger"]
 	path = 3xHIT/Sem2/SEW/calcvm-czlabinger
 	url = git@github.com:TGM-HIT/calcvm-czlabinger.git
+[submodule "3xHIT/Sem1/SEW/figuren-czlabinger"]
+	path = 3xHIT/Sem1/SEW/figuren-czlabinger
+	url = git@github.com:TGM-HIT/figuren-czlabinger.git
