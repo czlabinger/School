@@ -1,0 +1,45 @@
+UPDATE Kunden SET Name = 'Edwina', Betreuer = 'Ute' WHERE Name = 'Egon';
+UPDATE Kunden SET Betreuer = 'betreuer' WHERE Name = 'name';
+UPDATE Verkäufer SET Gehalt = Gehalt * 1.05;
+
+DROP FROM Kunden WHERE Name = 'Erna';
+DELETE FROM Kunden WHERE Name = 'Erna';
+
+DELETE FROM Verkäufer WHERE Name = 'Udo';
+DELETE FROM Kunden WHERE Betreuer = 'betreuer';
+
+DROP TABLE Kunde; //löscht die Kunden tabelle
+
+
+CREATE Table Kunde //erzeugt die Kunden tabelle
+
+(
+
+    Knr      INTEGER,
+
+    Name     Varchar(7),
+
+    Betreuer INTEGER,
+
+    PRIMARY KEY (Knr),
+
+    CONSTRAINT FK_Kunde
+
+        FOREIGN KEY (Betreuer)
+
+            REFERENCES Verkaeufer (Vnr)
+
+            ON DELETE CASCADE
+
+);
+
+DROP TABLE <Tabellenname> RESTRICT; //Löscht die Tabelle wenn eine Fremdschlüssen vorhanden sond
+
+DROP TABLE <Tabellenname> CASCADE; //Löscht die Tabelle und alle Fremdschlüssel
+
+Beispiel:
+DELETE * FROM Name WHERE Knr = 5;
+
+ON DELETE CASCADE;
+
+Dies Löscht alle Daten der Row welche die Knr 5 hat.
