@@ -1,64 +1,78 @@
 from abc import ABC, abstractmethod
 
+
 class Pokemon(ABC):
-   
-    pokedex = 2
-           
-    def __init__(self, name, hp):
+    pokedex = {}
+
+    def __init__(self, name: str, hp: int):
         self.__name = name
         self.__hp = hp
 
     @abstractmethod
     def attack(self, p):
-        pass
-
+        p.__hp -= 3
+    
     @staticmethod
     def printPokedex():
         print(Pokemon.pokedex)
 
-class Bisasam(Pokemon):
-    def __init__(self, pokedex : int, name : str, hp : int):
-        Bisasam.pokedex = pokedex
-        self.__name = name
-        self.__hp = hp
-    
-    def attack(self, p : Pokemon):
-        p.__hp -= 3
+    @property
+    def name(self):
+        return self.__name
+
+    # setter-Methode für name
+    @name.setter
+    def name(self, n):
+        self.__name = n
 
     @property
-    def getHP(self):
+    def hp(self):
         return self.__hp
 
     @hp.setter
-    def setHP(self, hp):
-        self.__hp = hp
+    def hp(self, n):
+        self.__hp = n
+
+
+class Bisasam(Pokemon):
+    Pokemon.pokedex["Bisasam"] = 0
+
+    def __init__(self, name: str, hp: int):
+        super().__init__(name, hp)
+        Pokemon.pokedex["Bisasam"] += 1
+
+    def attack(self, p):
+        p.hp -= 3
+
 
 class Glumanda(Pokemon):
-    def __init__(self, pokedex, name, hp):
-        Glumanda.pokedex = pokedex
-        self.__name = name
-        self.__hp = hp
+    Pokemon.pokedex["Glumanda"] = 0
 
-    def attack(self, p : Pokemon):
-        p.__hp -= 3
-    
-class Shiggy(Pokemon):
-    def __init__(self, pokedex, name, hp):
-        Shiggy.pokedex = pokedex
-        self.__name = name
-        self.__hp = hp
+    def __init__(self, name: str, hp: int):
+        super().__init__(name, hp)
+        Pokemon.pokedex["Glumanda"] += 1
 
-    def attack(self, p : Pokemon):
-        p.__hp -= 3
+    def attack(self, p):
+        p.hp -= 3
+
+
+class Schiggy(Pokemon):
+    Pokemon.pokedex["Schiggy"] = 0
+
+    def __init__(self, name: str, hp: int):
+        super().__init__(name, hp)
+        Pokemon.pokedex["Schiggy"] += 1
+
+    def attack(self, p):
+        p.hp -= 3
+
 
 def main():
-    bisasam = Bisasam(1, "Bisasam", 15)
-    bisasam.printPokedex()
-
-    glumanda = Glumanda(3, "Glumanda", 15)
+    bisasam = Bisasam("Bisasam", 15)
+    glumanda = Glumanda("Glumanda", 15)
     glumanda.attack(bisasam)
-
-    print(bisasam.__hp)
+    print(bisasam.hp)
+    Pokemon.printPokedex()
 
 
 if __name__ == "__main__":
