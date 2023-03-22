@@ -1,4 +1,4 @@
-# DataDcience
+# DataScience
 
 **Christof Zlabinger** <br>
 **21.3.2023** <br>
