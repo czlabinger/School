@@ -10,3 +10,6 @@
 [submodule "3xHIT/Sem2/SEW/rbac-czlabinger"]
 	path = 3xHIT/Sem2/SEW/rbac-czlabinger
 	url = git@github.com:TGM-HIT/rbac-czlabinger
+[submodule "3xHIT/Sem2/SEW/tgm-lagerhalle-czlabinger"]
+	path = 3xHIT/Sem2/SEW/tgm-lagerhalle-czlabinger
+	url = git@github.com:TGM-HIT/tgm-lagerhalle-czlabinger
