@@ -13,3 +13,6 @@
 [submodule "3xHIT/Sem2/SEW/tgm-lagerhalle-czlabinger"]
 	path = 3xHIT/Sem2/SEW/tgm-lagerhalle-czlabinger
 	url = git@github.com:TGM-HIT/tgm-lagerhalle-czlabinger
+[submodule "3xHIT/Sem2/ITP/ChessMate-Client"]
+	path = 3xHIT/Sem2/ITP/ChessMate-Client
+	url = git@github.com:jscarlatar/ChessMate-Client

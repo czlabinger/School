@@ -1,0 +1,143 @@
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost is running in development...","time":"2023-04-12T08:33:30.449Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Listening on: :::2368","time":"2023-04-12T08:33:30.450Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Url configured as: http://localhost:8822/","time":"2023-04-12T08:33:30.450Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ctrl+C to shut down","time":"2023-04-12T08:33:30.451Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost server started in 1.078s","time":"2023-04-12T08:33:30.451Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":50,"version":"5.40.1","err":{"id":500,"domain":"http://localhost:8822","code":"ECONNREFUSED","name":"DatabaseError","statusCode":500,"level":"critical","message":"connect ECONNREFUSED 172.18.0.3:3306","help":"\"Unknown database error\"","stack":"Error: connect ECONNREFUSED 172.18.0.3:3306\n    at /var/lib/ghost/versions/5.40.1/node_modules/knex-migrator/lib/database.js:57:19\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)","hideStack":false},"msg":"connect ECONNREFUSED 172.18.0.3:3306","time":"2023-04-12T08:33:30.586Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost is shutting down","time":"2023-04-12T08:33:30.586Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost has shut down","time":"2023-04-12T08:33:30.587Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost was running for a few seconds","time":"2023-04-12T08:33:30.588Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost is running in development...","time":"2023-04-12T08:33:31.435Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Listening on: :::2368","time":"2023-04-12T08:33:31.436Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Url configured as: http://localhost:8822/","time":"2023-04-12T08:33:31.436Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ctrl+C to shut down","time":"2023-04-12T08:33:31.436Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost server started in 0.299s","time":"2023-04-12T08:33:31.437Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":50,"version":"5.40.1","err":{"id":500,"domain":"http://localhost:8822","code":"ECONNREFUSED","name":"DatabaseError","statusCode":500,"level":"critical","message":"connect ECONNREFUSED 172.18.0.3:3306","help":"\"Unknown database error\"","stack":"Error: connect ECONNREFUSED 172.18.0.3:3306\n    at /var/lib/ghost/versions/5.40.1/node_modules/knex-migrator/lib/database.js:57:19\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)","hideStack":false},"msg":"connect ECONNREFUSED 172.18.0.3:3306","time":"2023-04-12T08:33:31.506Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost is shutting down","time":"2023-04-12T08:33:31.506Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost has shut down","time":"2023-04-12T08:33:31.507Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost was running for a few seconds","time":"2023-04-12T08:33:31.508Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost is running in development...","time":"2023-04-12T08:33:32.394Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Listening on: :::2368","time":"2023-04-12T08:33:32.395Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Url configured as: http://localhost:8822/","time":"2023-04-12T08:33:32.395Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ctrl+C to shut down","time":"2023-04-12T08:33:32.396Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost server started in 0.293s","time":"2023-04-12T08:33:32.396Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":50,"version":"5.40.1","err":{"id":500,"domain":"http://localhost:8822","code":"ECONNREFUSED","name":"DatabaseError","statusCode":500,"level":"critical","message":"connect ECONNREFUSED 172.18.0.3:3306","help":"\"Unknown database error\"","stack":"Error: connect ECONNREFUSED 172.18.0.3:3306\n    at /var/lib/ghost/versions/5.40.1/node_modules/knex-migrator/lib/database.js:57:19\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)","hideStack":false},"msg":"connect ECONNREFUSED 172.18.0.3:3306","time":"2023-04-12T08:33:32.466Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost is shutting down","time":"2023-04-12T08:33:32.467Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost has shut down","time":"2023-04-12T08:33:32.468Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost was running for a few seconds","time":"2023-04-12T08:33:32.468Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost is running in development...","time":"2023-04-12T08:33:33.615Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Listening on: :::2368","time":"2023-04-12T08:33:33.616Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Url configured as: http://localhost:8822/","time":"2023-04-12T08:33:33.616Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ctrl+C to shut down","time":"2023-04-12T08:33:33.617Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost server started in 0.348s","time":"2023-04-12T08:33:33.617Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":50,"version":"5.40.1","err":{"id":500,"domain":"http://localhost:8822","code":"ECONNREFUSED","name":"DatabaseError","statusCode":500,"level":"critical","message":"connect ECONNREFUSED 172.18.0.3:3306","help":"\"Unknown database error\"","stack":"Error: connect ECONNREFUSED 172.18.0.3:3306\n    at /var/lib/ghost/versions/5.40.1/node_modules/knex-migrator/lib/database.js:57:19\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)","hideStack":false},"msg":"connect ECONNREFUSED 172.18.0.3:3306","time":"2023-04-12T08:33:33.708Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost is shutting down","time":"2023-04-12T08:33:33.709Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost has shut down","time":"2023-04-12T08:33:33.710Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost was running for a few seconds","time":"2023-04-12T08:33:33.711Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost is running in development...","time":"2023-04-12T08:33:35.362Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Listening on: :::2368","time":"2023-04-12T08:33:35.363Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Url configured as: http://localhost:8822/","time":"2023-04-12T08:33:35.364Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ctrl+C to shut down","time":"2023-04-12T08:33:35.364Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost server started in 0.368s","time":"2023-04-12T08:33:35.365Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":50,"version":"5.40.1","err":{"id":500,"domain":"http://localhost:8822","code":"ECONNREFUSED","name":"DatabaseError","statusCode":500,"level":"critical","message":"connect ECONNREFUSED 172.18.0.3:3306","help":"\"Unknown database error\"","stack":"Error: connect ECONNREFUSED 172.18.0.3:3306\n    at /var/lib/ghost/versions/5.40.1/node_modules/knex-migrator/lib/database.js:57:19\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1278:16)","hideStack":false},"msg":"connect ECONNREFUSED 172.18.0.3:3306","time":"2023-04-12T08:33:35.437Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost is shutting down","time":"2023-04-12T08:33:35.438Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost has shut down","time":"2023-04-12T08:33:35.439Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost was running for a few seconds","time":"2023-04-12T08:33:35.439Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost is running in development...","time":"2023-04-12T08:33:37.697Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Listening on: :::2368","time":"2023-04-12T08:33:37.698Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Url configured as: http://localhost:8822/","time":"2023-04-12T08:33:37.698Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ctrl+C to shut down","time":"2023-04-12T08:33:37.698Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost server started in 0.269s","time":"2023-04-12T08:33:37.699Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Database state requires initialisation.","time":"2023-04-12T08:33:37.783Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: newsletters","time":"2023-04-12T08:33:38.092Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: posts","time":"2023-04-12T08:33:38.139Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: posts_meta","time":"2023-04-12T08:33:38.193Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: users","time":"2023-04-12T08:33:38.247Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: posts_authors","time":"2023-04-12T08:33:38.292Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: roles","time":"2023-04-12T08:33:38.359Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: roles_users","time":"2023-04-12T08:33:38.381Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: permissions","time":"2023-04-12T08:33:38.392Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: permissions_users","time":"2023-04-12T08:33:38.414Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: permissions_roles","time":"2023-04-12T08:33:38.427Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: settings","time":"2023-04-12T08:33:38.439Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: tags","time":"2023-04-12T08:33:38.464Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: posts_tags","time":"2023-04-12T08:33:38.485Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: invites","time":"2023-04-12T08:33:38.550Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: brute","time":"2023-04-12T08:33:38.580Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: sessions","time":"2023-04-12T08:33:38.592Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: integrations","time":"2023-04-12T08:33:38.613Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: webhooks","time":"2023-04-12T08:33:38.637Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: api_keys","time":"2023-04-12T08:33:38.673Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: mobiledoc_revisions","time":"2023-04-12T08:33:38.695Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: post_revisions","time":"2023-04-12T08:33:38.718Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members","time":"2023-04-12T08:33:38.737Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: products","time":"2023-04-12T08:33:38.780Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: offers","time":"2023-04-12T08:33:38.806Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: benefits","time":"2023-04-12T08:33:38.885Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: products_benefits","time":"2023-04-12T08:33:38.905Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_products","time":"2023-04-12T08:33:38.975Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: posts_products","time":"2023-04-12T08:33:39.047Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_created_events","time":"2023-04-12T08:33:39.118Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_cancel_events","time":"2023-04-12T08:33:39.162Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_payment_events","time":"2023-04-12T08:33:39.206Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_login_events","time":"2023-04-12T08:33:39.247Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_email_change_events","time":"2023-04-12T08:33:39.289Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_status_events","time":"2023-04-12T08:33:39.329Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_product_events","time":"2023-04-12T08:33:39.377Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_paid_subscription_events","time":"2023-04-12T08:33:39.447Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: labels","time":"2023-04-12T08:33:39.488Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_labels","time":"2023-04-12T08:33:39.524Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_stripe_customers","time":"2023-04-12T08:33:39.598Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: subscriptions","time":"2023-04-12T08:33:39.651Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_stripe_customers_subscriptions","time":"2023-04-12T08:33:39.767Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_subscription_created_events","time":"2023-04-12T08:33:39.913Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: offer_redemptions","time":"2023-04-12T08:33:39.989Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_subscribe_events","time":"2023-04-12T08:33:40.095Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: stripe_products","time":"2023-04-12T08:33:40.167Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: stripe_prices","time":"2023-04-12T08:33:40.215Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: actions","time":"2023-04-12T08:33:40.271Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: emails","time":"2023-04-12T08:33:40.284Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: email_batches","time":"2023-04-12T08:33:40.358Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: email_recipients","time":"2023-04-12T08:33:40.398Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: email_recipient_failures","time":"2023-04-12T08:33:40.533Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: tokens","time":"2023-04-12T08:33:40.601Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: snippets","time":"2023-04-12T08:33:40.623Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: custom_theme_settings","time":"2023-04-12T08:33:40.646Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_newsletters","time":"2023-04-12T08:33:40.659Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: comments","time":"2023-04-12T08:33:40.731Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: comment_likes","time":"2023-04-12T08:33:40.840Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: comment_reports","time":"2023-04-12T08:33:40.917Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: jobs","time":"2023-04-12T08:33:40.991Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: redirects","time":"2023-04-12T08:33:41.015Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_click_events","time":"2023-04-12T08:33:41.055Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: members_feedback","time":"2023-04-12T08:33:41.118Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: suppressions","time":"2023-04-12T08:33:41.188Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: email_spam_complaint_events","time":"2023-04-12T08:33:41.248Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: mentions","time":"2023-04-12T08:33:41.328Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Creating table: milestones","time":"2023-04-12T08:33:41.342Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Model: Product","time":"2023-04-12T08:33:42.278Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Model: Newsletter","time":"2023-04-12T08:33:42.290Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Model: Tag","time":"2023-04-12T08:33:42.297Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Model: Permission","time":"2023-04-12T08:33:42.306Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Model: Post","time":"2023-04-12T08:33:42.563Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Model: Integration","time":"2023-04-12T08:33:42.865Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Relation: Role to Permission","time":"2023-04-12T08:33:42.912Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Relation: Post to Tag","time":"2023-04-12T08:33:43.089Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Database is in a ready state.","time":"2023-04-12T08:33:43.145Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost database ready in 5.726s","time":"2023-04-12T08:33:43.157Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Adding offloaded job to the queue","time":"2023-04-12T08:33:45.068Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Scheduling job mentions-email-report at 58 3 * * * *. Next run on: Wed Apr 12 2023 09:03:58 GMT+0000 (Coordinated Universal Time)","time":"2023-04-12T08:33:45.074Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Adding one-off job to queue with current length = 0 called 'members-migrations'","time":"2023-04-12T08:33:45.224Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Stripe not configured - skipping migrations","time":"2023-04-12T08:33:45.230Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost URL Service Ready in 7.979s","time":"2023-04-12T08:33:45.410Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Adding offloaded job to the queue","time":"2023-04-12T08:33:45.715Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Scheduling job clean-expired-comped at 22 1 1 * * *. Next run on: Thu Apr 13 2023 01:01:22 GMT+0000 (Coordinated Universal Time)","time":"2023-04-12T08:33:45.717Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Adding offloaded job to the queue","time":"2023-04-12T08:33:45.720Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Scheduling job clean-tokens at 15 54 1 * * *. Next run on: Thu Apr 13 2023 01:54:15 GMT+0000 (Coordinated Universal Time)","time":"2023-04-12T08:33:45.722Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Ghost booted in 8.299s","time":"2023-04-12T08:33:45.729Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Adding offloaded job to the queue","time":"2023-04-12T08:33:45.732Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Scheduling job update-check at 49 41 18 * * *. Next run on: Wed Apr 12 2023 18:41:49 GMT+0000 (Coordinated Universal Time)","time":"2023-04-12T08:33:45.734Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":30,"version":"5.40.1","msg":"Running milestone emails job on Wed Apr 12 2023 08:33:50 GMT+0000 (Coordinated Universal Time)","time":"2023-04-12T08:33:45.746Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost is shutting down","time":"2023-04-12T08:35:30.329Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost has shut down","time":"2023-04-12T08:35:30.330Z","v":0}
+{"name":"Log","hostname":"3fe91dd9898e","pid":1,"level":40,"version":"5.40.1","msg":"Ghost was running for 2 minutes","time":"2023-04-12T08:35:30.331Z","v":0}
