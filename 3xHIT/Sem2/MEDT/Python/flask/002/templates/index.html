@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        <ul>
+            {% for user in users: %}
+                {%if formell == True %}
+                    <p>Guten Tag, {{ user }}</p>
+                {% else %}
+                    <p>Hallo {{ user }}</p>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </body>
+</html>
