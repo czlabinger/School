@@ -6,10 +6,10 @@
         <h1>{{ title }}</h1>
         <ul>
             {% for user in users: %}
-                {%if formell == True %}
-                    <p>Guten Tag, {{ user }}</p>
+                {%if user.formell == True %}
+                    <p>Guten Tag, {{ user.name }}</p>
                 {% else %}
-                    <p>Hallo {{ user }}</p>
+                    <p>Hallo {{ user.name }}</p>
                 {% endif %}
             {% endfor %}
         </ul>
