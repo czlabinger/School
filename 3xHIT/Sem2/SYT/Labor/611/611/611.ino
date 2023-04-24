@@ -1,125 +1,95 @@
 #include <ESP32Servo.h>
-#include "DHT.h"
 
-#define TRIGGER 23 
-#define ECHO 22
 #define SERVO 14
-#define dhtPin 5
-#define DHTTYPE DHT22
+#define TRIGGER 23
+#define ECHO 22
 
-long duration;
-float distanceCm;
+long maxDistance = 0;
+long minDistance = 1000;
 Servo servo;
-DHT dht(dhtPin, DHTTYPE);
 float servoOut;
-
-long maxDistance;
-long minDistance;
-
-float sound_speed;
 
 void setup() {
   Serial.begin(9600);
   pinMode(TRIGGER, OUTPUT);
   pinMode(ECHO, INPUT);
   pinMode(2, OUTPUT);
-  pinMode(dhtPin, INPUT);
-
-  servo.setPeriodHertz(50);
-  servo.attach(SERVO, 500, 2400);
-
-  dht.begin();
-
-  float h = dht.readHumidity();
-
-  float t = dht.readTemperature();
-
-  Serial.print(F("Humidity: "));
-  Serial.print(h);
-  Serial.print(F("%  Temperature: "));
-  Serial.print(t);
-  Serial.println(F("°C "));
-
-  sound_speed = sqrt(t * (101.325/h));
-
-  //Setup time
-  float starttime = millis();
-  float endtime = starttime;  
-
-  minDistance = 400;
-
+  
   digitalWrite(2, HIGH);
-
-  while (endtime - starttime <= 10000) {
+  
+  for(int i = 0; i < 10; i++) {
+    Serial.print("Calibrating..");
     
+    //max
+    digitalWrite(TRIGGER, LOW);
+    delayMicroseconds(2);
     digitalWrite(TRIGGER, HIGH);
     delayMicroseconds(10);
     digitalWrite(TRIGGER, LOW);
-
+    
+    long duration = pulseIn(ECHO, HIGH);
+    long distance = duration * 0.034 / 2;
+    
+    if(distance > maxDistance && distance <= 100) {
+      maxDistance = distance;
+    }
+    
+    //min
+    digitalWrite(TRIGGER, LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIGGER, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIGGER, LOW);
+    
     duration = pulseIn(ECHO, HIGH);
-  
-    distanceCm = duration * sound_speed/2; 
-
-    if(distanceCm < minDistance) minDistance = distanceCm;
-    if(distanceCm > maxDistance) maxDistance = distanceCm;
-
-    Serial.print("max ");
-    Serial.println(maxDistance);
-
-    Serial.print("min ");
+    distance = duration * 0.034 / 2;
+    
+    if(distance < minDistance && distance >= 4) {
+      minDistance = distance;
+    }
+    
+    Serial.print("Max distance: ");
+    Serial.print(maxDistance);
+    Serial.print(", Min distance: ");
     Serial.println(minDistance);
-
-    delay(2000);
-
-    endtime = millis();
+    
+    delay(1000);
   }
+  
+  servo.setPeriodHertz(50);
+  servo.attach(SERVO, 500, 2400);
 
   digitalWrite(2, LOW);
-
 }
 
 void loop() {
-  //DHT
-
-  float h = dht.readHumidity();
-
-  float t = dht.readTemperature();
-
-  Serial.print(F("Humidity: "));
-  Serial.print(h);
-  Serial.print(F("%  Temperature: "));
-  Serial.print(t);
-  Serial.println(F("°C "));
-
-  sound_speed = sqrt(t * (101.325/h));
-
-  //Clear TRIGGER
   digitalWrite(TRIGGER, LOW);
-  delay(2);
-
-  //Send
+  delayMicroseconds(2);
   digitalWrite(TRIGGER, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER, LOW);
   
-  //read
-  duration = pulseIn(ECHO, HIGH);
+  long duration = pulseIn(ECHO, HIGH);
+  long distance = duration * 0.034 / 2;
   
-  distanceCm = duration * sound_speed/2;
-
-  long mapped = map(distanceCm, 0, 400, minDistance, maxDistance);
-
-  if(minDistance < 0 || mapped > maxDistance) Serial.println("Values outside of Configuration");
-  else Serial.println(mapped);
+  Serial.print("Distance: ");
   
-  //Servo
+  if(distance > maxDistance){
+    distance = maxDistance;
+  }
 
-  Serial.print("Distance (cm): ");
-  Serial.println(distanceCm);
+  if(distance < minDistance){
+    distance = minDistance;
+  }
 
-  servoOut = map(distanceCm, 0, 400, 0, 180);
+  Serial.println(distance);
+  
+  servoOut = map(distance, minDistance, maxDistance, 0, 180);
+
+  Serial.print("Servo: ");
+  Serial.println(servoOut);
 
   servo.write(servoOut);
 
-  delay(5000);
+  delay(100);
 }
