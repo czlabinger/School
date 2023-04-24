@@ -1,0 +1,5 @@
+Core Switch: Catalyst 9500 Switches (C9500X)
+Firewall: Firepower 2100-Serie
+WLAN Controller: Catalyst 9800-80
+Server: HPE ProLiant DL325 Gen11 + Seagate IronWolf NAS HDD +Rescue + 10TB
+File storage: Cloud

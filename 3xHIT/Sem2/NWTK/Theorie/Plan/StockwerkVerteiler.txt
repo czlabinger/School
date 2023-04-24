@@ -1,0 +1,61 @@
+384 Netzwerkdosen
+
+Keller 1:
+15
+Switch: Cisco Systems 24-Port Gigabit Switch (SG110-24)
+Patch Panel: Cisco CON-SNTP-PP264
+
+Keller 2:
+8
+Switch: Cisco SP-SW-15305PP
+Patch Panel: Cisco CON-SNTP-PP264
+
+EG 1:
+13
+Switch: Cisco Systems 24-Port Gigabit Switch (SG110-24)
+Patch Panel: Cisco CON-SNTP-PP264
+
+EG 2:
+17
+Switch: Cisco Systems 24-Port Gigabit Switch (SG110-24)
+Patch Panel: Cisco CON-SNTP-PP264
+
+1 OG 1:
+46
+Switch: Cisco Systems CBS250-48T-4G-EU
+Patch Panel: Cisco SG250-50P
+
+1 OG 2:
+30
+Switch: Cisco Systems CBS250-48T-4G-EU
+Patch Panel: Cisco SG250-50P
+
+2 OG 1:
+48
+Switch: Cisco Systems CBS250-50T-4G-EU
+Patch Panel: Cisco SG250-50P
+
+2 OG 2:
+16
+Switch: Cisco Systems 24-Port Gigabit Switch (SG110-24)
+Patch Panel: Cisco CON-SNTP-PP264
+
+3 OG 1:
+46
+Switch: Cisco Systems CBS250-48T-4G-EU
+Patch Panel: Cisco SG250-50P
+
+3 OG 2:
+32
+Switch: Cisco Systems CBS250-48T-4G-EU
+Patch Panel: Cisco SG250-50P
+
+4 OG 1:
+68
+Switch: Cisco Systems CBS350-48FP-4X
+Patch Panel: Cisco SNTC-NO RMA SG 300-52P 52-PORT
+
+4 OG 2:
+32
+Switch: Cisco Systems CBS250-48T-4G-EU
+Patch Panel: Cisco SG250-50P
