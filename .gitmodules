@@ -9,10 +9,10 @@
 	url = git@github.com:TGM-HIT/figuren-czlabinger.git
 [submodule "3xHIT/Sem2/SEW/rbac-czlabinger"]
 	path = 3xHIT/Sem2/SEW/rbac-czlabinger
-	url = git@github.com:TGM-HIT/rbac-czlabinger
+	url = git@github.com:TGM-HIT/rbac-czlabinger.git
 [submodule "3xHIT/Sem2/SEW/tgm-lagerhalle-czlabinger"]
 	path = 3xHIT/Sem2/SEW/tgm-lagerhalle-czlabinger
-	url = git@github.com:TGM-HIT/tgm-lagerhalle-czlabinger
+	url = git@github.com:TGM-HIT/tgm-lagerhalle-czlabinger.git
 [submodule "3xHIT/Sem2/ITP/ChessMate-Client"]
 	path = 3xHIT/Sem2/ITP/ChessMate-Client
-	url = git@github.com:jscarlatar/ChessMate-Client
+	url = git@github.com:jscarlata/ChessMate-Client.git
