@@ -16,3 +16,6 @@
 [submodule "3xHIT/Sem2/ITP/ChessMate-Client"]
 	path = 3xHIT/Sem2/ITP/ChessMate-Client
 	url = git@github.com:jscarlata/ChessMate-Client.git
+[submodule "3xHIT/Sem2/SEW/tgmlogisticstests-czlabinger"]
+	path = 3xHIT/Sem2/SEW/tgmlogisticstests-czlabinger
+	url = git@github.com:TGM-HIT/tgmlogisticstests-czlabinger.git
