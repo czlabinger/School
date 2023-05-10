@@ -5,17 +5,14 @@ app = Flask(__name__)
 
 
 @app.route("/")
-@app.route('/index')
+@app.route("/index")
 def home():
-    users = User()
-
-    return render_template('index.html', title='Welcome', users=users)
-
-
-class User:
-
-    def __init__(self):
-        dict = {
-            "Christof": True,
-            "Matthias": False
-        }
+    users=[{
+            "name":"Christof", 
+            "formel":True
+        },
+        {
+            "name":"Matthias",
+            "formel":False
+        }]
+    return render_template('index.html', title='Willkommen', users=users)
