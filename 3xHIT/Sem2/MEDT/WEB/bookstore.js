@@ -1,78 +1,47 @@
-var http = require('http');
-var url = require('url');
+var http = require('http')
+var url = require('url')
+var fs = require('fs')
 
-let books = [];
+var list = read()
+console.log(list)
 
-let nextID = 1;
-
-function addBuch(name, autor, jahr, seiten){
-    let book = {
-        ID : nextID,
-        Name : name,
-        Autor : autor,
-        Jahr : jahr,
-        Seiten : seiten
-    };
-    books.push(book);
-    nextID++;
-}
-
-function toJSON() {
-    return JSON.stringify(books);
-}
-
-function deleteBuch(id){
-    books = books.filter(function(book) {
-        return book.ID != id;
-    });
-}
-
-function updateBook(query, res) {
-    const bookId = parseInt(query.id);
-    const bookIndex = books.findIndex(book => book.id === bookId);
-    if (bookIndex !== 0) {
-      const updatedBook = {
-        id: bookId,
-        name: query.name,
-        autor: query.autor,
-        jahr: query.jahr,
-        seitenanzahl: query.seiten
-      };
-      books[bookIndex] = updatedBook;
-      res.end(toJSON());
-    }else{
-        res.end("Not a valid book ID");
-    }
-  }
-
+var count = list.length -1
+var book
 
 http.createServer(function (req, res) {
-    const { pathname, query } = url.parse(req.url, true);
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "OPTIONS, POST, GET, DELETE, PUT",
+      "Access-Control-Max-Age": 2592000,
+      'Content-Type': 'text/json'
+    };
+    res.writeHead(200, headers);
+    var u = url.parse(req.url, true)
 
-    if (req.method === 'GET' && req.url === '/') {
-        res.writeHead(200, {'Content-Type': 'text/plain'});   
-        res.end(toJSON());
+    if(req.method == 'POST' || u.pathname == '/add'){
+      count++;
+      book = {id: count, name: u.query.name, author: u.query.author, year: u.query.year, pages: u.query.pages}
+      list.push(book)
+    }
 
-      } else if (req.method === 'GET' && req.url.startsWith('/add')) {
-        var queryObject = url.parse(req.url, true).query;
-        var name = queryObject.name;
-        var author = queryObject.autor;
-        var year = queryObject.jahr;
-        var pages = queryObject.seiten;
-        addBuch(name, author, year, pages);
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.end(toJSON());
+    if(req.method == 'DELETE' || u.pathname == '/del'){
+      list.splice(u.query.id)
+      count--
+    }
 
-      } else if (req.method === 'GET' && req.url.startsWith('/del')) {
-        const queryObject = url.parse(req.url, true).query;
-        const id = queryObject.id;
-        deleteBuch(id);
-        res.end(toJSON());
+    if(req.method == 'PUT' || u.pathname == '/update'){
+      book = {id: count, name: u.query.name, author: u.query.author, year: u.query.year, pages: u.query.pages}
+      list[u.query.id] = book
+      list[u.query.id].id = u.query.id
+    }
 
-      }else if (req.method === 'GET' && req.url.startsWith('/update')) {
-        updateBook(query, res);
-      }else {
-        res.writeHead(404, {'Content-Type': 'text/plain'});
-        res.end('404 Errorr Not Found');
-      }
-}).listen(8080); 
+    res.write(JSON.stringify(list))
+    res.end()
+
+    fs.writeFileSync("books.json", JSON.stringify(list))
+
+  }).listen(8080);
+
+function read(){
+  return JSON.parse(fs.readFileSync('books.json'));
+}

@@ -1,0 +1,42 @@
+version: '1'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf0
+      - ./html:/usr/share/nginx/html
+    depends_on:
+      - app
+
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: Stoffi05
+      MYSQL_PASSWORD: test
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mariadb
+
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    restart: always
+    depends_on:
+      - mariadb
+    environment:
+      DB_HOST: mariadb
+      DB_PORT: 3306
+      DB_USER: Stoffi05
+      DB_PASSWORD: test
+      DB_NAME: testdb
