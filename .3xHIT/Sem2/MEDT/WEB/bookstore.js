@@ -15,6 +15,7 @@ http.createServer(function (req, res) {
       "Access-Control-Max-Age": 2592000,
       'Content-Type': 'text/json'
     };
+    
     res.writeHead(200, headers);
     var u = url.parse(req.url, true)
 
@@ -25,8 +26,8 @@ http.createServer(function (req, res) {
     }
 
     if(req.method == 'DELETE' || u.pathname == '/del'){
-      list.splice(u.query.id)
-      count--
+      list.splice(u.query.id, 1)
+      count--;
     }
 
     if(req.method == 'PUT' || u.pathname == '/update'){
