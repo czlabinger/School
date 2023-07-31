@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#btn1").click(function(){
+          $("li:eq(2)").remove();
+          $("li:first").hide();
+          $("li:last").append("<li>" + $("#eingabe").val() + "</li>");
+          $("li").before("<li>" + $("#eingabe").val() + "</li>");
+        });
+      });
+    </script>
+  </head>
+  <body>
+
+    <h1>Meine Hobbies</h1>
+
+    <ol>
+      <li>Schlafen</li>
+      <li>Essen</li>
+      <li>Lernen</li>
+      <li>Spielen</li>
+    </ol>
+
+  <input id="eingabe" />
+  <button id="btn1">Klick</button>
+
+  </body>
+</html>

@@ -1,0 +1,6 @@
+Core Switch: Catalyst 9500 Switches (C9500X) -> €25,499.00
+Firewall: Firepower 2100-Serie -> € 5,885.00
+WLAN Controller: Catalyst 9800-80 -> € 35,000.00
+Server: HPE ProLiant DL325 Gen11 -> € 6,700.00 + Seagate IronWolf NAS HDD +Rescue 10TB -> € 280.00
+Gateway: Catalyst 8300-1N1S-6T -> € 10,000.00
+File storage: Cloud
