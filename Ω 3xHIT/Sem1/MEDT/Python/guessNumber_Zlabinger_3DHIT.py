@@ -9,6 +9,7 @@ def main():
 
         if userInput == rand:
             print("bingo")
+            break
         elif userInput > rand:
             print("Number is to high")
         else:
