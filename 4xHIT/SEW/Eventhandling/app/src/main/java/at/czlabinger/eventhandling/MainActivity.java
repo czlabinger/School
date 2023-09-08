@@ -1,46 +1,49 @@
 package at.czlabinger.eventhandling;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.ClipData;
-import android.content.ClipDescription;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout.LayoutParams;
+import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView img;
-    String msg = "";
-    LayoutParams layoutParams;
-
+    private ImageView imageView;
+    private int xDelta, yDelta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        img = (ImageView) findViewById(R.id.img);
-        img.setTag("Image");
-        img.setOnLongClickListener(new View.OnLongClickListener() {
+        imageView = findViewById(R.id.img);
+
+        imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onLongClick(View v) {
-                ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
-                String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+            public boolean onTouch(View view, MotionEvent event) {
+                final int x = (int) event.getRawX();
+                final int y = (int) event.getRawY();
+                Log.i("a", String.valueOf(x));
 
-                ClipData dragData = new ClipData(v.getTag().toString(), mimeTypes, item);
-
-                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(img);
-
-                v.startDragAndDrop(dragData, shadowBuilder, null, 0);
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                        view.setX(x);
+                        view.setY(y);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        view.setX(x);
+                        view.setY(y);
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        view.setX(x);
+                        view.setY(y);
+                        break;
+                }
                 return true;
             }
         });
-
-
-
     }
 }
