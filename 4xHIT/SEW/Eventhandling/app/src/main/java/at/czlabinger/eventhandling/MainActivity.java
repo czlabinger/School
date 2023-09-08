@@ -33,14 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
                 ClipData dragData = new ClipData(v.getTag().toString(), mimeTypes, item);
 
-                Log.i(null, "a");
-
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(img);
 
                 v.startDragAndDrop(dragData, shadowBuilder, null, 0);
                 return true;
             }
         });
+
 
 
     }
