@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidTutorial</string>
+    <string name="greeting">Hi, my name is Christof!</string>
+    <string name="next_Button">Next</string>
+    <string name="prev">Previous</string>
+    <string name="copyright">© Christof Zlabinger; September 2023</string>
 </resources>
