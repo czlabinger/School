@@ -27,11 +27,40 @@ public class Second extends AppCompatActivity {
         prev_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("onCreate()", "Switching to Main Activity.");
-
                 Intent i = new Intent(Second.this, MainActivity.class);
                 startActivity(i);
             }
         });
+        Log.i("onCreate()", "Second Activity created.");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("onStart()", "Second Activity started.");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("onCreate()", "Second Activity resumed.");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("onCreate()", "Second Activity paused.");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("onCreate()", "Second Activity stopped.");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("onCreate()", "Second Activity destroyed.");
     }
 }
