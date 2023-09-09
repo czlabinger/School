@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="add">+</string>
+    <string name="sub">-</string>
+    <string name="multi">*</string>
+    <string name="div">/</string>
+    <string name="calc">Calculate</string>
+    <string name="save">MS</string>
+    <string name="load">MR</string>
+    <string name="zero">0</string>
+    <string name="hint1">Value 1</string>
+    <string name="hint2">Value 2</string>
+</resources>

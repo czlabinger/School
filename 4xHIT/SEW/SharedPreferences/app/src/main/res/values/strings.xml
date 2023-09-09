@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SharedPreferences</string>
+    <string name="saveBtn">Save</string>
+    <string name="deleteBtn">Delete</string>
+    <string name="defaultValue">This is a default Value</string>
+</resources>
