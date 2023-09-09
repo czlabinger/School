@@ -1,14 +1,21 @@
 package at.czlabinger.calculator;
 
+import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -31,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Calculator");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
 
         addSaveLoadListeners();
         addOutputListener();
@@ -47,7 +54,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(!(checkValues(0) || checkValues(1))) return;
+                if(!(checkValues(0) && checkValues(1))) {
+                    Toast toast = Toast.makeText(getApplicationContext(),"Please enter two valid integers!",Toast.LENGTH_SHORT);
+                    toast.show();
+                    return;
+                }
 
                 int selected = ((RadioGroup) findViewById(R.id.radioGroup)).getCheckedRadioButtonId();
                 TextView output = (TextView) findViewById(R.id.output);
@@ -103,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     ((TextView) findViewById(R.id.firstInput)).setTextColor(getResources().getColor(R.color.black, null));
                 }
+
             }
 
             @Override
@@ -138,18 +150,11 @@ public class MainActivity extends AppCompatActivity {
         if(i == 0) {
             String val1Str = ((TextView) findViewById(R.id.firstInput)).getText().toString();
 
-            if(val1Str.equals("")) {
-                Toast toast = Toast.makeText(getApplicationContext(),"Please enter a value for the first input!",Toast.LENGTH_SHORT);
-                toast.show();
-
-                return false;
-            }
+            if(val1Str.equals("")) return false;
 
             try {
                 Integer.parseInt(val1Str);
             } catch (NumberFormatException e ) {
-                Toast toast = Toast.makeText(getApplicationContext(),"Please enter a valid integer for the first value!",Toast.LENGTH_SHORT);
-                toast.show();
                 return false;
             }
             return true;
@@ -157,17 +162,11 @@ public class MainActivity extends AppCompatActivity {
 
             String val2Str = ((TextView) findViewById(R.id.secondInput)).getText().toString();
 
-            if(val2Str.equals("")) {
-                Toast toast = Toast.makeText(getApplicationContext(),"PPlease enter a value for the second input!",Toast.LENGTH_SHORT);
-                toast.show();
-                return false;
-            }
+            if(val2Str.equals("")) return false;
 
             try {
                 Integer.parseInt(val2Str);
             } catch (NumberFormatException e ) {
-                Toast toast = Toast.makeText(getApplicationContext(),"Please enter a valid integer for the second value!",Toast.LENGTH_SHORT);
-                toast.show();
                 return false;
             }
             return true;
@@ -205,5 +204,46 @@ public class MainActivity extends AppCompatActivity {
             ((RadioButton) findViewById(loadInt)).setChecked(true);
 
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == R.id.reset) {
+            reset();
+        } else if(item.getItemId() == R.id.about) {
+            switchToAbout();
+        }
+
+        return true;
+    }
+
+    private void reset() {
+        ((EditText) findViewById(R.id.firstInput)).setText("");
+        ((EditText) findViewById(R.id.secondInput)).setText("");
+
+        try {
+            int selected = ((RadioGroup) findViewById(R.id.radioGroup)).getCheckedRadioButtonId();
+            ((RadioButton) findViewById(selected)).setChecked(false);
+        } catch (NullPointerException e){}
+
+        ((TextView) findViewById(R.id.output)).setText("");
+
+        SharedPreferences pref = getApplication().getSharedPreferences("operation", 0);
+        SharedPreferences.Editor ed = pref.edit();
+        ed.remove("operation");
+        ed.apply();
+    }
+
+    private void switchToAbout() {
+        Intent i = new Intent(MainActivity.this, About.class);
+        i.addFlags(FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(i);
     }
 }
