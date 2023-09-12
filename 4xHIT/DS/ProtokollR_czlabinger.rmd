@@ -1,0 +1,98 @@
+---
+title: "EinfuehrungR"
+author: "Christof Zlabinger"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Tuotorial
+
+## Syntax
+
+### Syntax
+
+-   Text:
+    -   `"Hello, World!"`
+-   Nummern:
+    -   `5`
+-   Simple Rechnungen:
+    -   `5+5`
+
+### Print
+
+-   Output Text:
+    -   `"Hello, World"`
+-   Print auf die Console:
+    -   `print("Hello, World!")`
+
+## Comments
+
+Kommentare fangen mit \# an und führen dazu das eine Zeile Code vom Compiler ignoriert wird.
+
+## Variables
+
+Es gibt keinen Befehl um Variabeln zu erstellen, sie werden erstellt soballt ihnen das erste mal ein Wert zugewiesen wird. Einer Variable wir ein Wert zugewiesen mit \<- . Eine Variable wird geprinted indem man ihren namen schreibt. Beispiel:
+
+`name \<- "Christof" \# Zuweisen einer Variable`
+
+`name \# Printen einer Variable`
+
+## Concatenate Elements
+
+Zwei Variabeln können kombiniert werden mittels paste() Beispiel:
+
+`text \<- "Christof"`
+
+`paste("My name is", name)`
+
+Es ist auch möglich zwei Variabeln miteinander zu kombinieren.
+
+`text1 \<- "My name is"`
+
+`text2 \<- "Christof"`
+
+`paste(text1, text2)`
+
+Für Zahlen kann ein '+' verwendet werden
+
+`num1 \<- 5`
+
+`num2 \<- 5`
+
+`num1 + num2`
+
+Wenn versucht wird einen String und eine Zahl zu kombinieren, wird R einen Error werfen.
+
+`num \<- 5` `text \<- "Hello"`
+
+`num + text`
+
+`Error in num + text : non-numeric argument to binary operator`
+
+## Multiple Variables
+
+Es ist möglich einen Wert meherern Variabeln zu zuweisen
+
+`var1 \<- var2 \<- var3 \<- "Hello, World!"`
+
+## Variable Names
+
+Regeln: \* Eine Variabel muss mit einem Buchstaben starten \* Sie können aus Buchstaben, Zahlen, und Punkten (.) sein. \* Eine Variabel kann nicht mit einem \_ oder einer Zahl starten \* Variabel namen sind case sensetive \* Bestimmte Wörter können nicht verwendet werden (Bsp.: TRUE, FALSE, NULL, if, ...)
+
+## Data Types
+
+Variabeln haben keinen Fixen Typ. Der Typ wird automatisch festgelegt und kann sogar geändert werden.
+
+-   numeric - (10.5, 55, 787)
+-   integer - (1L, 55L, 100L, where the letter "L" declares this as an integer)
+-   complex - (9 + 3i, where "i" is the imaginary part)
+-   character (a.k.a. string) - ("k", "R is exciting", "FALSE", "11.5")
+-   logical (a.k.a. boolean) - (TRUE or FALSE)
+
+Die `class()` Methode überprüft den Datentyp der üvergebenen Variabel
+
+## Numbers
