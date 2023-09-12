@@ -96,3 +96,118 @@ Variabeln haben keinen Fixen Typ. Der Typ wird automatisch festgelegt und kann s
 Die `class()` Methode überprüft den Datentyp der üvergebenen Variabel
 
 ## Numbers
+
+Es gibt drei Arten von Nummern:
+
+1.  numeric \# 10.5
+2.  integer \# 10L
+3.  complex \# 1i
+
+### Numeric
+
+Meist genutzter Typ. Kann Nummern mit oder ohne Dezimazahlstelle sein: 10.5, 55, 123
+
+### Integer
+
+numerics ohne Dezimalstelle. Um einen Integer zu erstellen `L` an die Zahl anhängen: 10L, 55L
+
+### Complex
+
+Beinhaltet einen imaginären teil `ì`
+
+### Type Conversion
+
+Ein Typ kann zu einem anderen kovertiert werden.
+
+```         
+as.numeric()
+as.integer()
+as.complex()
+```
+
+## Math
+
+### Simple Math
+
+Es können einfache matthematische Rechnungen mittel opperatoren durchgeführt werden.
+
+-   `+` Um Zahlen zu addiren
+-   `-` Im Zahlen zu dividieren
+
+### Built-in Math functions
+
+`min(x, y, z, ...)` um das Minimum eines Sets zu finden `max(x, y, z, ...)` um das Maximum eines Sets zu finden
+
+`sqrt(x)` um die Wurzel einer Zahl zu finden
+
+`abs(x)` um den Absoluten Wert einer Zahl zu finden
+
+`ceiling(x)` rudet die Zahl auf die nächst höchste ganze Zahl auf `floor(x)` rundet die Zahl auf die nächt niedrigere ganze Zahl ab
+
+## String
+
+### String
+
+Strings werden verwendet um Text zu speichern. Sie werden mit `'` oder mit `"` gekennzeichnet. (Bsp.: "Hello, World!", 'Hello, World!')
+
+### Assign a String to a Variable
+
+Ein String wird einer Variabel mittels `<-` zugewiesen.
+
+`str <- "Hello, World!"`
+
+### Multiline Strings
+
+Ein String kann auch mehrere Zeilen lang sein.
+
+```         
+str <- "Lorem ipsum dolor sit amet,
+consectetur adipiscing elit,
+sed do eiusmod tempor incididunt
+ut labore et dolore magna aliqua."
+```
+
+Es wird ein `\n` am ende jeder Zeile hinzugefügt
+
+Wenn die Zeilenumbrüche genau übernommen werden sollen dann muss `cat()` verwendet werden.
+
+### String length
+
+Mittels `nchar()` kann die Länge eines Strings ermittelt werden.
+
+### Check a String
+
+Um zu überprüfen ob ein String einen Character oder einen anderen String beinhaltet wird `grepl("Search", str)` verwendet.
+
+### Combine two Strings
+
+Um zwei Strings zu vereinen wird `paste()` verwender,
+
+## Escape Characters
+
+### Escape Characters
+
+Um Character die nicht in einem String verwendet werden dürfen müssen sie escaped werden. Ein Character kann escaped werden indem ein `\` davor hinzugefügt wird. Bsp.:
+
+```         
+str <- "Hello, "Christof"!"
+
+Error: unexpected symbol in "str <- "Hello, "Christof"
+```
+
+Um diesen Fehler zu verhindern kann `\"` verwendet werden.
+
+`str <- "Hello, \"Christof\"!"`
+
+Andere Escape Charactere sind:
+
+| Code | Result          |
+|------|-----------------|
+| \\\\ | Backslash       |
+| \\n  | New line        |
+| \\r  | Carriage Return |
+| \\t  | Tab             |
+| \\b  | Backspace       |
+
+
+## Booleans
