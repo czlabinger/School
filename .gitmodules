@@ -1,0 +1,3 @@
+[submodule "4xHIT/SEW/Calculator"]
+	path = 4xHIT/SEW/Calculator
+	url = git@github.com:czlabinger/Calculator.git
