@@ -2,14 +2,9 @@ package at.czlabinger.calculator;
 
 import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,15 +12,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,48 +46,45 @@ public class MainActivity extends AppCompatActivity {
         if(!addTextListeners()) return;
 
         Button calc = (Button) findViewById(R.id.calc);
-        calc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        calc.setOnClickListener(v -> {
 
-                if(!(checkValues(0) && checkValues(1))) {
-                    Toast toast = Toast.makeText(getApplicationContext(),"Please enter two valid integers!",Toast.LENGTH_SHORT);
-                    toast.show();
-                    return;
-                }
+            if(!(checkValues(0) && checkValues(1))) {
+                Toast toast = Toast.makeText(getApplicationContext(),"Please enter two valid integers!",Toast.LENGTH_SHORT);
+                toast.show();
+                return;
+            }
 
-                int selected = ((RadioGroup) findViewById(R.id.radioGroup)).getCheckedRadioButtonId();
-                TextView output = (TextView) findViewById(R.id.output);
+            int selected = ((RadioGroup) findViewById(R.id.radioGroup)).getCheckedRadioButtonId();
+            TextView output = (TextView) findViewById(R.id.output);
 
-                if(((RadioButton) findViewById(selected)) == null) {
-                    Toast toast = Toast.makeText(getApplicationContext(),"Please select an operator!",Toast.LENGTH_SHORT);
-                    toast.show();
+            if(((RadioButton) findViewById(selected)) == null) {
+                Toast toast = Toast.makeText(getApplicationContext(),"Please select an operator!",Toast.LENGTH_SHORT);
+                toast.show();
 
-                    return;
-                }
+                return;
+            }
 
-                int val1 = Integer.parseInt(((TextView) findViewById(R.id.firstInput)).getText().toString());
-                int val2 = Integer.parseInt(((TextView) findViewById(R.id.secondInput)).getText().toString());
+            int val1 = Integer.parseInt(((TextView) findViewById(R.id.firstInput)).getText().toString());
+            int val2 = Integer.parseInt(((TextView) findViewById(R.id.secondInput)).getText().toString());
 
-                switch (((RadioButton) findViewById(selected)).getText().toString()) {
-                    case "+":
-                        output.setText(String.valueOf(val1 + val2));
-                        break;
-                    case "-":
-                        output.setText(String.valueOf(val1 - val2));
-                        break;
-                    case "*":
-                        output.setText(String.valueOf(val1 * val2));
-                        break;
-                    case "/":
-                        if(val2 == 0) {
-                            Toast toast = Toast.makeText(getApplicationContext(),"Can't divide by 0!",Toast.LENGTH_SHORT);
-                            toast.show();
-                            return;
-                        }
-                        output.setText(String.valueOf(val1 / val2));
-                        break;
-                }
+            switch (((RadioButton) findViewById(selected)).getText().toString()) {
+                case "+":
+                    output.setText(String.valueOf(val1 + val2));
+                    break;
+                case "-":
+                    output.setText(String.valueOf(val1 - val2));
+                    break;
+                case "*":
+                    output.setText(String.valueOf(val1 * val2));
+                    break;
+                case "/":
+                    if(val2 == 0) {
+                        Toast toast = Toast.makeText(getApplicationContext(),"Can't divide by 0!",Toast.LENGTH_SHORT);
+                        toast.show();
+                        return;
+                    }
+                    output.setText(String.valueOf(val1 / val2));
+                    break;
             }
         });
     }
@@ -173,16 +166,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void addOutputListener() {
         TextView output = (TextView) findViewById(R.id.output);
-        output.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    output.setText(getResources().getString(R.string.zero));
-                }
-                return MainActivity.super.onTouchEvent(event);
+        output.setOnTouchListener((v, event) -> {
+            if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                output.setText(getResources().getString(R.string.zero));
             }
+
+            return MainActivity.super.onTouchEvent(event);
         });
     }
 
@@ -231,7 +223,9 @@ public class MainActivity extends AppCompatActivity {
         try {
             int selected = ((RadioGroup) findViewById(R.id.radioGroup)).getCheckedRadioButtonId();
             ((RadioButton) findViewById(selected)).setChecked(false);
-        } catch (NullPointerException e){}
+        } catch (NullPointerException e){
+            Log.i("Reset()", "No radio button selected");
+        }
 
         ((TextView) findViewById(R.id.output)).setText("");
 
