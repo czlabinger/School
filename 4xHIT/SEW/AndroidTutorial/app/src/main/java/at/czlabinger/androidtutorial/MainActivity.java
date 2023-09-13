@@ -17,16 +17,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button next_button = (Button) findViewById(R.id.next_button);
-        next_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText et = (EditText) findViewById(R.id.input);
-                String input = et.getText().toString();
+        next_button.setOnClickListener(v -> {
+            EditText et = (EditText) findViewById(R.id.input);
+            String input = et.getText().toString();
 
-                Intent i = new Intent(MainActivity.this, Second.class);
-                i.putExtra("input", input);
-                startActivity(i);
-            }
+            Intent i = new Intent(MainActivity.this, Second.class);
+            i.putExtra("input", input);
+            startActivity(i);
         });
 
         Log.i("onCreate()", "Main Activity created.");
