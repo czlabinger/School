@@ -37,47 +37,59 @@ Kommentare fangen mit \# an und führen dazu das eine Zeile Code vom Compiler ig
 
 Es gibt keinen Befehl um Variabeln zu erstellen, sie werden erstellt soballt ihnen das erste mal ein Wert zugewiesen wird. Einer Variable wir ein Wert zugewiesen mit \<- . Eine Variable wird geprinted indem man ihren namen schreibt. Beispiel:
 
-`name \<- "Christof" \# Zuweisen einer Variable`
+``` r
+name \<- "Christof" \# Zuweisen einer Variable
 
-`name \# Printen einer Variable`
+name \# Printen einer Variable
+```
 
 ## Concatenate Elements
 
 Zwei Variabeln können kombiniert werden mittels paste() Beispiel:
 
-`text \<- "Christof"`
+``` r
+text \<- "Christof"
 
-`paste("My name is", name)`
+paste("My name is", name)
+```
 
 Es ist auch möglich zwei Variabeln miteinander zu kombinieren.
 
-`text1 \<- "My name is"`
+``` r
+text1 \<- "My name is"
 
-`text2 \<- "Christof"`
+text2 \<- "Christof"
 
-`paste(text1, text2)`
+paste(text1, text2)
+```
 
 Für Zahlen kann ein '+' verwendet werden
 
-`num1 \<- 5`
+``` r
+num1 \<- 5
 
-`num2 \<- 5`
+num2 \<- 5
 
-`num1 + num2`
+num1 + num2
+```
 
 Wenn versucht wird einen String und eine Zahl zu kombinieren, wird R einen Error werfen.
 
-`num \<- 5` `text \<- "Hello"`
+``` r
+num \<- 5` `text \<- "Hello"
 
-`num + text`
+num + text
 
-`Error in num + text : non-numeric argument to binary operator`
+Error in num + text : non-numeric argument to binary operator
+```
 
 ## Multiple Variables
 
 Es ist möglich einen Wert meherern Variabeln zu zuweisen
 
-`var1 \<- var2 \<- var3 \<- "Hello, World!"`
+``` r
+var1 <- var2 <- var3 <- "Hello, World!"
+```
 
 ## Variable Names
 
@@ -119,7 +131,7 @@ Beinhaltet einen imaginären teil `ì`
 
 Ein Typ kann zu einem anderen kovertiert werden.
 
-```         
+``` r
 as.numeric()
 as.integer()
 as.complex()
@@ -154,13 +166,15 @@ Strings werden verwendet um Text zu speichern. Sie werden mit `'` oder mit `"` g
 
 Ein String wird einer Variabel mittels `<-` zugewiesen.
 
-`str <- "Hello, World!"`
+``` r
+str <- "Hello, World!"
+```
 
 ### Multiline Strings
 
 Ein String kann auch mehrere Zeilen lang sein.
 
-```         
+``` r
 str <- "Lorem ipsum dolor sit amet,
 consectetur adipiscing elit,
 sed do eiusmod tempor incididunt
@@ -189,7 +203,7 @@ Um zwei Strings zu vereinen wird `paste()` verwender,
 
 Um Character die nicht in einem String verwendet werden dürfen müssen sie escaped werden. Ein Character kann escaped werden indem ein `\` davor hinzugefügt wird. Bsp.:
 
-```         
+``` r
 str <- "Hello, "Christof"!"
 
 Error: unexpected symbol in "str <- "Hello, "Christof"
@@ -197,7 +211,9 @@ Error: unexpected symbol in "str <- "Hello, "Christof"
 
 Um diesen Fehler zu verhindern kann `\"` verwendet werden.
 
-`str <- "Hello, \"Christof\"!"`
+``` r
+str <- "Hello, \"Christof\"!"
+```
 
 Andere Escape Charactere sind:
 
@@ -209,5 +225,101 @@ Andere Escape Charactere sind:
 | \\t  | Tab             |
 | \\b  | Backspace       |
 
-
 ## Booleans
+
+Es können Werte verglichen werden und diese können entweder `TRUE` oder `FALSE` sein.
+
+``` r
+10 > 9    # TRUE 
+10 == 9   # FALSE 
+10 < 9    # FALSE 
+```
+
+Dies ist auch mit Variabeln möglich.
+
+``` r
+a <- 10
+b <- 9
+
+a > b 
+```
+
+## Operators
+
+### Operators
+
+Operatoren werden verwendet um operationen durchzuführen.
+
+Zum Beispiel können zwei Zahlen mittels eines `+` addiert werden.
+
+``` r
+10 + 5
+```
+
+In R werden Operatoren in volgende Kategorien eingeteilt:
+
+-   Arithmetic operators
+-   Assignment operators
+-   Comparison operators
+-   Logical operators
+-   Miscellaneous operators
+
+### Arithmetic Operators
+
+| Operator | Name             | Example |
+|----------|------------------|---------|
+| \+       | Addition         | x + y   |
+| \-       | Subtraction      | x - y   |
+| \*       | Multiplication   | x \* y  |
+| \^       | Exponent         | x\^y    |
+| %%       | Modulus          | x %% y  |
+| %/%      | Integer Division | x %/% y |
+
+### Assignment Operators
+
+Zusweisungs Operatoren werden verwendet um einer Variabel einen Wert zuzuweisen.
+
+``` r
+x <- 3
+
+y <- "Hello"
+```
+
+### Comparison Operators
+
+Vergleichs Operatoren werden verwendet um Werte miteinander zu vergleichen.
+
+| Operator | Name                     | Example |
+|----------|--------------------------|---------|
+| ==       | Equal                    | x == y  |
+| !=       | Not equal                | x != y  |
+| \>       | Greater than             | x \> y  |
+| \<       | Less than                | x \< y  |
+| \>=      | Greater than or equal to | x \>= y |
+| \<=      | Less than or equal to    | x \<= y |
+
+### Logical Operators
+
+Logische Operatoren werden verwender um zwei konditionale statements miteinander zu verbinden.
+
+| Operator | Description                                                                       |
+|---------------------------------------------|---------------------------|
+| &        | Element-wise Logical AND operator. It returns TRUE if both elements are TRUE      |
+| &&       | Logical AND operator - Returns TRUE if both statements are TRUE                   |
+| \|       | Elementwise- Logical OR operator. It returns TRUE if one of the statement is TRUE |
+| \|\|     | Logical OR operator. It returns TRUE if one of the statement is TRUE.             |
+| !        | Logical NOT - returns FALSE if statement is TRUE                                  |
+
+### Miscellaneous Operators
+
+| Operator | Description                                | Example                    |
+|----------------|-----------------------------------|----------------------|
+| :        | Creates a series of numbers in a sequence  | x \<- 1:10                 |
+| %in%     | Find out if an element belongs to a vector | x %in% y                   |
+| %\*%     | Matrix Multiplication                      | x \<- Matrix1 %\*% Matrix2 |
+
+## If ... Else
+
+### Conditions and If Statements
+
+https://www.w3schools.com/r/r_if_else.asp
