@@ -307,7 +307,7 @@ Vergleichs Operatoren werden verwendet um Werte miteinander zu vergleichen.
 Logische Operatoren werden verwender um zwei konditionale statements miteinander zu verbinden.
 
 | Operator | Description                                                                       |
-|----------|-----------------------------------------------------------------------------------|
+|-----------------|-------------------------------------------------------|
 | &        | Element-wise Logical AND operator. It returns TRUE if both elements are TRUE      |
 | &&       | Logical AND operator - Returns TRUE if both statements are TRUE                   |
 | \|       | Elementwise- Logical OR operator. It returns TRUE if one of the statement is TRUE |
@@ -317,7 +317,7 @@ Logische Operatoren werden verwender um zwei konditionale statements miteinander
 ### Miscellaneous Operators
 
 | Operator | Description                                | Example                    |
-|----------|--------------------------------------------|----------------------------|
+|------------------|---------------------------------|---------------------|
 | :        | Creates a series of numbers in a sequence  | x \<- 1:10                 |
 | %in%     | Find out if an element belongs to a vector | x %in% y                   |
 | %\*%     | Matrix Multiplication                      | x \<- Matrix1 %\*% Matrix2 |
@@ -638,6 +638,190 @@ print(my_function(5))
 print(my_function(9)) 
 ```
 
-## Nested functions
+### Nested functions
 
-<https://www.w3schools.com/r/r_functions_nested.asp>
+Es gibt zwei Arten von nested functions: 1. Wenn eine Funktion in einer anderen Funktion aufgerufen wird 2. Wenn eine Funktion in einer anderen Funktion geschrieben wird.
+
+Bsp. für 1. Fall:
+
+``` r
+Nested_function <- function(x, y) {
+  a <- x + y
+  return(a)
+}
+
+Nested_function(Nested_function(2,2), Nested_function(3,3)) 
+```
+
+Bsp.: für den 2. Fall:
+```r
+Outer_func <- function(x) {
+  Inner_func <- function(y) {
+    a <- x + y
+    return(a)
+  }
+  return (Inner_func)
+}
+output <- Outer_func(3) # To call the Outer_func
+output(5) 
+```
+
+### Recursion
+
+R unterstützt auch rekrusive Aufrüfe von Funktionen. Also eine Methode kann sich selbst aufrufen. Es muss aufgepasst werden dass eine Funktion die rekursiv funktioniert auch irgendwann aufhört.
+
+```r
+tri_recursion <- function(k) {
+  if (k > 0) {
+    result <- k + tri_recursion(k - 1)
+    print(result)
+  } else {
+    result = 0
+    return(result)
+  }
+}
+tri_recursion(6) 
+```
+
+### Global variables
+
+Variabeln welche auserhalb einer Funktion erstellt werden können global verwendet werden.
+
+
+```r
+txt <- "awesome"
+my_function <- function() {
+  paste("R is", txt)
+}
+
+my_function() 
+```
+
+Wenn eine Variabel mit dem selben Namen innerhalb einer Funktion erstellt wird, wird die lokale Variabel verwendet.
+
+```r
+txt <- "global variable"
+my_function <- function() {
+  txt = "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+txt # print txt
+```
+
+### The Global Assignment Operator
+
+Um eine globale Variabel in einer Funktion zu erstellen kann der `<<-` Operator verwendet werden.
+
+```r
+my_function <- function() {
+txt <<- "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+print(txt) 
+```
+
+`<<-` wird auch verwendet um den Wert einer globalen Variabel in einer Methode zu verändern 
+
+```r
+txt <- "awesome"
+my_function <- function() {
+  txt <<- "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+paste("R is", txt) 
+```
+
+# R Data Structures
+
+## Vectors
+
+Ein Vector ist eine Liste in der alle Elemente den gleichen Typen haben.
+Um eine Liste in einen Vector zu verwandeln wird die `c()` Funktion verwendet.
+
+```r
+# Vector of strings
+fruits <- c("banana", "apple", "orange")
+
+# Print fruits
+fruits 
+```
+
+Es kann auch eine Sequenz in einen Vector umgewandelt werden.
+
+```r
+# Vector with numerical values in a sequence
+numbers <- 1:10
+
+numbers
+```
+
+### Vector Length
+
+Die `lenght()` Funktion wird verwendet um die Länge eines Vektors zu bekommen.
+
+```r
+fruits <- c("banana", "apple", "orange")
+
+length(fruits) 
+```
+
+### Sort a Vector
+
+
+Um einen Vector zu sortieren kann die `sort()` Funktion verwndet werden.
+
+
+```r
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+numbers <- c(13, 3, 5, 7, 20, 2)
+
+sort(fruits)  # Sort a string
+sort(numbers) # Sort numbers 
+```
+
+### Access Vectors
+
+Ein Element eines Vectors kann mittels seinem Index innerhalb von '[]' erhalten werden.
+
+```r
+fruits <- c("banana", "apple", "orange")
+
+# Access the first item (banana)
+fruits[1] 
+```
+
+Es können auch mehrere Elemente auf einmal erhalten werden.
+
+```r
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+# Access the first and third item (banana and orange)
+fruits[c(1, 3)] 
+```
+
+Ein negativer Index gibt alle Elemente bis auf das des Indexes zurück.
+
+```r
+ fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+# Access all items except for the first item
+fruits[c(-1)] 
+```
+
+### Change an Item
+
+https://www.w3schools.com/r/r_vectors.asp
+
+
+
+
+
