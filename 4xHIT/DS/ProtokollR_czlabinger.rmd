@@ -307,7 +307,7 @@ Vergleichs Operatoren werden verwendet um Werte miteinander zu vergleichen.
 Logische Operatoren werden verwender um zwei konditionale statements miteinander zu verbinden.
 
 | Operator | Description                                                                       |
-|-----------------|-------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | &        | Element-wise Logical AND operator. It returns TRUE if both elements are TRUE      |
 | &&       | Logical AND operator - Returns TRUE if both statements are TRUE                   |
 | \|       | Elementwise- Logical OR operator. It returns TRUE if one of the statement is TRUE |
@@ -654,7 +654,8 @@ Nested_function(Nested_function(2,2), Nested_function(3,3))
 ```
 
 Bsp.: für den 2. Fall:
-```r
+
+``` r
 Outer_func <- function(x) {
   Inner_func <- function(y) {
     a <- x + y
@@ -670,7 +671,7 @@ output(5)
 
 R unterstützt auch rekrusive Aufrüfe von Funktionen. Also eine Methode kann sich selbst aufrufen. Es muss aufgepasst werden dass eine Funktion die rekursiv funktioniert auch irgendwann aufhört.
 
-```r
+``` r
 tri_recursion <- function(k) {
   if (k > 0) {
     result <- k + tri_recursion(k - 1)
@@ -687,8 +688,7 @@ tri_recursion(6)
 
 Variabeln welche auserhalb einer Funktion erstellt werden können global verwendet werden.
 
-
-```r
+``` r
 txt <- "awesome"
 my_function <- function() {
   paste("R is", txt)
@@ -699,7 +699,7 @@ my_function()
 
 Wenn eine Variabel mit dem selben Namen innerhalb einer Funktion erstellt wird, wird die lokale Variabel verwendet.
 
-```r
+``` r
 txt <- "global variable"
 my_function <- function() {
   txt = "fantastic"
@@ -715,7 +715,7 @@ txt # print txt
 
 Um eine globale Variabel in einer Funktion zu erstellen kann der `<<-` Operator verwendet werden.
 
-```r
+``` r
 my_function <- function() {
 txt <<- "fantastic"
   paste("R is", txt)
@@ -726,9 +726,9 @@ my_function()
 print(txt) 
 ```
 
-`<<-` wird auch verwendet um den Wert einer globalen Variabel in einer Methode zu verändern 
+`<<-` wird auch verwendet um den Wert einer globalen Variabel in einer Methode zu verändern
 
-```r
+``` r
 txt <- "awesome"
 my_function <- function() {
   txt <<- "fantastic"
@@ -744,10 +744,9 @@ paste("R is", txt)
 
 ## Vectors
 
-Ein Vector ist eine Liste in der alle Elemente den gleichen Typen haben.
-Um eine Liste in einen Vector zu verwandeln wird die `c()` Funktion verwendet.
+Ein Vector ist eine Liste in der alle Elemente den gleichen Typen haben. Um eine Liste in einen Vector zu verwandeln wird die `c()` Funktion verwendet.
 
-```r
+``` r
 # Vector of strings
 fruits <- c("banana", "apple", "orange")
 
@@ -757,7 +756,7 @@ fruits
 
 Es kann auch eine Sequenz in einen Vector umgewandelt werden.
 
-```r
+``` r
 # Vector with numerical values in a sequence
 numbers <- 1:10
 
@@ -768,7 +767,7 @@ numbers
 
 Die `lenght()` Funktion wird verwendet um die Länge eines Vektors zu bekommen.
 
-```r
+``` r
 fruits <- c("banana", "apple", "orange")
 
 length(fruits) 
@@ -776,11 +775,9 @@ length(fruits)
 
 ### Sort a Vector
 
-
 Um einen Vector zu sortieren kann die `sort()` Funktion verwndet werden.
 
-
-```r
+``` r
 fruits <- c("banana", "apple", "orange", "mango", "lemon")
 numbers <- c(13, 3, 5, 7, 20, 2)
 
@@ -792,7 +789,7 @@ sort(numbers) # Sort numbers
 
 Ein Element eines Vectors kann mittels seinem Index innerhalb von '[]' erhalten werden.
 
-```r
+``` r
 fruits <- c("banana", "apple", "orange")
 
 # Access the first item (banana)
@@ -801,7 +798,7 @@ fruits[1]
 
 Es können auch mehrere Elemente auf einmal erhalten werden.
 
-```r
+``` r
 fruits <- c("banana", "apple", "orange", "mango", "lemon")
 
 # Access the first and third item (banana and orange)
@@ -810,7 +807,7 @@ fruits[c(1, 3)]
 
 Ein negativer Index gibt alle Elemente bis auf das des Indexes zurück.
 
-```r
+``` r
  fruits <- c("banana", "apple", "orange", "mango", "lemon")
 
 # Access all items except for the first item
@@ -819,9 +816,47 @@ fruits[c(-1)]
 
 ### Change an Item
 
-https://www.w3schools.com/r/r_vectors.asp
+Um einen Wert eines Vectors zu ändern wird ihr Index verwendet.
 
+```r
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
 
+# Change "banana" to "pear"
+fruits[1] <- "pear"
 
+# Print fruits
+fruits 
+```
+
+### Repeat Vectors
+
+Um einen Vector wiederholend zu machen kann die `rep()` Funktion verwendet werden.
+
+```r
+repeat_each <- rep(c(1,2,3), each = 3)
+
+repeat_each 
+```
+
+### Generating sequenced vectors
+
+Ein Vector kann mit einer Sequenz verwendet werden.
+
+```r
+numbers <- 1:10
+
+numbers 
+```
+
+Damit größere oder kleinere Schritte in einer Sequenz machen zu können muss `seq()` verwendet werden.
+
+```r
+numbers <- seq(from = 0, to = 100, by = 20)
+
+numbers 
+```
+## Lists
+
+https://www.w3schools.com/r/r_lists.asp
 
 
