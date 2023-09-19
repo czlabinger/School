@@ -35,6 +35,8 @@ Kommentare fangen mit \# an und führen dazu das eine Zeile Code vom Compiler ig
 
 ## Variables
 
+### Variables
+
 Es gibt keinen Befehl um Variabeln zu erstellen, sie werden erstellt soballt ihnen das erste mal ein Wert zugewiesen wird. Einer Variable wir ein Wert zugewiesen mit \<- . Eine Variable wird geprinted indem man ihren namen schreibt. Beispiel:
 
 ``` r
@@ -43,7 +45,7 @@ name \<- "Christof" \# Zuweisen einer Variable
 name \# Printen einer Variable
 ```
 
-## Concatenate Elements
+### Concatenate Elements
 
 Zwei Variabeln können kombiniert werden mittels paste() Beispiel:
 
@@ -83,7 +85,7 @@ num + text
 Error in num + text : non-numeric argument to binary operator
 ```
 
-## Multiple Variables
+### Multiple Variables
 
 Es ist möglich einen Wert meherern Variabeln zu zuweisen
 
@@ -91,11 +93,13 @@ Es ist möglich einen Wert meherern Variabeln zu zuweisen
 var1 <- var2 <- var3 <- "Hello, World!"
 ```
 
-## Variable Names
+### Variable Names
 
 Regeln: \* Eine Variabel muss mit einem Buchstaben starten \* Sie können aus Buchstaben, Zahlen, und Punkten (.) sein. \* Eine Variabel kann nicht mit einem \_ oder einer Zahl starten \* Variabel namen sind case sensetive \* Bestimmte Wörter können nicht verwendet werden (Bsp.: TRUE, FALSE, NULL, if, ...)
 
 ## Data Types
+
+### Data Types
 
 Variabeln haben keinen Fixen Typ. Der Typ wird automatisch festgelegt und kann sogar geändert werden.
 
@@ -303,7 +307,7 @@ Vergleichs Operatoren werden verwendet um Werte miteinander zu vergleichen.
 Logische Operatoren werden verwender um zwei konditionale statements miteinander zu verbinden.
 
 | Operator | Description                                                                       |
-|---------------------------------------------|---------------------------|
+|----------|-----------------------------------------------------------------------------------|
 | &        | Element-wise Logical AND operator. It returns TRUE if both elements are TRUE      |
 | &&       | Logical AND operator - Returns TRUE if both statements are TRUE                   |
 | \|       | Elementwise- Logical OR operator. It returns TRUE if one of the statement is TRUE |
@@ -313,7 +317,7 @@ Logische Operatoren werden verwender um zwei konditionale statements miteinander
 ### Miscellaneous Operators
 
 | Operator | Description                                | Example                    |
-|----------------|-----------------------------------|----------------------|
+|----------|--------------------------------------------|----------------------------|
 | :        | Creates a series of numbers in a sequence  | x \<- 1:10                 |
 | %in%     | Find out if an element belongs to a vector | x %in% y                   |
 | %\*%     | Matrix Multiplication                      | x \<- Matrix1 %\*% Matrix2 |
@@ -322,4 +326,318 @@ Logische Operatoren werden verwender um zwei konditionale statements miteinander
 
 ### Conditions and If Statements
 
-https://www.w3schools.com/r/r_if_else.asp
+| Operator | Name                     | Example |
+|----------|--------------------------|---------|
+| ==       | Equal                    | x == y  |
+| !=       | Not equal                | x != y  |
+| \>       | Greater than             | x \> y  |
+| \<       | Less than                | x \< y  |
+| \>=      | Greater than or equal to | x \>= y |
+| \<=      | Less than or equal to    | x \<= y |
+
+### The if statement
+
+Der Code innerhalb eines if wir nur dann ausgeführt wenn der wert der if bedingung == `TRUE` ist
+
+``` r
+a <- 33
+b <- 200
+
+if (b > a) {
+  print("b is greater than a")
+} 
+```
+
+### Else if
+
+Wird verwendet falls die Bedingungen der vorherigen if nicht `TRUE` waren.
+
+``` r
+a <- 33
+b <- 33
+
+if (b > a) {
+  print("b is greater than a")
+} else if (a == b) {
+  print ("a and b are equal")
+} 
+```
+
+### If else
+
+Wird ausgeführt falls keine der Bedinungen der vorherigen if `TRUE` waren. Ein else kann auch ohne ein if else verwendet werden es muss jedoch ein if geben.
+
+``` r
+a <- 200
+b <- 33
+
+if (b > a) {
+  print("b is greater than a")
+} else if (a == b) {
+  print("a and b are equal")
+} else {
+  print("a is greater than b")
+} 
+```
+
+## Nested if statements
+
+Wenn ein if in einem anderen if steht ist das ein 'nested if'
+
+``` r
+x <- 41
+
+if (x > 10) {
+  print("Above ten")
+  if (x > 20) {
+    print("and also above 20!")
+  } else {
+    print("but not above 20.")
+  }
+} else {
+  print("below 10.")
+} 
+```
+
+## AND OR
+
+### AND
+
+Das `&` Symbol wird verwended um Bedingungen miteinander zu verbinden. Die Bedingung ist nur dann `TRUE` wenn beide alle Bedingungen `TRUE` sind.
+
+``` r
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b & c > a) {
+  print("Both conditions are true")
+} 
+```
+
+### OR
+
+Das `|` Symbol wird verwended um Bedinungen zu verbinden. Die Bedinung ist nur dann `TRUE` wenn numindest eine der Bedinugungen `TRUE` ist.
+
+``` r
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b | a > c) {
+  print("At least one of the conditions is true")
+} 
+```
+
+## While loop
+
+### Loops
+
+Eine Schleife führt einen Code so lange aus wie die Bedingung `TRUE` ist. Es gibt zwei Arten von Schleifen:
+
+-   Die `while` loop
+-   Die `for` loop
+
+### While loops
+
+Der code einer while Schleifen wird solange ausgeführt wie die Bedinung `TRUE` ist.
+
+``` r
+i <- 1
+while (i < 6) {
+  print(i)
+  i <- i + 1
+} 
+```
+
+### Break
+
+Ein `break` kann verwendet werden um aus einer Schleife auszubrechen.
+
+``` r
+i <- 1
+while (i < 6) {
+  print(i)
+  i <- i + 1
+  if (i == 4) {
+    break
+  }
+} 
+```
+
+### Next
+
+Mit `next` kann eine Iteration der Schleife übersprungen werden ohne die Schleife abbrechen zu müssen.
+
+``` r
+i <- 0
+while (i < 6) {
+  i <- i + 1
+  if (i == 3) {
+    next
+  }
+  print(i)
+} 
+```
+
+## For loop
+
+### For loops
+
+Eine `for` Schleife wird verwendet um über eine Sequenz zu itterieren.
+
+``` r
+for (x in 1:10) {
+  print(x)
+} 
+```
+
+Um jeden Teil einer Liste zu printen kann eine `for` Schleife verwendet werden:
+
+``` r
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  print(x)
+} 
+```
+
+Das gleiche ist auch mit Zahlen möglich:
+
+``` r
+dice <- c(1, 2, 3, 4, 5, 6)
+
+for (x in dice) {
+  print(x)
+} 
+```
+
+### Break
+
+Das `break` funktioniert wie in einer `while` loop.
+
+``` r
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  if (x == "cherry") {
+    break
+  }
+  print(x)
+} 
+```
+
+### Next
+
+Das `next` funktioniert wie in einer `while` loop.
+
+``` r
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  if (x == "banana") {
+    next
+  }
+  print(x)
+} 
+```
+
+### Nested loops
+
+Es ist auch möglich eine Schleife in einer anderen Schleife auszuführen.
+
+``` r
+adj <- list("red", "big", "tasty")
+
+fruits <- list("apple", "banana", "cherry")
+  for (x in adj) {
+    for (y in fruits) {
+      print(paste(x, y))
+  }
+} 
+```
+
+## Functions
+
+Eine function ist ein Stück an Code welches nur ausgeführt wird wenn es aufgerufen wird.
+
+### Creating functions
+
+Um eine Funktion zu erstellen muss das `function()` keyword verwendet werden.
+
+``` r
+my_function <- function() { # create a function with the name my_function
+  print("Hello World!")
+} 
+```
+
+### Call a function
+
+Um eine Funktion aufzurufen muss der name der Funktion gefolgt von Klammern geschrieben werden: `function()`
+
+``` r
+my_function <- function() {
+  print("Hello World!")
+}
+
+my_function() 
+```
+
+### Arguments
+
+Informationen können Funktionen als Arguemnt übergeben werden. Argumente werden in den Klammern nach `function` angegeben. Es können so viele hinzugefügt werden wie man will, sie müssen nur mit einem ',' getrennt werden. Ein Argument ist der Wert welcher der Funktion gesendet wird. Ein Parameter ist die Variabel welche in den Klammern der Funktion steht.
+
+``` r
+my_function <- function(fname) {
+  paste(fname, "Griffin")
+}
+
+my_function("Peter")
+my_function("Lois")
+my_function("Stewie")
+```
+
+### Number of arguments
+
+Eine Funktion muss in der Regel mit der richtigen Anzahl an Argumenten aufgerufen werden ansonsten wird ein Error geworfen.
+
+``` r
+my_function <- function(fname, lname) {
+  paste(fname, lname)
+}
+
+my_function("Peter", "Griffin") 
+```
+
+### Default parameter value
+
+Ein default Parameter Wert kann verwendet werden damit kein Error geworfen wird falls kein oder zu wenige Argumente gegeben werden. Der default Parameter wird nur verwendet falls kein Wert übergeben wird.
+
+``` r
+my_function <- function(country = "Norway") {
+  paste("I am from", country)
+}
+
+my_function("Sweden")
+my_function("India")
+my_function() # will get the default value, which is Norway
+my_function("USA") 
+```
+
+### Return values
+
+Damit eine Funktion einen Wert zurück gibt wird `return()` genutzt.
+
+``` r
+my_function <- function(x) {
+  return (5 * x)
+}
+
+print(my_function(3))
+print(my_function(5))
+print(my_function(9)) 
+```
+
+## Nested functions
+
+<https://www.w3schools.com/r/r_functions_nested.asp>
