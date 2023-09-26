@@ -40,9 +40,9 @@ Kommentare fangen mit \# an und führen dazu das eine Zeile Code vom Compiler ig
 Es gibt keinen Befehl um Variabeln zu erstellen, sie werden erstellt soballt ihnen das erste mal ein Wert zugewiesen wird. Einer Variable wir ein Wert zugewiesen mit \<- . Eine Variable wird geprinted indem man ihren namen schreibt. Beispiel:
 
 ```{r}
-name \<- "Christof" \# Zuweisen einer Variable
+name <- "Christof" # Zuweisen einer Variable
 
-name \# Printen einer Variable
+name # Printen einer Variable
 ```
 
 ### Concatenate Elements
@@ -50,7 +50,7 @@ name \# Printen einer Variable
 Zwei Variabeln können kombiniert werden mittels paste() Beispiel:
 
 ```{r}
-text \<- "Christof"
+text <- "Christof"
 
 paste("My name is", name)
 ```
@@ -58,9 +58,9 @@ paste("My name is", name)
 Es ist auch möglich zwei Variabeln miteinander zu kombinieren.
 
 ```{r}
-text1 \<- "My name is"
+text1 <- "My name is"
 
-text2 \<- "Christof"
+text2 <- "Christof"
 
 paste(text1, text2)
 ```
@@ -68,21 +68,22 @@ paste(text1, text2)
 Für Zahlen kann ein '+' verwendet werden
 
 ```{r}
-num1 \<- 5
+num1 <- 5
 
-num2 \<- 5
+num2 <- 5
 
 num1 + num2
 ```
 
 Wenn versucht wird einen String und eine Zahl zu kombinieren, wird R einen Error werfen.
 
-```{r}
-num \<- 5` `text \<- "Hello"
+```r
+text <- "Hello"
+num <- 5 
 
 num + text
 
-Error in num + text : non-numeric argument to binary operator
+#Error in num + text : non-numeric argument to binary operator
 ```
 
 ### Multiple Variables
@@ -158,7 +159,9 @@ Es können einfache matthematische Rechnungen mittel opperatoren durchgeführt w
 
 `abs(x)` um den Absoluten Wert einer Zahl zu finden
 
-`ceiling(x)` rudet die Zahl auf die nächst höchste ganze Zahl auf `floor(x)` rundet die Zahl auf die nächt niedrigere ganze Zahl ab
+`ceiling(x)` rudet die Zahl auf die nächst höchste ganze Zahl auf
+
+`floor(x)` rundet die Zahl auf die nächt niedrigere ganze Zahl ab
 
 ## String
 
@@ -207,7 +210,7 @@ Um zwei Strings zu vereinen wird `paste()` verwender,
 
 Um Character die nicht in einem String verwendet werden dürfen müssen sie escaped werden. Ein Character kann escaped werden indem ein `\` davor hinzugefügt wird. Bsp.:
 
-```{r}
+```r
 str <- "Hello, "Christof"!"
 
 Error: unexpected symbol in "str <- "Hello, "Christof"
@@ -307,7 +310,7 @@ Vergleichs Operatoren werden verwendet um Werte miteinander zu vergleichen.
 Logische Operatoren werden verwender um zwei konditionale statements miteinander zu verbinden.
 
 | Operator | Description                                                                       |
-|---------------------|---------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | &        | Element-wise Logical AND operator. It returns TRUE if both elements are TRUE      |
 | &&       | Logical AND operator - Returns TRUE if both statements are TRUE                   |
 | \|       | Elementwise- Logical OR operator. It returns TRUE if one of the statement is TRUE |
@@ -1219,6 +1222,10 @@ for(x in multiarray){
 
 ## Data Frames
 
+### Ohne Messwiederholung
+
+Die Library `library(dplyr)` wird benötigt
+
 Ein Data Frame sind Daten die als Tabellen dargestellt werden. Sie können character, numbers, ... beinhalten solange sie nicht in einem column gemischt sind.
 
 ```{r}
@@ -1232,6 +1239,80 @@ Data_Frame <- data.frame (
 # Print the data frame
 Data_Frame 
 ```
+
+### Mit Messwiederholung
+
+``` {r}
+library(dplyr)
+Vpn <- c("VP_1", "VP_2", "VP_3", "VP_4")
+Vpn <- factor(Vpn)
+# N ist die Anzahl Vpn
+N <- length(Vpn)
+
+set.seed(1234)
+
+zufriedenheit_t1 <- round(rnorm(N, mean = 60, sd = 10), digits = 2)
+zufriedenheit_t1
+
+zufriedenheit_t2 <- round(rnorm(N, mean = 75, sd = 10), digits = 2)
+zufriedenheit_t2
+
+zufriedenheit <- tibble(
+  Vpn = Vpn,
+  zufriedenheit_t1 = zufriedenheit_t1,
+  zufriedenheit_t2 = zufriedenheit_t2
+)
+zufriedenheit
+```
+
+### Manuelle Konversion von wide zu long
+
+``` {r}
+
+zufriedenheit_wide <- zufriedenheit
+Vpn <- rep(zufriedenheit_wide$Vpn, each = 2)
+Vpn
+
+messzeitpunkt <- rep(c("t1", "t2"), times = N)
+messzeitpunkt <- as.factor(messzeitpunkt)
+
+messzeitpunkt
+
+rating <- c(rbind(
+  zufriedenheit_wide$zufriedenheit_t1,
+  zufriedenheit_wide$zufriedenheit_t2
+))
+
+rating <- as.vector(rbind(
+  zufriedenheit_wide$zufriedenheit_t1,
+  zufriedenheit_wide$zufriedenheit_t2
+))
+
+rating
+
+zufriedenheit_long <- tibble(
+  Vpn = Vpn,
+  messzeitpunkt = messzeitpunkt,
+  rating = rating
+)
+
+zufriedenheit_long
+
+library(ggplot2)
+zufriedenheit_long |>
+  ggplot(aes(
+    x = messzeitpunkt,
+    y = rating,
+    group = Vpn, colour = Vpn
+  )) +
+  geom_point(size = 4) +
+  geom_line(size = 2) +
+  theme_bw() # macht den Hintergrund weiss
+
+```
+
+### 
+
 
 ### Summarize the Data
 
@@ -1401,12 +1482,11 @@ New_Data_Frame1 <- cbind(Data_Frame3, Data_Frame4)
 New_Data_Frame1 
 ```
 
-
 ## Factors
 
 Factors werden verwendet um Daten zu Kategorisieren. Um einen Factor zu erstellen wird die `factor()` Funktion verwendet.
 
-``` {r}
+```{r}
 # Create a factor
 music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
 
@@ -1416,7 +1496,7 @@ music_genre
 
 Um nur die Levels zu printen wird die `levels()` Funktion verwendet.
 
-``` {r} 
+```{r}
 music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
 
 levels(music_genre) 
@@ -1424,7 +1504,7 @@ levels(music_genre)
 
 Die Levels können auch gesetzt werden indem `levels` in der `factor()` Funktion verwendet wird.
 
-``` {r}
+```{r}
 music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"), levels = c("Classic", "Jazz", "Pop", "Rock", "Other"))
 
 levels(music_genre) 
@@ -1434,7 +1514,7 @@ levels(music_genre)
 
 Um herauszufinden wie viele Elemente in einem Factor sind wird die `length()` Funktion verwendet.
 
-``` {r}
+```{r}
 music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
 
 length(music_genre) 
@@ -1444,7 +1524,7 @@ length(music_genre)
 
 Um auf ein Element eines Factors zuzugreifen wird der Index verwendet.
 
-``` {r}
+```{r}
 music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
 
 music_genre[3] 
@@ -1454,7 +1534,7 @@ music_genre[3]
 
 Um den Wert eines Elementes zu ändern wird der Index verwendet.
 
-``` {r}
+```{r}
  music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
 
 music_genre[3] <- "Pop"
@@ -1464,7 +1544,7 @@ music_genre[3]
 
 Falls ein Element in einen Factor hinzugefügt werden soll, dass noch nicht beinhaltet/definiert ist tritt ein Fehler auf.
 
-``` {r}
+```{r}
  music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
 
 music_genre[3] <- "Opera"
@@ -1472,16 +1552,59 @@ music_genre[3] <- "Opera"
 music_genre[3] 
 ```
 
-
 Wenn das Element aber schon im `levels` definiert ist funktioniert es.
 
-``` {r}
+```{r}
 music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"), levels = c("Classic", "Jazz", "Pop", "Rock", "Opera"))
 
 music_genre[3] <- "Opera"
 
 music_genre[3]
 ```
+
+### Numerische Funktionen
+
+| abs(x)               | Betrag                                    |
+|----------------------|-------------------------------------------|
+| sqrt(x)              | Quadratwurzel                             |
+| ceiling(x)           | Aufrunden: ceiling(3.475) ist 4           |
+| floor(x)             | Abrunden: floor(3.475) ist 3              |
+| round(x, digits = n) | Runden: round(3.475, digits = 2) ist 3.48 |
+| log(x)               | Natürlicher Logarithmus                   |
+| log(x, base = n)     | Logarithmus zur Basis n                   |
+| log2(x)              | Logarithmus zur Basis 2                   |
+| log10(x)             | Logarithmus zur Basis 10                  |
+| exp(x)               | Exponentialfunktion: e\^x                 |
+
+### Statistische Funktionen
+
+| mean(x, na.rm = FALSE)                 | Mittelwert                                             |
+|----------------------------------------|--------------------------------|
+| sd(x)                                  | Standardabweichung                                     |
+| var(x)                                 | Varianz                                                |
+| median(x)                              | Median                                                 |
+| quantile(x, probs)                     | Quantile von x. probs: Vektor mit Wahrscheinlichkeiten |
+| sum(x)                                 | Summe                                                  |
+| min(x)                                 | Minimalwert x_min                                      |
+| max(x)                                 | Maximalwert x_max                                      |
+| range(x)                               | x_min und x_max                                        |
+| scale(x, center = TRUE, scale = TRUE)  | Zentrieren und Standardisieren                         |
+| sample(x, size, replace = FALSE, prob) | Ziehen mit/ohne Zurücklegen.                           |
+| prob:                                  | Vektor mit Wahrscheinlichkeiten                        |
+
+
+## Daten importieren
+
+### Comma-separated values (CSV) Dateien
+
+``` {r}
+
+library(tidyverse)
+zufriedenheit <- read_csv("data/zufriedenheit.csv")
+
+```
+
+
 
 
 
