@@ -77,7 +77,7 @@ num1 + num2
 
 Wenn versucht wird einen String und eine Zahl zu kombinieren, wird R einen Error werfen.
 
-```r
+``` r
 text <- "Hello"
 num <- 5 
 
@@ -210,7 +210,7 @@ Um zwei Strings zu vereinen wird `paste()` verwender,
 
 Um Character die nicht in einem String verwendet werden dürfen müssen sie escaped werden. Ein Character kann escaped werden indem ein `\` davor hinzugefügt wird. Bsp.:
 
-```r
+``` r
 str <- "Hello, "Christof"!"
 
 Error: unexpected symbol in "str <- "Hello, "Christof"
@@ -310,7 +310,7 @@ Vergleichs Operatoren werden verwendet um Werte miteinander zu vergleichen.
 Logische Operatoren werden verwender um zwei konditionale statements miteinander zu verbinden.
 
 | Operator | Description                                                                       |
-|-----------------------|-------------------------------------------------|
+|-----------------------|------------------------------------------------|
 | &        | Element-wise Logical AND operator. It returns TRUE if both elements are TRUE      |
 | &&       | Logical AND operator - Returns TRUE if both statements are TRUE                   |
 | \|       | Elementwise- Logical OR operator. It returns TRUE if one of the statement is TRUE |
@@ -1242,7 +1242,7 @@ Data_Frame
 
 ### Mit Messwiederholung
 
-``` {r}
+```{r}
 library(dplyr)
 Vpn <- c("VP_1", "VP_2", "VP_3", "VP_4")
 Vpn <- factor(Vpn)
@@ -1267,7 +1267,7 @@ zufriedenheit
 
 ### Manuelle Konversion von wide zu long
 
-``` {r}
+```{r}
 
 zufriedenheit_wide <- zufriedenheit
 Vpn <- rep(zufriedenheit_wide$Vpn, each = 2)
@@ -1312,7 +1312,6 @@ zufriedenheit_long |>
 ```
 
 ### 
-
 
 ### Summarize the Data
 
@@ -1592,21 +1591,379 @@ music_genre[3]
 | sample(x, size, replace = FALSE, prob) | Ziehen mit/ohne Zurücklegen.                           |
 | prob:                                  | Vektor mit Wahrscheinlichkeiten                        |
 
-
 ## Daten importieren
 
 ### Comma-separated values (CSV) Dateien
 
-``` {r}
-
+```r
 library(tidyverse)
 zufriedenheit <- read_csv("data/zufriedenheit.csv")
 
 ```
 
+## Daten transformieren
+
+### Tidy data
+
+| Package | Funktion                  | Verwendung                                                              |
+|--------------------------|--------------------------|--------------------|
+| tidyr   | pivot_longer()            | erhöht die Anzahl der Zeilen, verringert die Anzahl der Spalten         |
+| tidyr   | pivot_wider()             | verringert die Anzahl der Zeilen, erhöht die Anzahl der Spalten         |
+| tidyr   | drop_na()                 | löscht alle Zeilen eines Datensatzes, die missing values (NA) enthalten |
+| dplyr   | rename()                  | zum Umbenennen von Variablen                                            |
+| dplyr   | select()                  | wählt Variablen (Spalten) aus                                           |
+| dplyr   | filter()                  | wählt Beobachtungen (Zeilen) aus                                        |
+| dplyr   | arrange()                 | sortiert einen Datensatz nach einer bestimmten Variablen                |
+| dplyr   | mutate()                  | erstellt neue Variablen und ändert bereits vorhandene Variablen         |
+| dplyr   | recode()                  | rekodiert numerische Variablen                                          |
+| forcats | fct_recode()              | zum Rekodieren/Umbenennen von Faktorstufen                              |
+| dplyr   | group_by()                | ermöglicht Operationen an Teilmengen der Daten                          |
+| dplyr   | summarize() / summarise() | fasst Daten zusammen                                                    |
 
 
 
+### Der Pipe Operator
+
+Um Funktionen nacheinander aufzurufen kann der pipe operator `|>` verwendet werden.
+
+``` r
+library(dplyr)
+stichprobe |>
+  scale(center = TRUE, scale = FALSE) |>
+  sd() |>
+  round(digits = 2)
+```
+
+### Reshaping: tidyr
+
+Um Datensätze zu transformieren muss die `library(tidyr)` importiert werden.
+
+#### pivot_longer()
+
+Wird verwendet um einen wide Datensatz zu einem long Datensatz zu transformieren
+
+``` r
+pivot_longer(data, cols, names_to, values_to)
+```
+
+#### pivot_wider()
+
+Wird verwendet um einen long Datensatz zu einem wide Datenstz zu transformieren.
+
+``` r
+pivot_wider(data, names_from, values_from)
+```
+
+### Daten manipulieren: dplyr
+
+Um Daten zu manipulieren wird die `library(dplyr)` importiert.
+
+#### Variablen umbennen mit rename()
+
+``` r
+rename(data, neuer_name = alter_name)
+```
+
+#### Variablen auswählen mit select()
+
+``` r
+select(df, variable1, variable2, -variable3)
+```
+
+Hier werden variabeln 1 und 2 ausgewählt aber 3 nicht
+
+#### Beobachtungen (Fälle) auswählen mit filter()
+
+Mit `filter()` werden variabeln ausgewält die bestimmte bedingungen erfüllen.
+
+```r
+filter(data, variable1 < WERT1 & variable2 == WERT2)
+```
+
+#### Beobachtungen (Fälle) sortieren mit arrange()
+
+Mit `arrange()` können Daten sortiert werden.
+
+Aufsteigend:
+``` r
+arrange(data, column)
+```
+
+Absteigend:
+``` r
+arrange(data, desc(column))
+```
+
+#### Neue Variablen erstellen mit mutate()
+
+``` r
+utate(data, neue_variable_1 = FORMEL_1,
+             neue_variable_2 = FORMEL_2)
+```
+
+#### Werte und Faktorstufen rekodieren mit recode() und fct_recode()
+
+Mit mutate() und recode() können wir numerische Variablen rekodieren.
+
+```r
+recode(variable,
+       alter_wert_1 = "neuer_wert_1",
+       alter_wert_2 = "neuer_wert_2")
+``` 
+
+#### Daten gruppieren mit group_by()
+
+`group_by()` teilt den Datensatz anhand der Grupierungsvariabeln
+
+``` r
+df <- group_by(gruppierung_1, gruppierung_2, gruppierung_3)
+```
+
+#### Variablen zusammenfassen mit summarize()
+
+``` r
+summarize(data, kennzahl = FUNKTION(variable))
+```
+
+## Grafiken mit ggplot2
+
+### 1. Plotobjekt erstellen
+
+``` r
+p <- ggplot(data = stress)
+```
+
+### 2. Aesthetic mappings
+
+Es können für die x und y achse beschreibungen hinzugefügt werden.
+
+``` r
+p <- stress |>
+  ggplot(mapping = aes(
+    x = geschlecht,
+    y = stress_psychisch,
+    color = geschlecht,
+    fill = geschlecht
+  ))
+```
+
+
+### 3. geoms hinzufügen
+
+#### Punktdiagramm
+
+```r
+p + geom_point(size = 3)
+```
+
+
+Mit der funktion `geom_jitter()` können die Daten nebeneinander angezeigt.
+
+``` r
+p + geom_jitter()
+```
+
+Es kann auch die width angegeben werden.
+
+``` r
+p + geom_jitter(width = 0.2)
+```
+
+Genau so auch eine size und eine transperency
+
+``` r
+p + geom_jitter(width = 0.2, size = 4, alpha = 0.6)
+```
+
+#### Verteilung grafisch darstelle
+
+Ein boxplot kann mit `geom_boxplot()` erstellt werden.
+
+``` r
+p + geom_boxplot()
+```
+
+Die verteilung kann auch mit `geom_violin()` visualisiert werden.
+
+Es können auch mehrere Plots gleichzeitig dargestellt werden.
+
+``` r
+p +
+  geom_violin(aes(fill = geschlecht)) +
+  geom_jitter(width = 0.2, alpha = 0.6)
+```
+
+
+### Geoms für verschiedene Datentypen
+
+#### Eine Variabel 
+
+``` r
+p <- jugendliche |>
+  select(bildung_vater) |>
+  drop_na() |>
+  ggplot(aes(x = bildung_vater))
+p + geom_bar(fill = "lightblue", color = "black")
+```
+
+Es können auch hier Gruppierungen angezeigt werden.
+
+``` r
+p <- jugendliche |>
+  select(bildung_vater, westost) |>
+  drop_na() |>
+  ggplot(aes(x = bildung_vater, fill = westost))
+p + geom_bar()
+```
+
+Damit die bars nebeneinander sind kann das `position = "dodge"` attribut übergeben werden kann.
+
+``` r
+p + geom_bar(position = "dodge")
+```
+
+Sie können auch hinterneinander angezeigt werden.
+
+``` r
+p + geom_bar(position = "identity", alpha = 0.6)
+```
+
+#### Zwei Variablen
+
+``` r
+p <- jugendliche |>
+  select(stress_psychisch, leben_gesamt) |>
+  drop_na() |>
+  ggplot(mapping = aes(x = stress_psychisch, y = leben_gesamt))
+
+p + geom_point(size = 2, alpha = 0.6)
+```
+
+Auch hier können die Daten anhand von gruppierungen unterschieden werden.
+
+``` r
+p <- jugendliche |>
+  select(stress_psychisch, leben_gesamt, geschlecht) |>
+  drop_na() |>
+  ggplot(mapping = aes(
+    x = stress_psychisch,
+    y = leben_gesamt,
+    color = geschlecht,
+    shape = geschlecht
+  ))
+
+p + geom_jitter(size = 3, alpha = 0.9)
+```
+
+### Facets
+
+Mit `facet_wrap()` kann ein eigener plot für für jede Kategorie erstellt werden.
+
+``` r
+p <- jugendliche |>
+  select(Gesamtnote, bildung_mutter) |>
+  drop_na() |>
+  ggplot(mapping = aes(
+    x = Gesamtnote,
+    fill = bildung_mutter
+  )) +
+  facet_wrap(~bildung_mutter)
+
+p + geom_histogram(binwidth = 0.8)
+```
+
+Wenn man zwei Gruppierungsvariabeln hat kann `facet_grid()` verwendet werden.
+
+``` r
+p <- jugendliche |>
+  select(Gesamtnote, bildung_mutter, bildung_vater) |>
+  drop_na() |>
+  ggplot(mapping = aes(x = Gesamtnote)) +
+  facet_grid(bildung_mutter ~ bildung_vater)
+
+p + geom_histogram(
+  binwidth = 0.8,
+  fill = "steelblue4"
+)
+```
+
+### Farben und Themes
+
+Man kann bei `ggplot2` acuh die Farben angeben.
+
+``` r
+palette <- c(
+  "#000000", "#E69F00",
+  "#56B4E9", "#009E73",
+  "#F0E442", "#0072B2",
+  "#D55E00", "#CC79A7"
+)
+```
+
+Um diese Farben zu verwenden wird dieser parameter übergeben.
+``` r
+scale_fill_manual(values = palette)
+```
+
+### Beschriftungen
+
+Mit `xlab()` und `ylab()` können die lables der x und y achse verändert werden und mit `ggtitle()` kann der Titel des Plots geändert werden.
+
+``` r
+p <- jugendliche |>
+  select(stress_psychisch, leben_gesamt, geschlecht) |>
+  drop_na() |>
+  ggplot(mapping = aes(
+    x = stress_psychisch,
+    y = leben_gesamt,
+    color = geschlecht,
+    shape = geschlecht
+  ))
+
+p + geom_jitter(size = 3, alpha = 0.9) +
+  scale_colour_manual(values = palette) +
+  theme_classic(base_size = 14) +
+  ggtitle("Zusammenhang zwischen Stress und Zufriedenheit") +
+  xlab("Psychischer Stress") +
+  ylab("Zufriedenheit") +
+  # Titel der color- und shape-Legende ist "Geschlecht"
+  labs(
+    color = "Geschlecht",
+    shape = "Geschlecht"
+  )
+```
+
+### Grafiken speichern
+
+Mit `ggsave()` kann ein Plot gespeichert werden.
+
+```r
+p <- jugendliche |>
+  select(stress_psychisch, leben_gesamt, geschlecht) |>
+  drop_na() |>
+  ggplot(mapping = aes(
+    x = stress_psychisch,
+    y = leben_gesamt,
+    color = geschlecht,
+    shape = geschlecht
+  ))
+
+# Wir nennen die Grafik 'my_plot'
+my_plot <- p + geom_jitter(size = 3, alpha = 0.9) +
+  scale_colour_manual(values = palette) +
+  theme_classic(base_size = 14) +
+  ggtitle("Zusammenhang zwischen Stress und Zufriedenheit") +
+  xlab("Psychischer Stress") +
+  ylab("Zufriedenheit") +
+  labs(
+    color = "Geschlecht",
+    shape = "Geschlecht"
+  )
+ggsave(
+  filename = "my_plot.png",
+  plot = my_plot
+)
+```
 
 
 

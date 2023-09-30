@@ -1,3 +1,9 @@
 [submodule "4xHIT/SEW/Calculator"]
 	path = 4xHIT/SEW/Calculator
 	url = git@github.com:czlabinger/Calculator.git
+[submodule "warehouse"]
+	path = warehouse
+	url = git@github.com:czlabinger/warehouse.git
+[submodule "4xHIT/ITP/DMS"]
+	path = 4xHIT/ITP/DMS
+	url = git@github.com:Markus-Stuppnig/dms.git
