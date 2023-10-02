@@ -4,6 +4,3 @@
 [submodule "warehouse"]
 	path = warehouse
 	url = git@github.com:czlabinger/warehouse.git
-[submodule "4xHIT/ITP/DMS"]
-	path = 4xHIT/ITP/DMS
-	url = git@github.com:Markus-Stuppnig/dms.git
