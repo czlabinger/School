@@ -2,7 +2,7 @@
 	path = 4xHIT/SEW/Calculator
 	url = git@github.com:czlabinger/Calculator.git
 [submodule "warehouse"]
-	path = warehouse
+	path = 4xHIT/SYT/DZS/warehouse
 	url = git@github.com:czlabinger/warehouse.git
 [submodule "4xHIT/ITP/VSA"]
 	path = 4xHIT/ITP/VSA
