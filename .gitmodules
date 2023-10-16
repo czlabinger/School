@@ -7,3 +7,6 @@
 [submodule "4xHIT/ITP/VSA"]
 	path = 4xHIT/ITP/VSA
 	url = git@github.com:Markus-Stuppnig/VSA.git
+[submodule "4xHIT/ITP/VSA-Backend"]
+	path = 4xHIT/ITP/VSA-Backend
+	url = git@github.com:Markus-Stuppnig/VSA-Backend.git
