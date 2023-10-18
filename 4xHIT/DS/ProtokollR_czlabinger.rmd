@@ -9,7 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# R Tuotorial
+# R Tutorial
 
 ## Syntax
 
