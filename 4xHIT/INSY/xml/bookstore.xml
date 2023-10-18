@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+    <!-- Gute Rezepte -->
+    <book category="cooking">
+        <title lang="en">Everyday Italian</title>
+        <author>Giada De Laurentiis</author>
+        <year>2005</year>
+        <price>30.00</price>
+    </book>
+    <book category="fiction">
+        <title lang="en">To Kill a Mockingbird</title>
+        <author>Harper Lee</author>
+        <year>1960</year>
+        <price>15.00</price>
+    </book>
+    <book category="history">
+        <title lang="en">A Short History of Nearly Everything</title>
+        <author>Bill Bryson</author>
+        <year>2003</year>
+        <price>18.50</price>
+    </book>
+    <book category="science">
+        <title lang="en">Cosmos</title>
+        <author>Carl Sagan</author>
+        <year>1980</year>
+        <price>20.00</price>
+    </book>
+    <book category="travel">
+        <title lang="fr">Le Petit Prince</title>
+        <author>Antoine de Saint-Exupéry</author>
+        <year>1943</year>
+        <price>12.00</price>
+    </book>
+    <book category="science fiction">
+        <title lang="es">Cien años de soledad</title>
+        <author>Gabriel García Márquez</author>
+        <year>1967</year>
+        <price>14.00</price>
+    </book>
+    <book category="biography">
+        <title lang="de">Die Entdeckung der Langsamkeit</title>
+        <author>Sten Nadolny</author>
+        <year>1983</year>
+        <price>16.50</price>
+    </book>
+    <book category="health">
+        <title lang="it">La Dieta Mediterranea</title>
+        <author>Marissa Cloutier</author>
+        <year>2000</year>
+        <price>22.00</price>
+    </book>
+    <book category="art">
+        <title lang="nl">Het Zwanenmeer</title>
+        <author>Leo Tolstoy</author>
+        <year>1877</year>
+        <price>19.00</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">コンピュータサイエンスの基礎</title>
+        <author>John Doe</author>
+        <year>2010</year>
+        <price>25.00</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Delikt: Antifaschismus: Briefbombenterror in Österreich und Kriminalisierungskampagnen von rechts</title>
+        <author>Wolfgang Purtscheller</author>
+        <year>1998</year>
+        <price>4.28</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Künstliche Intelligenz in der Praxis</title>
+        <author>Max Schmidt</author>
+        <year>2021</year>
+        <price>34.50</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Blockchain: Die Zukunft der Finanzen</title>
+        <author>Sarah Meier</author>
+        <year>2017</year>
+        <price>22.95</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Cybersicherheit für Anfänger</title>
+        <author>Jonas Becker</author>
+        <year>2019</year>
+        <price>18.99</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Der Aufstieg des Smart Homes</title>
+        <author>Laura Wagner</author>
+        <year>2020</year>
+        <price>26.75</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">IoT: Vernetzte Welten</title>
+        <author>Martin Schulz</author>
+        <year>2016</year>
+        <price>20.50</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Programmieren in C++</title>
+        <author>Peter Klein</author>
+        <year>2015</year>
+        <price>19.99</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Data Science: Die Kunst der Datenanalyse</title>
+        <author>Anna Fischer</author>
+        <year>2022</year>
+        <price>38.25</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Robotik: Die Zukunft der Arbeitswelt</title>
+        <author>Mario Schuster</author>
+        <year>2014</year>
+        <price>24.95</price>
+    </book>
+    <book category="technology">
+        <title lang="ja">Quantencomputing: Die nächste Ära der IT</title>
+        <author>Sandra Richter</author>
+        <year>2013</year>
+        <price>27.50</price>
+    </book>
+    <!-- lol von IVAN -->
+    <book category="Dystopian Fiction">
+        <title lang="en">1984</title>
+        <author>George Orwell</author>
+        <year>1949</year>
+        <price>10.99</price>
+    </book>
+    <book category="Science Fiction">
+        <title lang="en">Brave New World</title>
+        <author>Aldous Huxley</author>
+        <year>1932</year>
+        <price>12.99</price>
+    </book>
+    <book category="Classic Literature">
+        <title lang="en">Pride and Prejudice</title>
+        <author>Jane Austen</author>
+        <year>1813</year>
+        <price>9.99</price>
+    </book>
+    <book category="Historical Fiction">
+        <title lang="en">To Kill a Mockingbird</title>
+        <author>Harper Lee</author>
+        <year>1960</year>
+        <price>11.99</price>
+    </book>
+    <book category="Science Fiction">
+        <title lang="en">Dune</title>
+        <author>Frank Herbert</author>
+        <year>1965</year>
+        <price>13.99</price>
+    </book>
+    <book category="Fantasy">
+        <title lang="en">The Hobbit</title>
+        <author>J.R.R. Tolkien</author>
+        <year>1937</year>
+        <price>10.99</price>
+    </book>
+    <book category="Mystery">
+        <title lang="en">Sherlock Holmes: The Adventures of the Hound of the Baskervilles</title>
+        <author>Arthur Conan Doyle</author>
+        <year>1902</year>
+        <price>8.99</price>
+    </book>
+    <book category="Classic Literature">
+        <title lang="en">Moby-Dick</title>
+        <author>Herman Melville</author>
+        <year>1851</year>
+        <price>11.99</price>
+    </book>
+    <book category="Science Fiction">
+        <title lang="en">Neuromancer</title>
+        <author>William Gibson</author>
+        <year>1984</year>
+        <price>10.99</price>
+    </book>
+    <book category="Classic Literature">
+        <title lang="en">The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <year>1925</year>
+        <price>9.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">Frankenstein</title>
+        <author>Mary Shelley</author>
+        <year>1818</year>
+        <price>9.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">Dracula</title>
+        <author>Bram Stoker</author>
+        <year>1897</year>
+        <price>11.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">Jane Eyre</title>
+        <author>Charlotte Bronte</author>
+        <year>1847</year>
+        <price>10.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">Wuthering Heights</title>
+        <author>Emily Bronte</author>
+        <year>1847</year>
+        <price>10.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">The Picture of Dorian Gray</title>
+        <author>Oscar Wilde</author>
+        <year>1890</year>
+        <price>9.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">Rebecca</title>
+        <author>Daphne du Maurier</author>
+        <year>1938</year>
+        <price>11.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">The Phantom of the Opera</title>
+        <author>Gaston Leroux</author>
+        <year>1910</year>
+        <price>10.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">Northanger Abbey</title>
+        <author>Jane Austen</author>
+        <year>1817</year>
+        <price>9.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">The Monk</title>
+        <author>Matthew Lewis</author>
+        <year>1796</year>
+        <price>8.99</price>
+    </book>
+    <book category="gothic-romantic">
+        <title lang="en">Carmilla</title>
+        <author>Sheridan Le Fanu</author>
+        <year>1872</year>
+        <price>9.99</price>
+    </book>
+    <book category="science">
+        <title lang="en">A Brief History of Time</title>
+        <author>Stephen Hawking</author>
+        <year>1988</year>
+        <price>25.00</price>
+    </book>
+    <book category="business">
+        <title lang="en">Rich Dad Poor Dad</title>
+        <author>Robert T. Kiyosaki</author>
+        <year>1997</year>
+        <price>20.00</price>
+    </book>
+    <book category="history">
+        <title lang="en">A People's History of the United States</title>
+        <author>Howard Zinn</author>
+        <year>1980</year>
+        <price>18.00</price>
+    </book>
+    <book category="self-help">
+        <title lang="en">The Power of Now</title>
+        <author>Eckhart Tolle</author>
+        <year>1997</year>
+        <price>22.00</price>
+    </book>
+    <book category="fantasy">
+        <title lang="en">The Hobbit</title>
+        <author>J.R.R. Tolkien</author>
+        <year>1937</year>
+        <price>14.00</price>
+    </book>
+    <book category="travel">
+        <title lang="en">Into the Wild</title>
+        <author>Jon Krakauer</author>
+        <year>1996</year>
+        <price>16.00</price>
+    </book>
+    <book category="technology">
+        <title lang="en">The Innovators</title>
+        <author>Walter Isaacson</author>
+        <year>2014</year>
+        <price>28.00</price>
+    </book>
+    <book category="romance">
+        <title lang="en">Pride and Prejudice</title>
+        <author>Jane Austen</author>
+        <year>1813</year>
+        <price>12.00</price>
+    </book>
+    <book category="mystery">
+        <title lang="en">The Da Vinci Code</title>
+        <author>Dan Brown</author>
+        <year>2003</year>
+        <price>24.00</price>
+    </book>
+    <book category="philosophy">
+        <title lang="en">Meditations</title>
+        <author>Marcus Aurelius</author>
+        <year>2nd century</year>
+        <price>10.00</price>
+    </book>
+
+</bookstore>

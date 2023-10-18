@@ -1,0 +1,306 @@
+{
+  "bookstore": {
+    "book": [
+      {
+        "title": "Everyday Italian",
+        "author": "Giada De Laurentiis",
+        "year": 2005,
+        "price": 30
+      },
+      {
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "year": 1960,
+        "price": 15
+      },
+      {
+        "title": "A Short History of Nearly Everything",
+        "author": "Bill Bryson",
+        "year": 2003,
+        "price": 18.5
+      },
+      {
+        "title": "Cosmos",
+        "author": "Carl Sagan",
+        "year": 1980,
+        "price": 20
+      },
+      {
+        "title": "Le Petit Prince",
+        "author": "Antoine de Saint-Exupéry",
+        "year": 1943,
+        "price": 12
+      },
+      {
+        "title": "Cien años de soledad",
+        "author": "Gabriel García Márquez",
+        "year": 1967,
+        "price": 14
+      },
+      {
+        "title": "Die Entdeckung der Langsamkeit",
+        "author": "Sten Nadolny",
+        "year": 1983,
+        "price": 16.5
+      },
+      {
+        "title": "La Dieta Mediterranea",
+        "author": "Marissa Cloutier",
+        "year": 2000,
+        "price": 22
+      },
+      {
+        "title": "Het Zwanenmeer",
+        "author": "Leo Tolstoy",
+        "year": 1877,
+        "price": 19
+      },
+      {
+        "title": "コンピュータサイエンスの基礎",
+        "author": "John Doe",
+        "year": 2010,
+        "price": 25
+      },
+      {
+        "title": "Delikt: Antifaschismus: Briefbombenterror in Österreich und Kriminalisierungskampagnen von rechts",
+        "author": "Wolfgang Purtscheller",
+        "year": 1998,
+        "price": 4.28
+      },
+      {
+        "title": "Künstliche Intelligenz in der Praxis",
+        "author": "Max Schmidt",
+        "year": 2021,
+        "price": 34.5
+      },
+      {
+        "title": "Blockchain: Die Zukunft der Finanzen",
+        "author": "Sarah Meier",
+        "year": 2017,
+        "price": 22.95
+      },
+      {
+        "title": "Cybersicherheit für Anfänger",
+        "author": "Jonas Becker",
+        "year": 2019,
+        "price": 18.99
+      },
+      {
+        "title": "Der Aufstieg des Smart Homes",
+        "author": "Laura Wagner",
+        "year": 2020,
+        "price": 26.75
+      },
+      {
+        "title": "IoT: Vernetzte Welten",
+        "author": "Martin Schulz",
+        "year": 2016,
+        "price": 20.5
+      },
+      {
+        "title": "Programmieren in C++",
+        "author": "Peter Klein",
+        "year": 2015,
+        "price": 19.99
+      },
+      {
+        "title": "Data Science: Die Kunst der Datenanalyse",
+        "author": "Anna Fischer",
+        "year": 2022,
+        "price": 38.25
+      },
+      {
+        "title": "Robotik: Die Zukunft der Arbeitswelt",
+        "author": "Mario Schuster",
+        "year": 2014,
+        "price": 24.95
+      },
+      {
+        "title": "Quantencomputing: Die nächste Ära der IT",
+        "author": "Sandra Richter",
+        "year": 2013,
+        "price": 27.5
+      },
+      {
+        "title": 1984,
+        "author": "George Orwell",
+        "year": 1949,
+        "price": 10.99
+      },
+      {
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "year": 1932,
+        "price": 12.99
+      },
+      {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "year": 1813,
+        "price": 9.99
+      },
+      {
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "year": 1960,
+        "price": 11.99
+      },
+      {
+        "title": "Dune",
+        "author": "Frank Herbert",
+        "year": 1965,
+        "price": 13.99
+      },
+      {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "year": 1937,
+        "price": 10.99
+      },
+      {
+        "title": "Sherlock Holmes: The Adventures of the Hound of the Baskervilles",
+        "author": "Arthur Conan Doyle",
+        "year": 1902,
+        "price": 8.99
+      },
+      {
+        "title": "Moby-Dick",
+        "author": "Herman Melville",
+        "year": 1851,
+        "price": 11.99
+      },
+      {
+        "title": "Neuromancer",
+        "author": "William Gibson",
+        "year": 1984,
+        "price": 10.99
+      },
+      {
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "year": 1925,
+        "price": 9.99
+      },
+      {
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "year": 1818,
+        "price": 9.99
+      },
+      {
+        "title": "Dracula",
+        "author": "Bram Stoker",
+        "year": 1897,
+        "price": 11.99
+      },
+      {
+        "title": "Jane Eyre",
+        "author": "Charlotte Bronte",
+        "year": 1847,
+        "price": 10.99
+      },
+      {
+        "title": "Wuthering Heights",
+        "author": "Emily Bronte",
+        "year": 1847,
+        "price": 10.99
+      },
+      {
+        "title": "The Picture of Dorian Gray",
+        "author": "Oscar Wilde",
+        "year": 1890,
+        "price": 9.99
+      },
+      {
+        "title": "Rebecca",
+        "author": "Daphne du Maurier",
+        "year": 1938,
+        "price": 11.99
+      },
+      {
+        "title": "The Phantom of the Opera",
+        "author": "Gaston Leroux",
+        "year": 1910,
+        "price": 10.99
+      },
+      {
+        "title": "Northanger Abbey",
+        "author": "Jane Austen",
+        "year": 1817,
+        "price": 9.99
+      },
+      {
+        "title": "The Monk",
+        "author": "Matthew Lewis",
+        "year": 1796,
+        "price": 8.99
+      },
+      {
+        "title": "Carmilla",
+        "author": "Sheridan Le Fanu",
+        "year": 1872,
+        "price": 9.99
+      },
+      {
+        "title": "A Brief History of Time",
+        "author": "Stephen Hawking",
+        "year": 1988,
+        "price": 25
+      },
+      {
+        "title": "Rich Dad Poor Dad",
+        "author": "Robert T. Kiyosaki",
+        "year": 1997,
+        "price": 20
+      },
+      {
+        "title": "A People's History of the United States",
+        "author": "Howard Zinn",
+        "year": 1980,
+        "price": 18
+      },
+      {
+        "title": "The Power of Now",
+        "author": "Eckhart Tolle",
+        "year": 1997,
+        "price": 22
+      },
+      {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "year": 1937,
+        "price": 14
+      },
+      {
+        "title": "Into the Wild",
+        "author": "Jon Krakauer",
+        "year": 1996,
+        "price": 16
+      },
+      {
+        "title": "The Innovators",
+        "author": "Walter Isaacson",
+        "year": 2014,
+        "price": 28
+      },
+      {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "year": 1813,
+        "price": 12
+      },
+      {
+        "title": "The Da Vinci Code",
+        "author": "Dan Brown",
+        "year": 2003,
+        "price": 24
+      },
+      {
+        "title": "Meditations",
+        "author": "Marcus Aurelius",
+        "year": "2nd century",
+        "price": 10
+      }
+    ]
+  }
+}
