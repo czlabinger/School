@@ -16,6 +16,6 @@ fn read_json_file(path:&str) -> Result<(), Box<dyn std::error::Error>> {
     if let Some(value) = json.get("bookstore") {
         println!("Value of bookstore: {}", value)
     }
-    
+
     Ok(())
 }
