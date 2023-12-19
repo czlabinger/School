@@ -1,20 +1,9 @@
-use std::env;
 use std::fs::File;
 use std::io::BufReader;
-use xml::EventWriter;
-use xml::writer::EmitterConfig;
 use xml::reader::{EventReader, XmlEvent};
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    if args[1].eq("read") {
-        read_xml_file("./bookstore.xml").expect("A panic in read_xml_file");
-    } else if args[1].eq("write") {
-        if args[2].eq("") {
-            panic!("No content to write")
-        }
-        write_xml_file("./bookstore2.xml", &args[2]).expect("Panic message");
-    }
+    read_xml_file("./bookstore.xml").expect("A panic in read_xml_file");
 }
 
 fn read_xml_file(file_path: &str) -> Result<(), Box<dyn std::error::Error>> {
@@ -46,8 +35,3 @@ fn read_xml_file(file_path: &str) -> Result<(), Box<dyn std::error::Error>> {
     Ok(())                                                                           //Return OK
 }
 
-fn write_xml_file(file_path: &str, content: &str) -> Result<(), Box<dyn std::error::Error>> {
-    let file = File::create("output.xml")?;
-
-
-}
