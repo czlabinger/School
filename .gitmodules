@@ -16,3 +16,6 @@
 [submodule "4xHIT/SYT/DZS/warehouse"]
 	path = 4xHIT/SYT/DZS/warehouse
 	url = git@github.com:czlabinger/warehouse.git
+[submodule "4xHIT/SYT/DZS/warehouse2"]
+	path = 4xHIT/SYT/DZS/warehouse2
+	url = git@github.com:czlabinger/warehose2.git
