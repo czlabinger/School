@@ -1,6 +1,6 @@
 use std::fs::File;
 use std::io::Read;
-use serde_json::Value;
+use json::{JsonValue, parse};
 
 fn main() {
     read_json_file("./bookstore.json").expect("A panic");
@@ -11,10 +11,17 @@ fn read_json_file(path:&str) -> Result<(), Box<dyn std::error::Error>> {
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
 
-    let json: Value = serde_json::from_str(&contents)?;
+    let json: JsonValue = parse(&contents).unwrap();
 
-    if let Some(value) = json.get("bookstore") {
-        println!("Value of bookstore: {}", value)
+    let books = &json["bookstore"]["book"];
+
+    for book in books.members() {
+        let title = &book["title"];
+        let author = &book["author"];
+        let year = &book["year"];
+        let price = &book["price"];
+
+        println!("Title: {}, Author: {}, Year: {}, Price: {}", title, author, year, price);
     }
 
     Ok(())
