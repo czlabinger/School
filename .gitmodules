@@ -13,3 +13,6 @@
 [submodule "4xHIT/SYT/DZS/warehouse"]
 	path = 4xHIT/SYT/DZS/warehouse
 	url = git@github.com:czlabinger/warehouse.git
+[submodule "4xHIT/SEW/expressions"]
+	path = 4xHIT/SEW/expressions
+	url = git@github.com:TGM-HIT/sew7-2324-expressions-czlabinger.git
