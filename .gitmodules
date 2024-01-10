@@ -16,3 +16,6 @@
 [submodule "4xHIT/SEW/expressions"]
 	path = 4xHIT/SEW/expressions
 	url = git@github.com:TGM-HIT/sew7-2324-expressions-czlabinger.git
+[submodule "4xHIT/SEW/fastfood"]
+	path = 4xHIT/SEW/fastfood
+	url = git@github.com:TGM-HIT/sew7-2324-fast-food-czlabinger.git
