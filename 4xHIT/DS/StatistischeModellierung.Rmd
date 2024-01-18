@@ -1,0 +1,31 @@
+---
+title: "StatistischeModellierung"
+author: "Zlabinger Christof"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Aufgabe 1
+### Lade den Datensatz 'state.x77' in R. Beschreibe die Daten anhand der internen Hilfe.
+
+```{r state.x77,echo=FALSE}
+summary(state.x77)
+```
+
+Es handelt sich um eine Matrix mit 50 Zeilen und 8 Reihen welche Dated der US Staaten beinhalten. Jede Zeile entspricht einem Staat. Diese Reihen beinhalten die:
+
+-   Population im Jahr 1975 in 100 Einwohnern
+-   Das Einkommen pro Person in 1974
+-   Die Prozent an Analphabeten in 1970
+-   Die Lebenserwartung von 1969-1971
+-   Die Mordrate pro 100,000 Einwohnern
+-   Die Prozent der Highschool Absolventen
+-   Die Mittlere Anzahl an Tagen an denen es in der Hauptstadt oder in einer grossen Stadt, in den Jahren 1931-1960, es unter 0°c hatte.
+-   Die Flaeche der Laender
+
+### Ermittle ein lineares Regressionsmodell, dass die Mordrate ('Murder') durch die unabhängigen Variablen Population, Income, Illiteracy,und Life Exp(ectancy) erklärt. Schreibe die Modellgleichung an und interpretiere die Werte der Koeffizienten im Kontext.
+
