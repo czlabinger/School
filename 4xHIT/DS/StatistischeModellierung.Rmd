@@ -3,6 +3,9 @@ title: "StatistischeModellierung"
 author: "Zlabinger Christof"
 date: "`r Sys.Date()`"
 output: pdf_document
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -10,13 +13,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Aufgabe 1
+
 ### Lade den Datensatz 'state.x77' in R. Beschreibe die Daten anhand der internen Hilfe.
 
 ```{r state.x77,echo=FALSE}
+?state.x77
 summary(state.x77)
 ```
 
-Es handelt sich um eine Matrix mit 50 Zeilen und 8 Reihen welche Dated der US Staaten beinhalten. Jede Zeile entspricht einem Staat. Diese Reihen beinhalten die:
+Es handelt sich um eine Matrix mit 50 Zeilen und 8 Reihen welche Dated
+der US Staaten beinhalten. Jede Zeile entspricht einem Staat. Diese
+Reihen beinhalten die:
 
 -   Population im Jahr 1975 in 100 Einwohnern
 -   Das Einkommen pro Person in 1974
@@ -24,8 +31,181 @@ Es handelt sich um eine Matrix mit 50 Zeilen und 8 Reihen welche Dated der US St
 -   Die Lebenserwartung von 1969-1971
 -   Die Mordrate pro 100,000 Einwohnern
 -   Die Prozent der Highschool Absolventen
--   Die Mittlere Anzahl an Tagen an denen es in der Hauptstadt oder in einer grossen Stadt, in den Jahren 1931-1960, es unter 0°c hatte.
+-   Die Mittlere Anzahl an Tagen an denen es in der Hauptstadt oder in
+    einer grossen Stadt, in den Jahren 1931-1960, es unter 0°c hatte.
 -   Die Flaeche der Laender
 
 ### Ermittle ein lineares Regressionsmodell, dass die Mordrate ('Murder') durch die unabhängigen Variablen Population, Income, Illiteracy,und Life Exp(ectancy) erklärt. Schreibe die Modellgleichung an und interpretiere die Werte der Koeffizienten im Kontext.
 
+```{r}
+model <-  lm(state.x77[,"Murder"] ~ state.x77[,"Population"] + state.x77[,"Income"] + state.x77[,"Illiteracy"] + state.x77[,"Life Exp"])
+
+plot(state.x77[,"Murder"], predict(model), main = "Linear Regression", xlab = "Tatsaechliche Werte", ylab = "Vorhergesehene Werte")
+abline(0,1, col = "red")
+
+coef <- coef(model)
+model_equation <- paste("Y=",round(coef[1],2), "+",
+                            round(coef[2],4),"* X1 +",
+                            round(coef[3],4),"* X2 +",
+                            round(coef[4],2),"* X3 +",
+                            round(coef[5],2),"* X4")
+
+print(model_equation)
+```
+
+Aus der resultierenden Regressionsformel laest sich erkennen, dass die
+Illiteracy den groessten Einfluss auf die Mordrate hat. Den kleinsten
+Einfluss hat die Population. Eine niedrige Murder rate bringt eine
+hoehere Life Exp.
+
+### Führe alle fünf für dieses Regressionsmodell geltenden Modellvoraussetzungen an und überprüfe diese Voraussetzungen nachweislich anhand der Zusammenfassung (summary), Quality Plots der Regression und der pairwise Scatterplot Matrix. Erkläre, ob diese Modell überhaupt gültig ist. Falls es gültig ist, gib die Qualität der Erklärung durch das Modell an.
+
+```{r}
+
+model <-  lm(state.x77[,"Murder"] ~ state.x77[,"Population"] + state.x77[,"Income"] + state.x77[,"Illiteracy"] + state.x77[,"Life Exp"])
+# Korrelation
+summary(model)
+
+
+# Systematische Fehler
+plot(model, which = 1)
+
+# homoskedastitzitaet
+plot(model, which = 3)
+
+# Modellfehler normalverteilt
+plot(model, which = 2)
+
+# multikollinearitaet
+p <- state.x77[,c("Population","Income", "Illiteracy", "Life Exp")]
+print(cor(p))
+
+panel.hist <- function(x, ...) {
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(usr[1:2], 0, 1.5))
+    h <- hist(x, plot = FALSE)
+    breaks <- h$breaks; nB <- length(breaks)
+    y <- h$counts; y <- y/max(y)
+    rect(breaks[-nB], 0, breaks[-1], y, col = "cyan", ...)
+}
+
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...) {
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(0, 1, 0, 1))
+    r <- abs(cor(x, y))
+    txt <- format(c(r, 0.123456789), digits = digits)[1]
+    txt <- paste0(prefix, txt)
+    if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+    text(0.5, 0.5, txt, cex = cex.cor * r)
+}
+
+# Create a matrix of scatterplots
+pairs(state.x77[, c("Life Exp" , "Population" , "Illiteracy", "Income")], 
+      lower.panel = panel.smooth, 
+      upper.panel = panel.cor, 
+      diag.panel = panel.hist, 
+      las=1)
+
+```
+
+Es liegen keine systematischen Fehler vor da die Fehlervarianz konstant
+ist, es keine kollinearitaet zwischen der Illiteracy und der Life Exp
+gibt, alle Werte im QQ-Pot liegen nahe an der Geraden somit sind die
+Modellfehler Nomalverteilt. -> Modell sinvoll
+
+### Führe eine Modellselektion der relevanten erklärenden Variablen durch.
+
+//TODO
+
+## Aufgabe 2
+
+### Installiere das Package 'MASS' mithilfe der Funktion install.packages. Lade den Datensatz 'Pima.tr' in R. Beschreibe die Daten anhand der internen Hilfe.
+
+```{r}
+library(MASS)
+data(Pima.tr)
+?Pima.tr
+```
+
+Pima.tr ist ein Datensatz welcher Daten ueber Indische Frauen ueber 21
+welche in der naehe von Phoenix Arizona wohnen beinhaltet. Die
+beinhalteten Daten sind:
+
+-    npreg
+
+    -    Die anzahl an Schwangerschaften
+
+-   glu
+
+    -   Plasma glucose konzentration
+
+-   bp
+
+    -   Blutdruck
+
+-   skin
+
+    -    Die dicke der Haut am triceps
+
+-   bmi
+
+    -   Body mass index
+
+-   ped
+
+    -   Diabetes-Stammbaumfunktion
+
+-   age
+
+    -   Alter
+
+-   type
+
+    -   Ob die Person von der WHO gesehen diabetis hat.
+
+## Ermittle ein logistisches Regressionsmodell, dass das Auftreten von Diabetes ('type') durch die übrigen unabhängigen Variablen Alter (age), Anzahl der Schwangerschaften (npreg), BMI, Glukosespiegel (glu), Blutdruck (bp), familiäre Häufung von Diabetesfällen (ped) und Hautfaltendickemessung am Oberarm (skin) erklärt. Schreibe die Modellgleichung an und interpretiere die Werte der Koeffizienten im Kontext.
+
+```{r}
+library(MASS)
+data(Pima.tr)
+model <- glm(type ~ skin + glu  + bmi + ped + bp + age + npreg, family=binomial(link ="logit"), data=Pima.tr)
+
+
+
+# Create a matrix of scatterplots
+pairs(Pima.tr[, c("npreg" ,  "glu"  , "bmi" , "ped" , "bp" , "skin" , "age")], 
+      lower.panel = panel.smooth, 
+      upper.panel = panel.cor, 
+      diag.panel = panel.hist, 
+      las=1)
+
+
+
+summary(model)
+coef(model)
+
+
+model <- glm(type ~ skin + glu   + ped + bp  + npreg, family=binomial(link ="logit"), data=Pima.tr)
+# Create a matrix of scatterplots
+pairs(Pima.tr[, c("npreg" ,  "glu"  , "bmi" , "ped" , "bp"  )], 
+      lower.panel = panel.smooth, 
+      upper.panel = panel.cor, 
+      diag.panel = panel.hist, 
+      las=1)
+summary(model)
+coef(model)
+
+model <- glm(type ~ glu  + bmi + ped + bp + age , family=binomial(link ="logit"), data=Pima.tr)
+# Create a matrix of scatterplots
+pairs(Pima.tr[, c("glu"  , "bmi" , "ped" , "bp"  , "age")], 
+      lower.panel = panel.smooth, 
+      upper.panel = panel.cor, 
+      diag.panel = panel.hist, 
+      las=1)
+summary(model)
+coef(model)
+```
+
+
+
+//TODO

@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Lade den Datensatz 'state.x77' in R. Beschreibe die Daten anhand der internen Hilfe.
 
 ```{r state.x77,echo=FALSE}
+?state.x77
 summary(state.x77)
 ```
 
