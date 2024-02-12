@@ -1,0 +1,1973 @@
+---
+title: "EinfuehrungR"
+author: "Christof Zlabinger"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Tutorial
+
+## Syntax
+
+### Syntax
+
+-   Text:
+    -   `"Hello, World!"`
+-   Nummern:
+    -   `5`
+-   Simple Rechnungen:
+    -   `5+5`
+
+### Print
+
+-   Output Text:
+    -   `"Hello, World"`
+-   Print auf die Console:
+    -   `print("Hello, World!")`
+
+## Comments
+
+Kommentare fangen mit \# an und führen dazu das eine Zeile Code vom Compiler ignoriert wird.
+
+## Variables
+
+### Variables
+
+Es gibt keinen Befehl um Variabeln zu erstellen, sie werden erstellt soballt ihnen das erste mal ein Wert zugewiesen wird. Einer Variable wir ein Wert zugewiesen mit \<- . Eine Variable wird geprinted indem man ihren namen schreibt. Beispiel:
+
+```{r, echo=TRUE}
+name <- "Christof" # Zuweisen einer Variable
+
+name # Printen einer Variable
+```
+
+### Concatenate Elements
+
+Zwei Variabeln können kombiniert werden mittels paste() Beispiel:
+
+```{r, echo=TRUE}
+text <- "Christof"
+
+paste("My name is ", name)
+```
+
+Es ist auch möglich zwei Variabeln miteinander zu kombinieren.
+
+```{r, echo=TRUE}
+text1 <- "My name is "
+
+text2 <- "Christof"
+
+paste(text1, text2)
+```
+
+Für Zahlen kann ein '+' verwendet werden
+
+```{r, echo=TRUE}
+num1 <- 5
+
+num2 <- 5
+
+num1 + num2
+```
+
+Wenn versucht wird einen String und eine Zahl zu kombinieren, wird R einen Error werfen.
+
+``` r
+text <- "Hello"
+num <- 5 
+
+num + text
+
+#Error in num + text : non-numeric argument to binary operator
+```
+
+### Multiple Variables
+
+Es ist möglich einen Wert meherern Variabeln zu zuweisen
+
+```{r, echo=TRUE}
+var1 <- var2 <- var3 <- "Hello, World!"
+```
+
+### Variable Names
+
+Regeln: \* Eine Variabel muss mit einem Buchstaben starten \* Sie können aus Buchstaben, Zahlen, und Punkten (.) sein. \* Eine Variabel kann nicht mit einem \_ oder einer Zahl starten \* Variabel namen sind case sensetive \* Bestimmte Wörter können nicht verwendet werden (Bsp.: TRUE, FALSE, NULL, if, ...)
+
+## Data Types
+
+### Data Types
+
+Variabeln haben keinen Fixen Typ. Der Typ wird automatisch festgelegt und kann sogar geändert werden.
+
+-   numeric - (10.5, 55, 787)
+-   integer - (1L, 55L, 100L, where the letter "L" declares this as an integer)
+-   complex - (9 + 3i, where "i" is the imaginary part)
+-   character (a.k.a. string) - ("k", "R is exciting", "FALSE", "11.5")
+-   logical (a.k.a. boolean) - (TRUE or FALSE)
+
+Die `class()` Methode überprüft den Datentyp der üvergebenen Variabel
+
+## Numbers
+
+Es gibt drei Arten von Nummern:
+
+1.  numeric \# 10.5
+2.  integer \# 10L
+3.  complex \# 1i
+
+### Numeric
+
+Meist genutzter Typ. Kann Nummern mit oder ohne Dezimazahlstelle sein: 10.5, 55, 123
+
+### Integer
+
+numerics ohne Dezimalstelle. Um einen Integer zu erstellen `L` an die Zahl anhängen: 10L, 55L
+
+### Complex
+
+Beinhaltet einen imaginären teil `ì`
+
+### Type Conversion
+
+Ein Typ kann zu einem anderen kovertiert werden.
+
+```{r, echo=TRUE}
+as.numeric()
+as.integer()
+as.complex()
+```
+
+## Math
+
+### Simple Math
+
+Es können einfache matthematische Rechnungen mittel opperatoren durchgeführt werden.
+
+-   `+` Um Zahlen zu addiren
+-   `-` Im Zahlen zu dividieren
+
+### Built-in Math functions
+
+`min(x, y, z, ...)` um das Minimum eines Sets zu finden `max(x, y, z, ...)` um das Maximum eines Sets zu finden
+
+`sqrt(x)` um die Wurzel einer Zahl zu finden
+
+`abs(x)` um den Absoluten Wert einer Zahl zu finden
+
+`ceiling(x)` rudet die Zahl auf die nächst höchste ganze Zahl auf
+
+`floor(x)` rundet die Zahl auf die nächt niedrigere ganze Zahl ab
+
+## String
+
+### String
+
+Strings werden verwendet um Text zu speichern. Sie werden mit `'` oder mit `"` gekennzeichnet. (Bsp.: "Hello, World!", 'Hello, World!')
+
+### Assign a String to a Variable
+
+Ein String wird einer Variabel mittels `<-` zugewiesen.
+
+```{r, echo=TRUE}
+str <- "Hello, World!"
+```
+
+### Multiline Strings
+
+Ein String kann auch mehrere Zeilen lang sein.
+
+```{r, echo=TRUE}
+str <- "Lorem ipsum dolor sit amet,
+consectetur adipiscing elit,
+sed do eiusmod tempor incididunt
+ut labore et dolore magna aliqua."
+
+str
+```
+
+Es wird ein `\n` am ende jeder Zeile hinzugefügt
+
+Wenn die Zeilenumbrüche genau übernommen werden sollen dann muss `cat()` verwendet werden.
+
+### String length
+
+Mittels `nchar()` kann die Länge eines Strings ermittelt werden.
+
+### Check a String
+
+Um zu überprüfen ob ein String einen Character oder einen anderen String beinhaltet wird `grepl("Search", str)` verwendet.
+
+### Combine two Strings
+
+Um zwei Strings zu vereinen wird `paste()` verwender,
+
+## Escape Characters
+
+### Escape Characters
+
+Um Character die nicht in einem String verwendet werden dürfen müssen sie escaped werden. Ein Character kann escaped werden indem ein `\` davor hinzugefügt wird. Bsp.:
+
+``` r
+str <- "Hello, "Christof"!"
+
+Error: unexpected symbol in "str <- "Hello, "Christof"
+```
+
+Um diesen Fehler zu verhindern kann `\"` verwendet werden.
+
+```{r, echo=TRUE}
+str <- "Hello, \"Christof\"!"
+```
+
+Andere Escape Charactere sind:
+
+| Code | Result          |
+|------|-----------------|
+| \\\\ | Backslash       |
+| \\n  | New line        |
+| \\r  | Carriage Return |
+| \\t  | Tab             |
+| \\b  | Backspace       |
+
+## Booleans
+
+Es können Werte verglichen werden und diese können entweder `TRUE` oder `FALSE` sein.
+
+```{r, echo=TRUE}
+10 > 9    # TRUE 
+10 == 9   # FALSE 
+10 < 9    # FALSE 
+```
+
+Dies ist auch mit Variabeln möglich.
+
+```{r, echo=TRUE}
+a <- 10
+b <- 9
+
+a > b 
+```
+
+## Operators
+
+### Operators
+
+Operatoren werden verwendet um operationen durchzuführen.
+
+Zum Beispiel können zwei Zahlen mittels eines `+` addiert werden.
+
+```{r, echo=TRUE}
+10 + 5
+```
+
+In R werden Operatoren in volgende Kategorien eingeteilt:
+
+-   Arithmetic operators
+-   Assignment operators
+-   Comparison operators
+-   Logical operators
+-   Miscellaneous operators
+
+### Arithmetic Operators
+
+| Operator | Name             | Example |
+|----------|------------------|---------|
+| \+       | Addition         | x + y   |
+| \-       | Subtraction      | x - y   |
+| \*       | Multiplication   | x \* y  |
+| \^       | Exponent         | x\^y    |
+| %%       | Modulus          | x %% y  |
+| %/%      | Integer Division | x %/% y |
+
+### Assignment Operators
+
+Zusweisungs Operatoren werden verwendet um einer Variabel einen Wert zuzuweisen.
+
+```{r, echo=TRUE}
+x <- 3
+
+y <- "Hello"
+```
+
+### Comparison Operators
+
+Vergleichs Operatoren werden verwendet um Werte miteinander zu vergleichen.
+
+| Operator | Name                     | Example |
+|----------|--------------------------|---------|
+| ==       | Equal                    | x == y  |
+| !=       | Not equal                | x != y  |
+| \>       | Greater than             | x \> y  |
+| \<       | Less than                | x \< y  |
+| \>=      | Greater than or equal to | x \>= y |
+| \<=      | Less than or equal to    | x \<= y |
+
+### Logical Operators
+
+Logische Operatoren werden verwender um zwei konditionale statements miteinander zu verbinden.
+
+| Operator | Description                                                                       |
+|-----------------------|------------------------------------------------|
+| &        | Element-wise Logical AND operator. It returns TRUE if both elements are TRUE      |
+| &&       | Logical AND operator - Returns TRUE if both statements are TRUE                   |
+| \|       | Elementwise- Logical OR operator. It returns TRUE if one of the statement is TRUE |
+| \|\|     | Logical OR operator. It returns TRUE if one of the statement is TRUE.             |
+| !        | Logical NOT - returns FALSE if statement is TRUE                                  |
+
+### Miscellaneous Operators
+
+| Operator | Description                                | Example                    |
+|------------------|---------------------------------|---------------------|
+| :        | Creates a series of numbers in a sequence  | x \<- 1:10                 |
+| %in%     | Find out if an element belongs to a vector | x %in% y                   |
+| %\*%     | Matrix Multiplication                      | x \<- Matrix1 %\*% Matrix2 |
+
+## If ... Else
+
+### Conditions and If Statements
+
+| Operator | Name                     | Example |
+|----------|--------------------------|---------|
+| ==       | Equal                    | x == y  |
+| !=       | Not equal                | x != y  |
+| \>       | Greater than             | x \> y  |
+| \<       | Less than                | x \< y  |
+| \>=      | Greater than or equal to | x \>= y |
+| \<=      | Less than or equal to    | x \<= y |
+
+### The if statement
+
+Der Code innerhalb eines if wir nur dann ausgeführt wenn der wert der if bedingung == `TRUE` ist
+
+```{r, echo=TRUE}
+a <- 33
+b <- 200
+
+if (b > a) {
+  print("b is greater than a")
+} 
+```
+
+### Else if
+
+Wird verwendet falls die Bedingungen der vorherigen if nicht `TRUE` waren.
+
+```{r, echo=TRUE}
+a <- 33
+b <- 33
+
+if (b > a) {
+  print("b is greater than a")
+} else if (a == b) {
+  print ("a and b are equal")
+} 
+```
+
+### If else
+
+Wird ausgeführt falls keine der Bedinungen der vorherigen if `TRUE` waren. Ein else kann auch ohne ein if else verwendet werden es muss jedoch ein if geben.
+
+```{r, echo=TRUE}
+a <- 200
+b <- 33
+
+if (b > a) {
+  print("b is greater than a")
+} else if (a == b) {
+  print("a and b are equal")
+} else {
+  print("a is greater than b")
+} 
+```
+
+## Nested if statements
+
+Wenn ein if in einem anderen if steht ist das ein 'nested if'
+
+```{r, echo=TRUE}
+x <- 41
+
+if (x > 10) {
+  print("Above ten")
+  if (x > 20) {
+    print("and also above 20!")
+  } else {
+    print("but not above 20.")
+  }
+} else {
+  print("below 10.")
+} 
+```
+
+## AND OR
+
+### AND
+
+Das `&` Symbol wird verwended um Bedingungen miteinander zu verbinden. Die Bedingung ist nur dann `TRUE` wenn beide alle Bedingungen `TRUE` sind.
+
+```{r, echo=TRUE}
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b & c > a) {
+  print("Both conditions are true")
+} 
+```
+
+### OR
+
+Das `|` Symbol wird verwended um Bedinungen zu verbinden. Die Bedinung ist nur dann `TRUE` wenn numindest eine der Bedinugungen `TRUE` ist.
+
+```{r, echo=TRUE}
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b | a > c) {
+  print("At least one of the conditions is true")
+} 
+```
+
+## While loop
+
+### Loops
+
+Eine Schleife führt einen Code so lange aus wie die Bedingung `TRUE` ist. Es gibt zwei Arten von Schleifen:
+
+-   Die `while` loop
+-   Die `for` loop
+
+### While loops
+
+Der code einer while Schleifen wird solange ausgeführt wie die Bedinung `TRUE` ist.
+
+```{r, echo=TRUE}
+i <- 1
+while (i < 6) {
+  print(i)
+  i <- i + 1
+} 
+```
+
+### Break
+
+Ein `break` kann verwendet werden um aus einer Schleife auszubrechen.
+
+```{r, echo=TRUE}
+i <- 1
+while (i < 6) {
+  print(i)
+  i <- i + 1
+  if (i == 4) {
+    break
+  }
+} 
+```
+
+### Next
+
+Mit `next` kann eine Iteration der Schleife übersprungen werden ohne die Schleife abbrechen zu müssen.
+
+```{r, echo=TRUE}
+i <- 0
+while (i < 6) {
+  i <- i + 1
+  if (i == 3) {
+    next
+  }
+  print(i)
+} 
+```
+
+## For loop
+
+### For loops
+
+Eine `for` Schleife wird verwendet um über eine Sequenz zu itterieren.
+
+```{r, echo=TRUE}
+for (x in 1:10) {
+  print(x)
+} 
+```
+
+Um jeden Teil einer Liste zu printen kann eine `for` Schleife verwendet werden:
+
+```{r, echo=TRUE}
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  print(x)
+} 
+```
+
+Das gleiche ist auch mit Zahlen möglich:
+
+```{r, echo=TRUE}
+dice <- c(1, 2, 3, 4, 5, 6)
+
+for (x in dice) {
+  print(x)
+} 
+```
+
+### Break
+
+Das `break` funktioniert wie in einer `while` loop.
+
+```{r, echo=TRUE}
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  if (x == "cherry") {
+    break
+  }
+  print(x)
+} 
+```
+
+### Next
+
+Das `next` funktioniert wie in einer `while` loop.
+
+```{r, echo=TRUE}
+fruits <- list("apple", "banana", "cherry")
+
+for (x in fruits) {
+  if (x == "banana") {
+    next
+  }
+  print(x)
+} 
+```
+
+### Nested loops
+
+Es ist auch möglich eine Schleife in einer anderen Schleife auszuführen.
+
+```{r, echo=TRUE}
+adj <- list("red", "big", "tasty")
+
+fruits <- list("apple", "banana", "cherry")
+  for (x in adj) {
+    for (y in fruits) {
+      print(paste(x, y))
+  }
+} 
+```
+
+## Functions
+
+Eine function ist ein Stück an Code welches nur ausgeführt wird wenn es aufgerufen wird.
+
+### Creating functions
+
+Um eine Funktion zu erstellen muss das `function()` keyword verwendet werden.
+
+```{r, echo=TRUE}
+my_function <- function() { # create a function with the name my_function
+  print("Hello World!")
+} 
+```
+
+### Call a function
+
+Um eine Funktion aufzurufen muss der name der Funktion gefolgt von Klammern geschrieben werden: `function()`
+
+```{r, echo=TRUE}
+my_function <- function() {
+  print("Hello World!")
+}
+
+my_function() 
+```
+
+### Arguments
+
+Informationen können Funktionen als Arguemnt übergeben werden. Argumente werden in den Klammern nach `function` angegeben. Es können so viele hinzugefügt werden wie man will, sie müssen nur mit einem ',' getrennt werden. Ein Argument ist der Wert welcher der Funktion gesendet wird. Ein Parameter ist die Variabel welche in den Klammern der Funktion steht.
+
+```{r, echo=TRUE}
+my_function <- function(fname) {
+  paste(fname, "Griffin")
+}
+
+my_function("Peter")
+my_function("Lois")
+my_function("Stewie")
+```
+
+### Number of arguments
+
+Eine Funktion muss in der Regel mit der richtigen Anzahl an Argumenten aufgerufen werden ansonsten wird ein Error geworfen.
+
+```{r, echo=TRUE}
+my_function <- function(fname, lname) {
+  paste(fname, lname)
+}
+
+my_function("Peter", "Griffin") 
+```
+
+### Default parameter value
+
+Ein default Parameter Wert kann verwendet werden damit kein Error geworfen wird falls kein oder zu wenige Argumente gegeben werden. Der default Parameter wird nur verwendet falls kein Wert übergeben wird.
+
+```{r, echo=TRUE}
+my_function <- function(country = "Norway") {
+  paste("I am from", country)
+}
+
+my_function("Sweden")
+my_function("India")
+my_function() # will get the default value, which is Norway
+my_function("USA") 
+```
+
+### Return values
+
+Damit eine Funktion einen Wert zurück gibt wird `return()` genutzt.
+
+```{r, echo=TRUE}
+my_function <- function(x) {
+  return (5 * x)
+}
+
+print(my_function(3))
+print(my_function(5))
+print(my_function(9)) 
+```
+
+### Nested functions
+
+Es gibt zwei Arten von nested functions: 1. Wenn eine Funktion in einer anderen Funktion aufgerufen wird 2. Wenn eine Funktion in einer anderen Funktion geschrieben wird.
+
+Bsp. für 1. Fall:
+
+```{r, echo=TRUE}
+Nested_function <- function(x, y) {
+  a <- x + y
+  return(a)
+}
+
+Nested_function(Nested_function(2,2), Nested_function(3,3)) 
+```
+
+Bsp.: für den 2. Fall:
+
+```{r, echo=TRUE}
+Outer_func <- function(x) {
+  Inner_func <- function(y) {
+    a <- x + y
+    return(a)
+  }
+  return (Inner_func)
+}
+output <- Outer_func(3) # To call the Outer_func
+output(5) 
+```
+
+### Recursion
+
+R unterstützt auch rekrusive Aufrüfe von Funktionen. Also eine Methode kann sich selbst aufrufen. Es muss aufgepasst werden dass eine Funktion die rekursiv funktioniert auch irgendwann aufhört.
+
+```{r, echo=TRUE}
+tri_recursion <- function(k) {
+  if (k > 0) {
+    result <- k + tri_recursion(k - 1)
+    print(result)
+  } else {
+    result = 0
+    return(result)
+  }
+}
+tri_recursion(6) 
+```
+
+### Global variables
+
+Variabeln welche auserhalb einer Funktion erstellt werden können global verwendet werden.
+
+```{r, echo=TRUE}
+txt <- "awesome"
+my_function <- function() {
+  paste("R is", txt)
+}
+
+my_function() 
+```
+
+Wenn eine Variabel mit dem selben Namen innerhalb einer Funktion erstellt wird, wird die lokale Variabel verwendet.
+
+```{r, echo=TRUE}
+txt <- "global variable"
+my_function <- function() {
+  txt = "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+txt # print txt
+```
+
+### The Global Assignment Operator
+
+Um eine globale Variabel in einer Funktion zu erstellen kann der `<<-` Operator verwendet werden.
+
+```{r, echo=TRUE}
+my_function <- function() {
+txt <<- "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+print(txt) 
+```
+
+`<<-` wird auch verwendet um den Wert einer globalen Variabel in einer Methode zu verändern
+
+```{r, echo=TRUE}
+txt <- "awesome"
+my_function <- function() {
+  txt <<- "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+paste("R is", txt) 
+```
+
+# R Data Structures
+
+## Vectors
+
+Ein Vector ist eine Liste in der alle Elemente den gleichen Typen haben. Um eine Liste in einen Vector zu verwandeln wird die `c()` Funktion verwendet.
+
+```{r, echo=TRUE}
+# Vector of strings
+fruits <- c("banana", "apple", "orange")
+
+# Print fruits
+fruits 
+```
+
+Es kann auch eine Sequenz in einen Vector umgewandelt werden.
+
+```{r, echo=TRUE}
+# Vector with numerical values in a sequence
+numbers <- 1:10
+
+numbers
+```
+
+### Vector Length
+
+Die `lenght()` Funktion wird verwendet um die Länge eines Vektors zu bekommen.
+
+```{r, echo=TRUE}
+fruits <- c("banana", "apple", "orange")
+
+length(fruits) 
+```
+
+### Sort a Vector
+
+Um einen Vector zu sortieren kann die `sort()` Funktion verwndet werden.
+
+```{r, echo=TRUE}
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+numbers <- c(13, 3, 5, 7, 20, 2)
+
+sort(fruits)  # Sort a string
+sort(numbers) # Sort numbers 
+```
+
+### Access Vectors
+
+Ein Element eines Vectors kann mittels seinem Index innerhalb von '[]' erhalten werden.
+
+```{r, echo=TRUE}
+fruits <- c("banana", "apple", "orange")
+
+# Access the first item (banana)
+fruits[1] 
+```
+
+Es können auch mehrere Elemente auf einmal erhalten werden.
+
+```{r, echo=TRUE}
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+# Access the first and third item (banana and orange)
+fruits[c(1, 3)] 
+```
+
+Ein negativer Index gibt alle Elemente bis auf das des Indexes zurück.
+
+```{r, echo=TRUE}
+ fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+# Access all items except for the first item
+fruits[c(-1)] 
+```
+
+### Change an Item
+
+Um einen Wert eines Vectors zu ändern wird ihr Index verwendet.
+
+```{r, echo=TRUE}
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+# Change "banana" to "pear"
+fruits[1] <- "pear"
+
+# Print fruits
+fruits 
+```
+
+### Repeat Vectors
+
+Um einen Vector wiederholend zu machen kann die `rep()` Funktion verwendet werden.
+
+```{r, echo=TRUE}
+repeat_each <- rep(c(1,2,3), each = 3)
+
+repeat_each 
+```
+
+### Generating sequenced vectors
+
+Ein Vector kann mit einer Sequenz verwendet werden.
+
+```{r, echo=TRUE}
+numbers <- 1:10
+
+numbers 
+```
+
+Damit größere oder kleinere Schritte in einer Sequenz machen zu können muss `seq()` verwendet werden.
+
+```{r, echo=TRUE}
+numbers <- seq(from = 0, to = 100, by = 20)
+
+numbers 
+```
+
+## Lists
+
+Eine Liste ist eine Sammlung an Daten, welche verschiedene Typen haben können und sortiert sind.
+
+```{r, echo=TRUE}
+# List of strings
+thislist <- list("apple", "banana", "cherry")
+
+# Print the list
+thislist 
+```
+
+### Access Lists
+
+Auf eine Liste wird über ihren Index zugegriffen.
+
+```{r, echo=TRUE}
+thislist <- list("apple", "banana", "cherry")
+
+thislist[1] 
+```
+
+### Change Item Value
+
+Ein Element einer Liste kann über den Index verändert werden.
+
+```{r, echo=TRUE}
+thislist <- list("apple", "banana", "cherry")
+thislist[1] <- "blackcurrant"
+
+# Print the updated list
+thislist 
+```
+
+### List Length
+
+Um die Länge einer Liste zu erhalten kann die `length()` methode verwendet werden.
+
+```{r, echo=TRUE}
+thislist <- list("apple", "banana", "cherry")
+
+length(thislist) 
+```
+
+### Check if Item Exists
+
+Um zu wissen ob ein Element in einer Liste existiert kann der `%in%` Operator verwendet werden.
+
+```{r, echo=TRUE}
+ thislist <- list("apple", "banana", "cherry")
+
+"apple" %in% thislist
+```
+
+### Add List Items
+
+Um ein Element an eine Liste hinzuzufügen wir die `append()` Methode verwendet.
+
+```{r, echo=TRUE}
+thislist <- list("apple", "banana", "cherry")
+
+append(thislist, "orange") 
+```
+
+Um ein Element an einer bestimmten Stelle einzufügen wird der after = n als parameter übergeben.
+
+```{r, echo=TRUE}
+thislist <- list("apple", "banana", "cherry")
+
+append(thislist, "orange", after = 2) 
+```
+
+### Remove List Items
+
+Um das erste Element aus einer Liste zu entfernen wird der index [-1] angegeben.
+
+```{r, echo=TRUE}
+ thislist <- list("apple", "banana", "cherry")
+
+newlist <- thislist[-1]
+
+# Print the new list
+newlist 
+```
+
+### Range of Indexes
+
+Es kann auch eine Reihe an Indexen angegeben werden.
+
+```{r, echo=TRUE}
+thislist <- list("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
+
+(thislist)[2:5] 
+```
+
+### Loop Through a List
+
+Mit einer `for` loop kann durch eine Lite durch Itteriert werden.
+
+```{r, echo=TRUE}
+thislist <- list("apple", "banana", "cherry")
+
+for (x in thislist) {
+  print(x)
+} 
+```
+
+### Join Two Lists
+
+Listen können verbunden werden indem die `c()` Methode verwendet wird.
+
+```{r, echo=TRUE}
+list1 <- list("a", "b", "c")
+list2 <- list(1,2,3)
+list3 <- c(list1,list2)
+
+list3 
+```
+
+## Matrices
+
+Eine Matrix ist ein 2 Dmiensionales Datenset mit columns und rows. Eine Matrix kann mit der `matrix()` Funktion erstellt werden.
+
+```{r, echo=TRUE}
+ # Create a matrix
+thismatrix <- matrix(c(1,2,3,4,5,6), nrow = 3, ncol = 2)
+
+# Print the matrix
+thismatrix 
+```
+
+### Access Matrix Items
+
+Ein Element einer Matrix kann mit dem Index des columns und der row erhalten werden.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+thismatrix[1, 2]
+```
+
+Es kann auch eine ganze row erhalten werden indem nur ein Index angegeben wird.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+thismatrix[2,]
+```
+
+Das gleiche ist auch mit einem column möglich.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+thismatrix[,2]
+```
+
+### Access More Than One Row
+
+Mit der `c()` Funktion können mehrere rows erhalten werden.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+
+thismatrix[c(1,2),] 
+```
+
+### Access More Than One Column
+
+Das gleiche ist auch mit mehreren columns möglich.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+
+thismatrix[, c(1,2)] 
+```
+
+### Add Rows and Columns
+
+Um columns in eine Matrix hinzuzufügen kann die `cbind()` Funktion verwendet werden.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+
+newmatrix <- cbind(thismatrix, c("strawberry", "blueberry", "raspberry"))
+
+# Print the new matrix
+newmatrix 
+```
+
+Um rows hinzuzufügen wird die `rbind()` Funktion verwendet.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange","grape", "pineapple", "pear", "melon", "fig"), nrow = 3, ncol = 3)
+
+newmatrix <- rbind(thismatrix, c("strawberry", "blueberry", "raspberry"))
+
+# Print the new matrix
+newmatrix 
+```
+
+### Remove Rows and Columns
+
+Mit der `c()` Funktion können rows und columns entfernt werden.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange", "mango", "pineapple"), nrow = 3, ncol =2)
+
+#Remove the first row and the first column
+thismatrix <- thismatrix[-c(1), -c(1)]
+
+thismatrix 
+```
+
+### Check if an Item Exists
+
+Um herauszufinden ob ein Element in einer Matrix enthalten ist wird der `%in%` Operator verwendet.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+"apple" %in% thismatrix 
+```
+
+### Number of Rows and Columns
+
+Um die Anzahl an rows und columns zu erhalten wird die `dim()` Funktion verwendet.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+dim(thismatrix) 
+```
+
+### Matrix Length
+
+Um die Dimension einer Matrix herauszufinden wird die `length()` Funktion verwendet.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+length(thismatrix) 
+```
+
+### Loop Through a Matrix
+
+Um über eine Matrix zu iterieren wird die `for` loop verwendet.
+
+```{r, echo=TRUE}
+thismatrix <- matrix(c("apple", "banana", "cherry", "orange"), nrow = 2, ncol = 2)
+
+for (rows in 1:nrow(thismatrix)) {
+  for (columns in 1:ncol(thismatrix)) {
+    print(thismatrix[rows, columns])
+  }
+} 
+```
+
+### Combine two Matrices
+
+Die `rbind()` und `cbind()` Funktionen können verwendet werden um Matrixen miteinander zu verbinden.
+
+```{r, echo=TRUE}
+# Combine matrices
+Matrix1 <- matrix(c("apple", "banana", "cherry", "grape"), nrow = 2, ncol = 2)
+Matrix2 <- matrix(c("orange", "mango", "pineapple", "watermelon"), nrow = 2, ncol = 2)
+
+# Adding it as a rows
+Matrix_Combined <- rbind(Matrix1, Matrix2)
+Matrix_Combined
+
+# Adding it as a columns
+Matrix_Combined <- cbind(Matrix1, Matrix2)
+Matrix_Combined 
+```
+
+## Arrays
+
+Arrays Funktionieren wie Matrixen nur haben sie mehr Dimensionen. Um einen Array zu erstellen kann die `array()` Funktion verwendet werden.
+
+```{r, echo=TRUE}
+# An array with one dimension with values ranging from 1 to 24
+thisarray <- c(1:24)
+thisarray
+
+# An array with more than one dimension
+multiarray <- array(thisarray, dim = c(4, 3, 2))
+multiarray 
+```
+
+### Access Array Items
+
+Ein Element eines Arrays kann mit dem Index erhalten werden.
+
+```{r, echo=TRUE}
+thisarray <- c(1:24)
+multiarray <- array(thisarray, dim = c(4, 3, 2))
+
+multiarray[2, 3, 2] 
+```
+
+Es ist auch möglich ein row oder column zu erhalten.
+
+```{r, echo=TRUE}
+thisarray <- c(1:24)
+
+# Access all the items from the first row from matrix one
+multiarray <- array(thisarray, dim = c(4, 3, 2))
+multiarray[c(1),,1]
+
+# Access all the items from the first column from matrix one
+multiarray <- array(thisarray, dim = c(4, 3, 2))
+multiarray[,c(1),1] 
+```
+
+### Check if an Item Exists
+
+Um herauszufinden ob ein Array ein Element enthält kann der `%in%` Operator verwendet werden.
+
+```{r, echo=TRUE}
+thisarray <- c(1:24)
+multiarray <- array(thisarray, dim = c(4, 3, 2))
+
+2 %in% multiarray 
+```
+
+### Amount of Rows and Columns
+
+Um die Anzahl an rows und columns zu erhalten wird die `dim()` Funktion verwedet.
+
+```{r, echo=TRUE}
+thisarray <- c(1:24)
+multiarray <- array(thisarray, dim = c(4, 3, 2))
+
+dim(multiarray) 
+```
+
+### Array Length
+
+Um die Dimension eines Arrays zu erhalten wir die `length()` Funktion verwendet.
+
+```{r, echo=TRUE}
+thisarray <- c(1:24)
+multiarray <- array(thisarray, dim = c(4, 3, 2))
+
+length(multiarray) 
+```
+
+### Loop Through an Array
+
+Es kann über einen Array itteriert werden indem eine `for` loop verwendet wird.
+
+```{r, echo=TRUE}
+thisarray <- c(1:24)
+multiarray <- array(thisarray, dim = c(4, 3, 2))
+
+for(x in multiarray){
+  print(x)
+} 
+```
+
+## Data Frames
+
+### Ohne Messwiederholung
+
+Die Library `library(dplyr)` wird benötigt
+
+Ein Data Frame sind Daten die als Tabellen dargestellt werden. Sie können character, numbers, ... beinhalten solange sie nicht in einem column gemischt sind.
+
+```{r, echo=TRUE}
+# Create a data frame
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+# Print the data frame
+Data_Frame 
+```
+
+### Mit Messwiederholung
+
+```{r, echo=TRUE}
+library(dplyr)
+Vpn <- c("VP_1", "VP_2", "VP_3", "VP_4")
+Vpn <- factor(Vpn)
+# N ist die Anzahl Vpn
+N <- length(Vpn)
+
+set.seed(1234)
+
+zufriedenheit_t1 <- round(rnorm(N, mean = 60, sd = 10), digits = 2)
+zufriedenheit_t1
+
+zufriedenheit_t2 <- round(rnorm(N, mean = 75, sd = 10), digits = 2)
+zufriedenheit_t2
+
+zufriedenheit <- tibble(
+  Vpn = Vpn,
+  zufriedenheit_t1 = zufriedenheit_t1,
+  zufriedenheit_t2 = zufriedenheit_t2
+)
+zufriedenheit
+```
+
+### Manuelle Konversion von wide zu long
+
+```{r, echo=TRUE}
+
+zufriedenheit_wide <- zufriedenheit
+Vpn <- rep(zufriedenheit_wide$Vpn, each = 2)
+Vpn
+
+messzeitpunkt <- rep(c("t1", "t2"), times = N)
+messzeitpunkt <- as.factor(messzeitpunkt)
+
+messzeitpunkt
+
+rating <- c(rbind(
+  zufriedenheit_wide$zufriedenheit_t1,
+  zufriedenheit_wide$zufriedenheit_t2
+))
+
+rating <- as.vector(rbind(
+  zufriedenheit_wide$zufriedenheit_t1,
+  zufriedenheit_wide$zufriedenheit_t2
+))
+
+rating
+
+zufriedenheit_long <- tibble(
+  Vpn = Vpn,
+  messzeitpunkt = messzeitpunkt,
+  rating = rating
+)
+
+zufriedenheit_long
+
+library(ggplot2)
+zufriedenheit_long |>
+  ggplot(aes(
+    x = messzeitpunkt,
+    y = rating,
+    group = Vpn, colour = Vpn
+  )) +
+  geom_point(size = 4) +
+  geom_line(size = 2) +
+  theme_bw() # macht den Hintergrund weiss
+
+```
+
+### 
+
+### Summarize the Data
+
+Um die Daten zusammenzufassen wird die `summary()` Funktion verwendet.
+
+```{r, echo=TRUE}
+ Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+Data_Frame
+
+summary(Data_Frame) 
+```
+
+### Access Items
+
+Es können `[]`, `[[]]` oder `$` verwendet werden um columns von einem Data Frame zu erhalten.
+
+```{r, echo=TRUE}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+Data_Frame[1]
+
+Data_Frame[["Training"]]
+
+Data_Frame$Training 
+```
+
+### Add Rows
+
+Um eine row hinzuzufügen wird die `rbind()` Funktion verwender.
+
+```{r, echo=TRUE}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+# Add a new row
+New_row_DF <- rbind(Data_Frame, c("Strength", 110, 110))
+
+# Print the new row
+New_row_DF 
+```
+
+### Add Columns
+
+Um ein column hinzuzufügen wird die `cbind()` Funktion verwendet.
+
+```{r, echo=TRUE}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+# Add a new column
+New_col_DF <- cbind(Data_Frame, Steps = c(1000, 6000, 2000))
+
+# Print the new column
+New_col_DF 
+```
+
+### Remove Rows and Columns
+
+Um columns und rows zu entfernen wird die `c()` Funktion verwendet.
+
+```{r, echo=TRUE}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+# Remove the first row and column
+Data_Frame_New <- Data_Frame[-c(1), -c(1)]
+
+# Print the new data frame
+Data_Frame_New 
+```
+
+### Amount of Rows and Columns
+
+Um die Anzahl an rows und columns zu erhalten wird die `dim()` Funktion verwendet.
+
+```{r, echo=TRUE}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+dim(Data_Frame) 
+```
+
+Es kann auch die `ncol()` und `nrow()` Funktion verwendet werden um die Anzahl an columns und die Anzahl an rows zu erhalten.
+
+```{r, echo=TRUE}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+ncol(Data_Frame)
+nrow(Data_Frame) 
+```
+
+### Data Frame Length
+
+Um die Anzahl an columns zu erhalten wird die `length()` Funktion verwendet.
+
+```{r, echo=TRUE}
+Data_Frame <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+length(Data_Frame) 
+```
+
+### Combining Data Frames
+
+Um Zwei oder mehr Data Frames vertikal zu verbinden wird die `rbind()` Funktion verwendet.
+
+```{r, echo=TRUE}
+Data_Frame1 <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+Data_Frame2 <- data.frame (
+  Training = c("Stamina", "Stamina", "Strength"),
+  Pulse = c(140, 150, 160),
+  Duration = c(30, 30, 20)
+)
+
+New_Data_Frame <- rbind(Data_Frame1, Data_Frame2)
+New_Data_Frame 
+```
+
+Um Zwei oder mehr Data Frames horizontal zu verbinden wird die `cbind()` Funktion verwendet.
+
+```{r, echo=TRUE}
+Data_Frame3 <- data.frame (
+  Training = c("Strength", "Stamina", "Other"),
+  Pulse = c(100, 150, 120),
+  Duration = c(60, 30, 45)
+)
+
+Data_Frame4 <- data.frame (
+  Steps = c(3000, 6000, 2000),
+  Calories = c(300, 400, 300)
+)
+
+New_Data_Frame1 <- cbind(Data_Frame3, Data_Frame4)
+New_Data_Frame1 
+```
+
+## Factors
+
+Factors werden verwendet um Daten zu Kategorisieren. Um einen Factor zu erstellen wird die `factor()` Funktion verwendet.
+
+```{r, echo=TRUE}
+# Create a factor
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+# Print the factor
+music_genre 
+```
+
+Um nur die Levels zu printen wird die `levels()` Funktion verwendet.
+
+```{r, echo=TRUE}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+levels(music_genre) 
+```
+
+Die Levels können auch gesetzt werden indem `levels` in der `factor()` Funktion verwendet wird.
+
+```{r, echo=TRUE}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"), levels = c("Classic", "Jazz", "Pop", "Rock", "Other"))
+
+levels(music_genre) 
+```
+
+### Factor Length
+
+Um herauszufinden wie viele Elemente in einem Factor sind wird die `length()` Funktion verwendet.
+
+```{r, echo=TRUE}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+length(music_genre) 
+```
+
+### Access Factors
+
+Um auf ein Element eines Factors zuzugreifen wird der Index verwendet.
+
+```{r, echo=TRUE}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+music_genre[3] 
+```
+
+### Change Item Value
+
+Um den Wert eines Elementes zu ändern wird der Index verwendet.
+
+```{r, echo=TRUE}
+ music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+music_genre[3] <- "Pop"
+
+music_genre[3] 
+```
+
+Falls ein Element in einen Factor hinzugefügt werden soll, dass noch nicht beinhaltet/definiert ist tritt ein Fehler auf.
+
+```{r, echo=TRUE}
+ music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+music_genre[3] <- "Opera"
+
+music_genre[3] 
+```
+
+Wenn das Element aber schon im `levels` definiert ist funktioniert es.
+
+```{r, echo=TRUE}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"), levels = c("Classic", "Jazz", "Pop", "Rock", "Opera"))
+
+music_genre[3] <- "Opera"
+
+music_genre[3]
+```
+
+### Numerische Funktionen
+
+| abs(x)               | Betrag                                    |
+|----------------------|-------------------------------------------|
+| sqrt(x)              | Quadratwurzel                             |
+| ceiling(x)           | Aufrunden: ceiling(3.475) ist 4           |
+| floor(x)             | Abrunden: floor(3.475) ist 3              |
+| round(x, digits = n) | Runden: round(3.475, digits = 2) ist 3.48 |
+| log(x)               | Natürlicher Logarithmus                   |
+| log(x, base = n)     | Logarithmus zur Basis n                   |
+| log2(x)              | Logarithmus zur Basis 2                   |
+| log10(x)             | Logarithmus zur Basis 10                  |
+| exp(x)               | Exponentialfunktion: e\^x                 |
+
+### Statistische Funktionen
+
+| mean(x, na.rm = FALSE)                 | Mittelwert                                             |
+|----------------------------------------|--------------------------------|
+| sd(x)                                  | Standardabweichung                                     |
+| var(x)                                 | Varianz                                                |
+| median(x)                              | Median                                                 |
+| quantile(x, probs)                     | Quantile von x. probs: Vektor mit Wahrscheinlichkeiten |
+| sum(x)                                 | Summe                                                  |
+| min(x)                                 | Minimalwert x_min                                      |
+| max(x)                                 | Maximalwert x_max                                      |
+| range(x)                               | x_min und x_max                                        |
+| scale(x, center = TRUE, scale = TRUE)  | Zentrieren und Standardisieren                         |
+| sample(x, size, replace = FALSE, prob) | Ziehen mit/ohne Zurücklegen.                           |
+| prob:                                  | Vektor mit Wahrscheinlichkeiten                        |
+
+## Daten importieren
+
+### Comma-separated values (CSV) Dateien
+
+```r
+library(tidyverse)
+zufriedenheit <- read_csv("data/zufriedenheit.csv")
+
+```
+
+## Daten transformieren
+
+### Tidy data
+
+| Package | Funktion                  | Verwendung                                                              |
+|--------------------------|--------------------------|--------------------|
+| tidyr   | pivot_longer()            | erhöht die Anzahl der Zeilen, verringert die Anzahl der Spalten         |
+| tidyr   | pivot_wider()             | verringert die Anzahl der Zeilen, erhöht die Anzahl der Spalten         |
+| tidyr   | drop_na()                 | löscht alle Zeilen eines Datensatzes, die missing values (NA) enthalten |
+| dplyr   | rename()                  | zum Umbenennen von Variablen                                            |
+| dplyr   | select()                  | wählt Variablen (Spalten) aus                                           |
+| dplyr   | filter()                  | wählt Beobachtungen (Zeilen) aus                                        |
+| dplyr   | arrange()                 | sortiert einen Datensatz nach einer bestimmten Variablen                |
+| dplyr   | mutate()                  | erstellt neue Variablen und ändert bereits vorhandene Variablen         |
+| dplyr   | recode()                  | rekodiert numerische Variablen                                          |
+| forcats | fct_recode()              | zum Rekodieren/Umbenennen von Faktorstufen                              |
+| dplyr   | group_by()                | ermöglicht Operationen an Teilmengen der Daten                          |
+| dplyr   | summarize() / summarise() | fasst Daten zusammen                                                    |
+
+
+
+### Der Pipe Operator
+
+Um Funktionen nacheinander aufzurufen kann der pipe operator `|>` verwendet werden.
+
+``` r
+library(dplyr)
+stichprobe |>
+  scale(center = TRUE, scale = FALSE) |>
+  sd() |>
+  round(digits = 2)
+```
+
+### Reshaping: tidyr
+
+Um Datensätze zu transformieren muss die `library(tidyr)` importiert werden.
+
+#### pivot_longer()
+
+Wird verwendet um einen wide Datensatz zu einem long Datensatz zu transformieren
+
+``` r
+pivot_longer(data, cols, names_to, values_to)
+```
+
+#### pivot_wider()
+
+Wird verwendet um einen long Datensatz zu einem wide Datenstz zu transformieren.
+
+``` r
+pivot_wider(data, names_from, values_from)
+```
+
+### Daten manipulieren: dplyr
+
+Um Daten zu manipulieren wird die `library(dplyr)` importiert.
+
+#### Variablen umbennen mit rename()
+
+``` r
+rename(data, neuer_name = alter_name)
+```
+
+#### Variablen auswählen mit select()
+
+``` r
+select(df, variable1, variable2, -variable3)
+```
+
+Hier werden variabeln 1 und 2 ausgewählt aber 3 nicht
+
+#### Beobachtungen (Fälle) auswählen mit filter()
+
+Mit `filter()` werden variabeln ausgewält die bestimmte bedingungen erfüllen.
+
+```r
+filter(data, variable1 < WERT1 & variable2 == WERT2)
+```
+
+#### Beobachtungen (Fälle) sortieren mit arrange()
+
+Mit `arrange()` können Daten sortiert werden.
+
+Aufsteigend:
+``` r
+arrange(data, column)
+```
+
+Absteigend:
+``` r
+arrange(data, desc(column))
+```
+
+#### Neue Variablen erstellen mit mutate()
+
+``` r
+utate(data, neue_variable_1 = FORMEL_1,
+             neue_variable_2 = FORMEL_2)
+```
+
+#### Werte und Faktorstufen rekodieren mit recode() und fct_recode()
+
+Mit mutate() und recode() können wir numerische Variablen rekodieren.
+
+```r
+recode(variable,
+       alter_wert_1 = "neuer_wert_1",
+       alter_wert_2 = "neuer_wert_2")
+``` 
+
+#### Daten gruppieren mit group_by()
+
+`group_by()` teilt den Datensatz anhand der Grupierungsvariabeln
+
+``` r
+df <- group_by(gruppierung_1, gruppierung_2, gruppierung_3)
+```
+
+#### Variablen zusammenfassen mit summarize()
+
+``` r
+summarize(data, kennzahl = FUNKTION(variable))
+```
+
+## Grafiken mit ggplot2
+
+### 1. Plotobjekt erstellen
+
+``` r
+p <- ggplot(data = stress)
+```
+
+### 2. Aesthetic mappings
+
+Es können für die x und y achse beschreibungen hinzugefügt werden.
+
+``` r
+p <- stress |>
+  ggplot(mapping = aes(
+    x = geschlecht,
+    y = stress_psychisch,
+    color = geschlecht,
+    fill = geschlecht
+  ))
+```
+
+
+### 3. geoms hinzufügen
+
+#### Punktdiagramm
+
+```r
+p + geom_point(size = 3)
+```
+
+
+Mit der funktion `geom_jitter()` können die Daten nebeneinander angezeigt.
+
+``` r
+p + geom_jitter()
+```
+
+Es kann auch die width angegeben werden.
+
+``` r
+p + geom_jitter(width = 0.2)
+```
+
+Genau so auch eine size und eine transperency
+
+``` r
+p + geom_jitter(width = 0.2, size = 4, alpha = 0.6)
+```
+
+#### Verteilung grafisch darstelle
+
+Ein boxplot kann mit `geom_boxplot()` erstellt werden.
+
+``` r
+p + geom_boxplot()
+```
+
+Die verteilung kann auch mit `geom_violin()` visualisiert werden.
+
+Es können auch mehrere Plots gleichzeitig dargestellt werden.
+
+``` r
+p +
+  geom_violin(aes(fill = geschlecht)) +
+  geom_jitter(width = 0.2, alpha = 0.6)
+```
+
+
+### Geoms für verschiedene Datentypen
+
+#### Eine Variabel 
+
+``` r
+p <- jugendliche |>
+  select(bildung_vater) |>
+  drop_na() |>
+  ggplot(aes(x = bildung_vater))
+p + geom_bar(fill = "lightblue", color = "black")
+```
+
+Es können auch hier Gruppierungen angezeigt werden.
+
+``` r
+p <- jugendliche |>
+  select(bildung_vater, westost) |>
+  drop_na() |>
+  ggplot(aes(x = bildung_vater, fill = westost))
+p + geom_bar()
+```
+
+Damit die bars nebeneinander sind kann das `position = "dodge"` attribut übergeben werden kann.
+
+``` r
+p + geom_bar(position = "dodge")
+```
+
+Sie können auch hinterneinander angezeigt werden.
+
+``` r
+p + geom_bar(position = "identity", alpha = 0.6)
+```
+
+#### Zwei Variablen
+
+``` r
+p <- jugendliche |>
+  select(stress_psychisch, leben_gesamt) |>
+  drop_na() |>
+  ggplot(mapping = aes(x = stress_psychisch, y = leben_gesamt))
+
+p + geom_point(size = 2, alpha = 0.6)
+```
+
+Auch hier können die Daten anhand von gruppierungen unterschieden werden.
+
+``` r
+p <- jugendliche |>
+  select(stress_psychisch, leben_gesamt, geschlecht) |>
+  drop_na() |>
+  ggplot(mapping = aes(
+    x = stress_psychisch,
+    y = leben_gesamt,
+    color = geschlecht,
+    shape = geschlecht
+  ))
+
+p + geom_jitter(size = 3, alpha = 0.9)
+```
+
+### Facets
+
+Mit `facet_wrap()` kann ein eigener plot für für jede Kategorie erstellt werden.
+
+``` r
+p <- jugendliche |>
+  select(Gesamtnote, bildung_mutter) |>
+  drop_na() |>
+  ggplot(mapping = aes(
+    x = Gesamtnote,
+    fill = bildung_mutter
+  )) +
+  facet_wrap(~bildung_mutter)
+
+p + geom_histogram(binwidth = 0.8)
+```
+
+Wenn man zwei Gruppierungsvariabeln hat kann `facet_grid()` verwendet werden.
+
+``` r
+p <- jugendliche |>
+  select(Gesamtnote, bildung_mutter, bildung_vater) |>
+  drop_na() |>
+  ggplot(mapping = aes(x = Gesamtnote)) +
+  facet_grid(bildung_mutter ~ bildung_vater)
+
+p + geom_histogram(
+  binwidth = 0.8,
+  fill = "steelblue4"
+)
+```
+
+### Farben und Themes
+
+Man kann bei `ggplot2` acuh die Farben angeben.
+
+``` r
+palette <- c(
+  "#000000", "#E69F00",
+  "#56B4E9", "#009E73",
+  "#F0E442", "#0072B2",
+  "#D55E00", "#CC79A7"
+)
+```
+
+Um diese Farben zu verwenden wird dieser parameter übergeben.
+``` r
+scale_fill_manual(values = palette)
+```
+
+### Beschriftungen
+
+Mit `xlab()` und `ylab()` können die lables der x und y achse verändert werden und mit `ggtitle()` kann der Titel des Plots geändert werden.
+
+``` r
+p <- jugendliche |>
+  select(stress_psychisch, leben_gesamt, geschlecht) |>
+  drop_na() |>
+  ggplot(mapping = aes(
+    x = stress_psychisch,
+    y = leben_gesamt,
+    color = geschlecht,
+    shape = geschlecht
+  ))
+
+p + geom_jitter(size = 3, alpha = 0.9) +
+  scale_colour_manual(values = palette) +
+  theme_classic(base_size = 14) +
+  ggtitle("Zusammenhang zwischen Stress und Zufriedenheit") +
+  xlab("Psychischer Stress") +
+  ylab("Zufriedenheit") +
+  # Titel der color- und shape-Legende ist "Geschlecht"
+  labs(
+    color = "Geschlecht",
+    shape = "Geschlecht"
+  )
+```
+
+### Grafiken speichern
+
+Mit `ggsave()` kann ein Plot gespeichert werden.
+
+```r
+p <- jugendliche |>
+  select(stress_psychisch, leben_gesamt, geschlecht) |>
+  drop_na() |>
+  ggplot(mapping = aes(
+    x = stress_psychisch,
+    y = leben_gesamt,
+    color = geschlecht,
+    shape = geschlecht
+  ))
+
+# Wir nennen die Grafik 'my_plot'
+my_plot <- p + geom_jitter(size = 3, alpha = 0.9) +
+  scale_colour_manual(values = palette) +
+  theme_classic(base_size = 14) +
+  ggtitle("Zusammenhang zwischen Stress und Zufriedenheit") +
+  xlab("Psychischer Stress") +
+  ylab("Zufriedenheit") +
+  labs(
+    color = "Geschlecht",
+    shape = "Geschlecht"
+  )
+ggsave(
+  filename = "my_plot.png",
+  plot = my_plot
+)
+```
+
+
+
+
+

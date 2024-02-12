@@ -1,0 +1,83 @@
+---
+title: "Hypothesentesten"
+author: "Zlabinger Christof"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Hypothesentest
+
+## Hypothesen
+Nullhypothese: Das Pipettentraining hatte keinen signifikanten Einfluss auf die Zeit der Durchfuehrung.
+
+Alternivhypothese: Das Pipettentraining hatte einen signifikanten Einfluss auf die Zeit der Durchfuehrung.
+
+## Daten
+```{r dAHa}
+NH <- c(1.36, 1.37, 1.29, 1.22, 1.38, 1.31, 1.40, 1.39, 1.30, 1.37, 1.41, 1.36, 1.31)
+AH <- c(1.29, 1.25, 1.20, 1.26, 1.25, 1.23, 1.26, 1.31, 1.24, 1.31, 1.35, 1.35, 1.33)
+
+
+summary(NH)
+summary(AH)
+
+plot(NH, type = "o", col = "blue", pch = 16, ylim = range(c(NH, AH)), ylab = "Zeit")
+lines(AH, type = "o", col = "red", pch = 16)
+legend("topright", legend = c("NH", "AH"), col = c("blue", "red"), pch = 16)
+
+boxplot(NH, AH, names=c("Vor Training", "Nach Training"), 
+        ylab="Zeit", main="Pipettierzeiten vor und nach dem Training")
+```
+
+## Fuer Tests gerechtfertigt
+
+Nicht wirklich da es zu weing Datenpunkte gibt und somit nicht gessagt werden kann ob das Training einen Einfluss hatte.
+
+## Signifikanz
+
+p-wert:
+```{r}
+ttest_result <- t.test(NH, AH,paired=TRUE)
+ttest_result$p.value
+```
+
+Signifikanzniveaus
+
+Gegen 5%
+
+```{r}
+ttest_result$p.value < 0.05
+```
+
+Gegen 1%
+
+```{r}
+ttest_result$p.value < 0.01
+```
+
+
+p-wert ist unter dem Signifikanzniveaus somit wird die Nullhypothese verworfen.
+
+Um festzustellen ob das Training sich fuer mehr Mitarbeiter lohnt muessten mehr Datenpunkte vorhanden sein und es muessen mehrere Faktoren wie der Preis des Trainsings in beachtung genommen werden.
+
+# EK
+
+```{r}
+
+medikament <- c(274, 198)
+placebo <- c(103, 372)
+
+kontingenztafel <- matrix(c(medikament, placebo), nrow = 2, byrow = TRUE,
+                          dimnames = list(c("Medikament", "Placebo"),
+                                          c("Erfolg", "Kein Erfolg")))
+
+testergebnis <- chisq.test(kontingenztafel)
+
+testergebnis
+```
+
+Da der p-wert mit 2.2e^-16 deutchlich < 0.01 ist und somit signifikant besser als das placebo ist sollte es zugelassen werden.
