@@ -13,3 +13,6 @@
 [submodule "4xHIT/SYT/DZS/gRPC"]
 	path = 4xHIT/SYT/DZS/gRPC
 	url = git@github.com:czlabinger/gRPC.git
+[submodule "4xHIT/SEW/grand_prix"]
+	path = 4xHIT/SEW/grand_prix
+	url = git@github.com:TGM-HIT/sew8-2324-grand-prix-czlabinger.git
