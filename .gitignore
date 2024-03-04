@@ -1,7 +1,4 @@
 .vscode/
 target/
-venv/*
-env/*
-.env/*
-.venv/*
-.idea/*
+4xHIT/DS/grundlagenDesMaschinellenLernens/.venv/*
+4xHIT/DS/grundlagenDesMaschinellenLernens/.idea/*
