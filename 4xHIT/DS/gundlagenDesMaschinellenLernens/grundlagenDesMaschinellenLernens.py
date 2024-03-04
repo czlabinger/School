@@ -4,50 +4,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
-
-def plot1():
-    coef = np.polyfit(x.flatten(), y.flatten(), 1)
-    ploy1d_fn = np.poly1d(coef)
-
-
-    plt.scatter(x_train, y_train, label="Originaldaten")
-    plt.plot(x, y, 'o', x, ploy1d_fn(x), '--k')
-    plt.show()
-
-
-def plot2():
-    coef = np.polyfit(y.flatten(), x.flatten(), 1)
-    ploy1d_fn = np.poly1d(coef)
-
-
-    plt.scatter(y_train, x_train, label="Originaldaten")
-    plt.plot(y, x, 'o', y, ploy1d_fn(y), '--k')
-    plt.show()
-
-
-def plot_exp(x, y):
-    transformed_y = np.log(y)
-
-    coef = np.polyfit(x.flatten(), transformed_y.flatten(), 1)
-    ploy1d_fn = np.poly1d(coef)
-
-
-    plt.scatter(x, np.exp(transformed_y), label="Originaldaten")
-    plt.plot(x, np.exp(transformed_y), 'o', x, np.exp(ploy1d_fn(x)), '--k')
-    plt.show()
-
-
-def plot_log(x, y):
-    transformed_x = np.exp(-x)
-
-    coef = np.polyfit(-np.log(transformed_x).flatten(), y.flatten(),  1)
-    ploy1d_fn = np.poly1d(coef)
-
-    plt.scatter(transformed_x, y, label="Transformierte Daten")
-    plt.plot(transformed_x, y, 'o', transformed_x, ploy1d_fn(transformed_x), '--k')
-    plt.show()
-
-
 """
 Aufgabe 1
 Teil 1
@@ -59,22 +15,69 @@ y = economics["unemploy"].values.reshape(-1, 1)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
-model1 = LinearRegression().fit(x_train, y_train)
-model2 = LinearRegression().fit(y_train, x_train)
+model1: LinearRegression = LinearRegression()
+model2: LinearRegression = LinearRegression()
+
+model1.fit(x_train, y_train)
+model2.fit(y_train, x_train)
 
 # Gespiegelt da Achsen vertauscht wurden
 
 """
 Teil 2
 """
-plot1()
-plot2()
+# region Linear 1
+
+plt.scatter(x_train, y_train, label="Data")
+plt.plot(x_train, model1.predict(x_train), color="red", label="Linear Regression")
+plt.xlabel("uempmed")
+plt.ylabel("unemploy")
+plt.show()
+
+# endregion
+
+# region Linear 2
+
+plt.scatter(y_train, x_train, label="Data")
+plt.plot(y_train, model2.predict(y_train), color="red", label="Linear Regression")
+plt.ylabel("uempmed")
+plt.xlabel("unemploy")
+plt.show()
+
+# endregion
+
 """
 Teil 3
 """
 
-plot_exp(y, x)
-plot_log(x, y)
+
+# region Exp
+
+new_x = np.exp(x)
+
+coef = np.polyfit(new_x.flatten(), y.flatten(), 1)
+exp1 = np.poly1d(coef)
+
+plt.plot(np.log(new_x), y, 'o', np.log(new_x), exp1(new_x), '--k')
+plt.show()
+
+# endregion
+
+# region Log
+
+log: LinearRegression = LinearRegression()
+x_train_log = np.log(x_train)
+y_train_log = np.log(y_train)
+
+log.fit(y_train_log, x_train_log)
+
+plt.scatter(y_train, x_train, label="Data")
+plt.plot(y_train, np.exp(log.predict(y_train_log)), color="red", label="Linear Regression")
+plt.ylabel("uempmed")
+plt.xlabel("unemploy")
+plt.show()
+
+# endregion
 
 """
 Teil 5
