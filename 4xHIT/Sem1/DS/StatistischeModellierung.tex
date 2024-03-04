@@ -1,0 +1,675 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={StatistischeModellierung},
+  pdfauthor={Zlabinger Christof},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{StatistischeModellierung}
+\author{Zlabinger Christof}
+\date{2024-02-27}
+
+\begin{document}
+\maketitle
+
+\subsection{Aufgabe 1}\label{aufgabe-1}
+
+\subsubsection{Lade den Datensatz `state.x77' in R. Beschreibe die Daten
+anhand der internen
+Hilfe.}\label{lade-den-datensatz-state.x77-in-r.-beschreibe-die-daten-anhand-der-internen-hilfe.}
+
+\begin{verbatim}
+##    Population        Income       Illiteracy       Life Exp    
+##  Min.   :  365   Min.   :3098   Min.   :0.500   Min.   :67.96  
+##  1st Qu.: 1080   1st Qu.:3993   1st Qu.:0.625   1st Qu.:70.12  
+##  Median : 2838   Median :4519   Median :0.950   Median :70.67  
+##  Mean   : 4246   Mean   :4436   Mean   :1.170   Mean   :70.88  
+##  3rd Qu.: 4968   3rd Qu.:4814   3rd Qu.:1.575   3rd Qu.:71.89  
+##  Max.   :21198   Max.   :6315   Max.   :2.800   Max.   :73.60  
+##      Murder          HS Grad          Frost             Area       
+##  Min.   : 1.400   Min.   :37.80   Min.   :  0.00   Min.   :  1049  
+##  1st Qu.: 4.350   1st Qu.:48.05   1st Qu.: 66.25   1st Qu.: 36985  
+##  Median : 6.850   Median :53.25   Median :114.50   Median : 54277  
+##  Mean   : 7.378   Mean   :53.11   Mean   :104.46   Mean   : 70736  
+##  3rd Qu.:10.675   3rd Qu.:59.15   3rd Qu.:139.75   3rd Qu.: 81162  
+##  Max.   :15.100   Max.   :67.30   Max.   :188.00   Max.   :566432
+\end{verbatim}
+
+Es handelt sich um eine Matrix mit 50 Zeilen und 8 Reihen welche Dated
+der US Staaten beinhalten. Jede Zeile entspricht einem Staat. Diese
+Reihen beinhalten die:
+
+\begin{itemize}
+\tightlist
+\item
+  Population im Jahr 1975 in 100 Einwohnern
+\item
+  Das Einkommen pro Person in 1974
+\item
+  Die Prozent an Analphabeten in 1970
+\item
+  Die Lebenserwartung von 1969-1971
+\item
+  Die Mordrate pro 100,000 Einwohnern
+\item
+  Die Prozent der Highschool Absolventen
+\item
+  Die Mittlere Anzahl an Tagen an denen es in der Hauptstadt oder in
+  einer grossen Stadt, in den Jahren 1931-1960, es unter 0°c hatte.
+\item
+  Die Flaeche der Laender
+\end{itemize}
+
+\subsubsection{Ermittle ein lineares Regressionsmodell, dass die
+Mordrate (`Murder') durch die unabhängigen Variablen Population, Income,
+Illiteracy,und Life Exp(ectancy) erklärt. Schreibe die Modellgleichung
+an und interpretiere die Werte der Koeffizienten im
+Kontext.}\label{ermittle-ein-lineares-regressionsmodell-dass-die-mordrate-murder-durch-die-unabhuxe4ngigen-variablen-population-income-illiteracyund-life-expectancy-erkluxe4rt.-schreibe-die-modellgleichung-an-und-interpretiere-die-werte-der-koeffizienten-im-kontext.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model }\OtherTok{\textless{}{-}}  \FunctionTok{lm}\NormalTok{(state.x77[,}\StringTok{"Murder"}\NormalTok{] }\SpecialCharTok{\textasciitilde{}}\NormalTok{ state.x77[,}\StringTok{"Population"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Income"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Illiteracy"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Life Exp"}\NormalTok{])}
+
+\FunctionTok{plot}\NormalTok{(state.x77[,}\StringTok{"Murder"}\NormalTok{], }\FunctionTok{predict}\NormalTok{(model), }\AttributeTok{main =} \StringTok{"Linear Regression"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Tatsaechliche Werte"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Vorhergesehene Werte"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coef }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(model)}
+\NormalTok{model\_equation }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\StringTok{"Y="}\NormalTok{,}\FunctionTok{round}\NormalTok{(coef[}\DecValTok{1}\NormalTok{],}\DecValTok{2}\NormalTok{), }\StringTok{"+"}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{2}\NormalTok{],}\DecValTok{4}\NormalTok{),}\StringTok{"* X1 +"}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{3}\NormalTok{],}\DecValTok{4}\NormalTok{),}\StringTok{"* X2 +"}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{4}\NormalTok{],}\DecValTok{2}\NormalTok{),}\StringTok{"* X3 +"}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{5}\NormalTok{],}\DecValTok{2}\NormalTok{),}\StringTok{"* X4"}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(model\_equation)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Y= 112.84 + 2e-04 * X1 + 5e-04 * X2 + 2.27 * X3 + -1.57 * X4"
+\end{verbatim}
+
+Aus der resultierenden Regressionsformel laest sich erkennen, dass die
+Illiteracy den groessten Einfluss auf die Mordrate hat. Den kleinsten
+Einfluss hat die Population. Eine niedrige Murder rate bringt eine
+hoehere Life Exp.
+
+\subsubsection{Führe alle fünf für dieses Regressionsmodell geltenden
+Modellvoraussetzungen an und überprüfe diese Voraussetzungen
+nachweislich anhand der Zusammenfassung (summary), Quality Plots der
+Regression und der pairwise Scatterplot Matrix. Erkläre, ob diese Modell
+überhaupt gültig ist. Falls es gültig ist, gib die Qualität der
+Erklärung durch das Modell
+an.}\label{fuxfchre-alle-fuxfcnf-fuxfcr-dieses-regressionsmodell-geltenden-modellvoraussetzungen-an-und-uxfcberpruxfcfe-diese-voraussetzungen-nachweislich-anhand-der-zusammenfassung-summary-quality-plots-der-regression-und-der-pairwise-scatterplot-matrix.-erkluxe4re-ob-diese-modell-uxfcberhaupt-guxfcltig-ist.-falls-es-guxfcltig-ist-gib-die-qualituxe4t-der-erkluxe4rung-durch-das-modell-an.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model }\OtherTok{\textless{}{-}}  \FunctionTok{lm}\NormalTok{(state.x77[,}\StringTok{"Murder"}\NormalTok{] }\SpecialCharTok{\textasciitilde{}}\NormalTok{ state.x77[,}\StringTok{"Population"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Income"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Illiteracy"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Life Exp"}\NormalTok{])}
+\CommentTok{\# Korrelation}
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = state.x77[, "Murder"] ~ state.x77[, "Population"] + 
+##     state.x77[, "Income"] + state.x77[, "Illiteracy"] + state.x77[, 
+##     "Life Exp"])
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -3.387 -1.116  0.105  1.478  3.249 
+## 
+## Coefficients:
+##                             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                1.128e+02  1.740e+01   6.487 5.90e-08 ***
+## state.x77[, "Population"]  2.059e-04  6.131e-05   3.358 0.001606 ** 
+## state.x77[, "Income"]      4.524e-04  4.956e-04   0.913 0.366230    
+## state.x77[, "Illiteracy"]  2.265e+00  5.651e-01   4.008 0.000227 ***
+## state.x77[, "Life Exp"]   -1.566e+00  2.419e-01  -6.474 6.15e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.824 on 45 degrees of freedom
+## Multiple R-squared:  0.7758, Adjusted R-squared:  0.7558 
+## F-statistic: 38.92 on 4 and 45 DF,  p-value: 4.532e-14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Systematische Fehler}
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# homoskedastitzitaet}
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{which =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Modellfehler normalverteilt}
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{which =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-2-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# multikollinearitaet}
+\NormalTok{p }\OtherTok{\textless{}{-}}\NormalTok{ state.x77[,}\FunctionTok{c}\NormalTok{(}\StringTok{"Population"}\NormalTok{,}\StringTok{"Income"}\NormalTok{, }\StringTok{"Illiteracy"}\NormalTok{, }\StringTok{"Life Exp"}\NormalTok{, }\StringTok{"Murder"}\NormalTok{)]}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{cor}\NormalTok{(p))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Population     Income Illiteracy    Life Exp     Murder
+## Population  1.00000000  0.2082276  0.1076224 -0.06805195  0.3436428
+## Income      0.20822756  1.0000000 -0.4370752  0.34025534 -0.2300776
+## Illiteracy  0.10762237 -0.4370752  1.0000000 -0.58847793  0.7029752
+## Life Exp   -0.06805195  0.3402553 -0.5884779  1.00000000 -0.7808458
+## Murder      0.34364275 -0.2300776  0.7029752 -0.78084575  1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{panel.hist }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, ...) \{}
+\NormalTok{    usr }\OtherTok{\textless{}{-}} \FunctionTok{par}\NormalTok{(}\StringTok{"usr"}\NormalTok{); }\FunctionTok{on.exit}\NormalTok{(}\FunctionTok{par}\NormalTok{(usr))}
+    \FunctionTok{par}\NormalTok{(}\AttributeTok{usr =} \FunctionTok{c}\NormalTok{(usr[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{], }\DecValTok{0}\NormalTok{, }\FloatTok{1.5}\NormalTok{))}
+\NormalTok{    h }\OtherTok{\textless{}{-}} \FunctionTok{hist}\NormalTok{(x, }\AttributeTok{plot =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{    breaks }\OtherTok{\textless{}{-}}\NormalTok{ h}\SpecialCharTok{$}\NormalTok{breaks; nB }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(breaks)}
+\NormalTok{    y }\OtherTok{\textless{}{-}}\NormalTok{ h}\SpecialCharTok{$}\NormalTok{counts; y }\OtherTok{\textless{}{-}}\NormalTok{ y}\SpecialCharTok{/}\FunctionTok{max}\NormalTok{(y)}
+    \FunctionTok{rect}\NormalTok{(breaks[}\SpecialCharTok{{-}}\NormalTok{nB], }\DecValTok{0}\NormalTok{, breaks[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], y, }\AttributeTok{col =} \StringTok{"cyan"}\NormalTok{, ...)}
+\NormalTok{\}}
+
+\NormalTok{panel.cor }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, y, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{, }\AttributeTok{prefix =} \StringTok{""}\NormalTok{, cex.cor, ...) \{}
+\NormalTok{    usr }\OtherTok{\textless{}{-}} \FunctionTok{par}\NormalTok{(}\StringTok{"usr"}\NormalTok{); }\FunctionTok{on.exit}\NormalTok{(}\FunctionTok{par}\NormalTok{(usr))}
+    \FunctionTok{par}\NormalTok{(}\AttributeTok{usr =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{    r }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(}\FunctionTok{cor}\NormalTok{(x, y))}
+\NormalTok{    txt }\OtherTok{\textless{}{-}} \FunctionTok{format}\NormalTok{(}\FunctionTok{c}\NormalTok{(r, }\FloatTok{0.123456789}\NormalTok{), }\AttributeTok{digits =}\NormalTok{ digits)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    txt }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(prefix, txt)}
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{missing}\NormalTok{(cex.cor)) cex.cor }\OtherTok{\textless{}{-}} \FloatTok{0.8}\SpecialCharTok{/}\FunctionTok{strwidth}\NormalTok{(txt)}
+    \FunctionTok{text}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, txt, }\AttributeTok{cex =}\NormalTok{ cex.cor }\SpecialCharTok{*}\NormalTok{ r)}
+\NormalTok{\}}
+
+\CommentTok{\# Create a matrix of scatterplots}
+\FunctionTok{pairs}\NormalTok{(state.x77[, }\FunctionTok{c}\NormalTok{(}\StringTok{"Life Exp"}\NormalTok{ , }\StringTok{"Population"}\NormalTok{ , }\StringTok{"Illiteracy"}\NormalTok{, }\StringTok{"Income"}\NormalTok{, }\StringTok{"Murder"}\NormalTok{)], }
+      \AttributeTok{lower.panel =}\NormalTok{ panel.smooth, }
+      \AttributeTok{upper.panel =}\NormalTok{ panel.cor, }
+      \AttributeTok{diag.panel =}\NormalTok{ panel.hist, }
+      \AttributeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+\end{verbatim}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-2-4.pdf}
+
+Es liegen keine systematischen Fehler vor da die Fehlervarianz konstant
+ist, es eine kollinearitaet zwischen der Illiteracy und der Life Exp,
+Murder rate, Income, alle Werte im QQ-Pot liegen nahe an der Geraden
+somit sind die Modellfehler Nomalverteilt. -\textgreater{} Modell
+sinvoll
+
+\subsubsection{Führe eine Modellselektion der relevanten erklärenden
+Variablen
+durch.}\label{fuxfchre-eine-modellselektion-der-relevanten-erkluxe4renden-variablen-durch.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model }\OtherTok{\textless{}{-}}  \FunctionTok{lm}\NormalTok{(state.x77[,}\StringTok{"Murder"}\NormalTok{] }\SpecialCharTok{\textasciitilde{}}\NormalTok{ state.x77[,}\StringTok{"Population"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Income"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Illiteracy"}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ state.x77[,}\StringTok{"Life Exp"}\NormalTok{])}
+\CommentTok{\# Korrelation}
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = state.x77[, "Murder"] ~ state.x77[, "Population"] + 
+##     state.x77[, "Income"] + state.x77[, "Illiteracy"] + state.x77[, 
+##     "Life Exp"])
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -3.387 -1.116  0.105  1.478  3.249 
+## 
+## Coefficients:
+##                             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                1.128e+02  1.740e+01   6.487 5.90e-08 ***
+## state.x77[, "Population"]  2.059e-04  6.131e-05   3.358 0.001606 ** 
+## state.x77[, "Income"]      4.524e-04  4.956e-04   0.913 0.366230    
+## state.x77[, "Illiteracy"]  2.265e+00  5.651e-01   4.008 0.000227 ***
+## state.x77[, "Life Exp"]   -1.566e+00  2.419e-01  -6.474 6.15e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.824 on 45 degrees of freedom
+## Multiple R-squared:  0.7758, Adjusted R-squared:  0.7558 
+## F-statistic: 38.92 on 4 and 45 DF,  p-value: 4.532e-14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Systematische Fehler}
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{which =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# homoskedastitzitaet}
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{which =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-3-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Modellfehler normalverteilt}
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{which =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-3-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# multikollinearitaet}
+\NormalTok{p }\OtherTok{\textless{}{-}}\NormalTok{ state.x77[,}\FunctionTok{c}\NormalTok{(}\StringTok{"Population"}\NormalTok{, }\StringTok{"Illiteracy"}\NormalTok{)]}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{cor}\NormalTok{(p))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Population Illiteracy
+## Population  1.0000000  0.1076224
+## Illiteracy  0.1076224  1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{panel.hist }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, ...) \{}
+\NormalTok{    usr }\OtherTok{\textless{}{-}} \FunctionTok{par}\NormalTok{(}\StringTok{"usr"}\NormalTok{); }\FunctionTok{on.exit}\NormalTok{(}\FunctionTok{par}\NormalTok{(usr))}
+    \FunctionTok{par}\NormalTok{(}\AttributeTok{usr =} \FunctionTok{c}\NormalTok{(usr[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{], }\DecValTok{0}\NormalTok{, }\FloatTok{1.5}\NormalTok{))}
+\NormalTok{    h }\OtherTok{\textless{}{-}} \FunctionTok{hist}\NormalTok{(x, }\AttributeTok{plot =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{    breaks }\OtherTok{\textless{}{-}}\NormalTok{ h}\SpecialCharTok{$}\NormalTok{breaks; nB }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(breaks)}
+\NormalTok{    y }\OtherTok{\textless{}{-}}\NormalTok{ h}\SpecialCharTok{$}\NormalTok{counts; y }\OtherTok{\textless{}{-}}\NormalTok{ y}\SpecialCharTok{/}\FunctionTok{max}\NormalTok{(y)}
+    \FunctionTok{rect}\NormalTok{(breaks[}\SpecialCharTok{{-}}\NormalTok{nB], }\DecValTok{0}\NormalTok{, breaks[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], y, }\AttributeTok{col =} \StringTok{"cyan"}\NormalTok{, ...)}
+\NormalTok{\}}
+
+\NormalTok{panel.cor }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x, y, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{, }\AttributeTok{prefix =} \StringTok{""}\NormalTok{, cex.cor, ...) \{}
+\NormalTok{    usr }\OtherTok{\textless{}{-}} \FunctionTok{par}\NormalTok{(}\StringTok{"usr"}\NormalTok{); }\FunctionTok{on.exit}\NormalTok{(}\FunctionTok{par}\NormalTok{(usr))}
+    \FunctionTok{par}\NormalTok{(}\AttributeTok{usr =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\NormalTok{    r }\OtherTok{\textless{}{-}} \FunctionTok{abs}\NormalTok{(}\FunctionTok{cor}\NormalTok{(x, y))}
+\NormalTok{    txt }\OtherTok{\textless{}{-}} \FunctionTok{format}\NormalTok{(}\FunctionTok{c}\NormalTok{(r, }\FloatTok{0.123456789}\NormalTok{), }\AttributeTok{digits =}\NormalTok{ digits)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    txt }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(prefix, txt)}
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{missing}\NormalTok{(cex.cor)) cex.cor }\OtherTok{\textless{}{-}} \FloatTok{0.8}\SpecialCharTok{/}\FunctionTok{strwidth}\NormalTok{(txt)}
+    \FunctionTok{text}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.5}\NormalTok{, txt, }\AttributeTok{cex =}\NormalTok{ cex.cor }\SpecialCharTok{*}\NormalTok{ r)}
+\NormalTok{\}}
+
+\CommentTok{\# Create a matrix of scatterplots}
+\FunctionTok{pairs}\NormalTok{(state.x77[, }\FunctionTok{c}\NormalTok{(}\StringTok{"Population"}\NormalTok{, }\StringTok{"Illiteracy"}\NormalTok{)], }
+      \AttributeTok{lower.panel =}\NormalTok{ panel.smooth, }
+      \AttributeTok{upper.panel =}\NormalTok{ panel.cor, }
+      \AttributeTok{diag.panel =}\NormalTok{ panel.hist, }
+      \AttributeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+
+## Warning in par(usr): argument 1 does not name a graphical parameter
+\end{verbatim}
+
+\includegraphics{StatistischeModellierung_files/figure-latex/unnamed-chunk-3-4.pdf}
+
+\subsection{Aufgabe 2}\label{aufgabe-2}
+
+\subsubsection{Installiere das Package `MASS' mithilfe der Funktion
+install.packages. Lade den Datensatz `Pima.tr' in R. Beschreibe die
+Daten anhand der internen
+Hilfe.}\label{installiere-das-package-mass-mithilfe-der-funktion-install.packages.-lade-den-datensatz-pima.tr-in-r.-beschreibe-die-daten-anhand-der-internen-hilfe.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MASS)}
+\FunctionTok{data}\NormalTok{(Pima.tr)}
+\NormalTok{?Pima.tr}
+\end{Highlighting}
+\end{Shaded}
+
+Pima.tr ist ein Datensatz welcher Daten ueber Indische Frauen ueber 21
+welche in der naehe von Phoenix Arizona wohnen beinhaltet. Die
+beinhalteten Daten sind:
+
+\begin{itemize}
+\tightlist
+\item
+  npreg
+\end{itemize}
+
+\begin{verbatim}
+-    Die anzahl an Schwangerschaften
+\end{verbatim}
+
+\begin{itemize}
+\item
+  glu
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Plasma glucose konzentration
+  \end{itemize}
+\item
+  bp
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Blutdruck
+  \end{itemize}
+\item
+  skin
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Die dicke der Haut am triceps
+  \end{itemize}
+\item
+  bmi
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Body mass index
+  \end{itemize}
+\item
+  ped
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Diabetes-Stammbaumfunktion
+  \end{itemize}
+\item
+  age
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Alter
+  \end{itemize}
+\item
+  type
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Ob die Person von der WHO gesehen diabetis hat.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Ermittle ein logistisches Regressionsmodell, dass das
+Auftreten von Diabetes (`type') durch die übrigen unabhängigen Variablen
+Alter (age), Anzahl der Schwangerschaften (npreg), BMI, Glukosespiegel
+(glu), Blutdruck (bp), familiäre Häufung von Diabetesfällen (ped) und
+Hautfaltendickemessung am Oberarm (skin) erklärt. Schreibe die
+Modellgleichung an und interpretiere die Werte der Koeffizienten im
+Kontext.}\label{ermittle-ein-logistisches-regressionsmodell-dass-das-auftreten-von-diabetes-type-durch-die-uxfcbrigen-unabhuxe4ngigen-variablen-alter-age-anzahl-der-schwangerschaften-npreg-bmi-glukosespiegel-glu-blutdruck-bp-familiuxe4re-huxe4ufung-von-diabetesfuxe4llen-ped-und-hautfaltendickemessung-am-oberarm-skin-erkluxe4rt.-schreibe-die-modellgleichung-an-und-interpretiere-die-werte-der-koeffizienten-im-kontext.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MASS)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{data}\NormalTok{(Pima.tr)}
+
+\NormalTok{model }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(Pima.tr}\SpecialCharTok{$}\NormalTok{type }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Pima.tr}\SpecialCharTok{$}\NormalTok{npreg }\SpecialCharTok{+}\NormalTok{ Pima.tr}\SpecialCharTok{$}\NormalTok{glu }\SpecialCharTok{+}\NormalTok{ Pima.tr}\SpecialCharTok{$}\NormalTok{bp }\SpecialCharTok{+}\NormalTok{ Pima.tr}\SpecialCharTok{$}\NormalTok{skin }\SpecialCharTok{+}\NormalTok{ Pima.tr}\SpecialCharTok{$}\NormalTok{bmi }\SpecialCharTok{+}\NormalTok{ Pima.tr}\SpecialCharTok{$}\NormalTok{ped }\SpecialCharTok{+}\NormalTok{ Pima.tr}\SpecialCharTok{$}\NormalTok{age, }\AttributeTok{data =}\NormalTok{ Pima.tr, }\AttributeTok{family =}\NormalTok{ binomial)}
+
+\NormalTok{coef }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(model)}
+\NormalTok{model\_equation }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\StringTok{"Y = "}\NormalTok{,}\FunctionTok{round}\NormalTok{(coef[}\DecValTok{1}\NormalTok{],}\DecValTok{2}\NormalTok{), }\StringTok{" + "}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{3}\NormalTok{],}\DecValTok{2}\NormalTok{),}\StringTok{" * glu + "}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{4}\NormalTok{],}\DecValTok{2}\NormalTok{),}\StringTok{" * bmi + "}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{5}\NormalTok{],}\DecValTok{2}\NormalTok{),}\StringTok{" * ped + "}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{6}\NormalTok{],}\DecValTok{4}\NormalTok{),}\StringTok{" * bp + "}\NormalTok{,}
+                            \FunctionTok{round}\NormalTok{(coef[}\DecValTok{7}\NormalTok{],}\DecValTok{2}\NormalTok{),}\StringTok{" * age"}\NormalTok{)}
+
+\FunctionTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = Pima.tr$type ~ Pima.tr$npreg + Pima.tr$glu + Pima.tr$bp + 
+##     Pima.tr$skin + Pima.tr$bmi + Pima.tr$ped + Pima.tr$age, family = binomial, 
+##     data = Pima.tr)
+## 
+## Coefficients:
+##                Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)   -9.773062   1.770386  -5.520 3.38e-08 ***
+## Pima.tr$npreg  0.103183   0.064694   1.595  0.11073    
+## Pima.tr$glu    0.032117   0.006787   4.732 2.22e-06 ***
+## Pima.tr$bp    -0.004768   0.018541  -0.257  0.79707    
+## Pima.tr$skin  -0.001917   0.022500  -0.085  0.93211    
+## Pima.tr$bmi    0.083624   0.042827   1.953  0.05087 .  
+## Pima.tr$ped    1.820410   0.665514   2.735  0.00623 ** 
+## Pima.tr$age    0.041184   0.022091   1.864  0.06228 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 256.41  on 199  degrees of freedom
+## Residual deviance: 178.39  on 192  degrees of freedom
+## AIC: 194.39
+## 
+## Number of Fisher Scoring iterations: 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(model\_equation)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Y =  -9.77  +  0.03  * glu +  0  * bmi +  0  * ped +  0.0836  * bp +  1.82  * age"
+\end{verbatim}
+
+\subsubsection{Begriffe}\label{begriffe}
+
+\begin{itemize}
+\tightlist
+\item
+  Scatterplot Matrix
+\item
+  Zeigt mehrere Streudiagramme. Bei mehreren variabeln kann die
+  korrelation darstellen.
+\item
+  lineare Regression
+\item
+  Stellt eine Gleichung auf welche moeglichst genau durch alle
+  Datenpunkte geht.
+\item
+  Quality Plots
+\item
+  Hilft die Qualitaet eines Modells zu ueberpruefen.
+\item
+  Residuen
+\item
+  Die Differenz zwischen vorhergesagten Werten und tatsaechlichen
+  Werten.
+\item
+  Regressionskoeffizienten
+\item
+  Parameter einer Regressionsgleichung
+\item
+  Regressionsmodell
+\item
+  Zusammenhand zwischen anhaengiger und unabhaengigen variabeln.
+\item
+  Modellgleichung
+\item
+  Gleich wie Regressionsmodell
+\item
+  logistische Regression
+\item
+  Modell fuer binaere abhaengige variabeln.
+\end{itemize}
+
+\end{document}
