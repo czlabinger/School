@@ -1,7 +1,7 @@
 .vscode/
-*/target/
-*/venv/*
-*/env/*
-*/.env/*
-*/.venv/*
-*/.idea/*
+target/
+venv/*
+env/*
+.env/*
+.venv/*
+.idea/*
