@@ -1,6 +1,7 @@
 #define CUSTOM
 #include "stuppnig_gmbh.h"
 #include "EasyCAT.h"
+#include "Schieber.h"
 EasyCAT easycat;
 
 const int lever_pin = 4;
@@ -24,17 +25,13 @@ float cm_is_to_drive = 42;
 
 // HIGH = calibrating
 
+Schieber schieber(lever_pin, motor_direction_pin, motor_enabled_pin, motor_pulse_pin, cm_is_to_drive);
 
 void setup() {
   easycat.Init();
 
-  pinMode(lever_pin, INPUT_PULLUP);
-  pinMode(motor_direction_pin, OUTPUT);
-  pinMode(motor_pulse_pin, OUTPUT);
-  pinMode(motor_enabled_pin, OUTPUT);
   Serial.begin(9600);
-  digitalWrite(motor_enabled_pin, LOW);
-  calibrate();
+  schieber.calibrate();
 }
 
 void loop() {
@@ -44,14 +41,7 @@ void loop() {
   if (easycat.BufferOut.Cust.lieferPlatine == 1) {
     Serial.println("Moving");
     // forward
-    digitalWrite(motor_direction_pin, LOW);
-    for (int j = 0; j < 1600 / 19.5 * cm_is_to_drive; j++) {
-      // These four lines result in 1 step:LOW
-      digitalWrite(motor_pulse_pin, HIGH);
-      delay(2);
-      digitalWrite(motor_pulse_pin, LOW);
-      delay(2);
-    }
+    schieber.move_cm(cm_is_to_drive);
     // When done
     Serial.println("Ready");
     easycat.BufferIn.Cust.platineDa = 1;
@@ -64,12 +54,8 @@ void loop() {
     Serial.println("Moving back");
     easycat.BufferIn.Cust.platineDa = 0;
 
-    calibrate();
+    schieber.calibrate();
   }
 
   easycat.MainTask();
-}
-
-void calibrate() {
-
 }
