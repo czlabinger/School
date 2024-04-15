@@ -1,8 +1,4 @@
-#define CUSTOM
-#include "stuppnig_gmbh.h"
-#include "EasyCAT.h"
 #include "Schieber.h"
-EasyCAT easycat;
 
 const int lever_pin = 4;
 // white
@@ -25,37 +21,28 @@ float cm_is_to_drive = 42;
 
 // HIGH = calibrating
 
-Schieber schieber(lever_pin, motor_direction_pin, motor_enabled_pin, motor_pulse_pin, cm_is_to_drive);
+Schieber schieber(lever_pin, motor_direction_pin, motor_enabled_pin, motor_pulse_pin, 420, 0);
 
 void setup() {
-  easycat.Init();
 
   Serial.begin(9600);
+  schieber.begin();
   schieber.calibrate();
 }
 
 void loop() {
 
-  Serial.println(easycat.BufferOut.Cust.lieferPlatine);
+    //schieber.move_to_mm(10);
+    schieber.move_forwards(10);
+    delay(2000);
+    schieber.move_forwards(20);
+    delay(2000);
+    schieber.move_forwards(30);
+    delay(2000);
+    schieber.move_backwards(70);
+    delay(2000);
+    schieber.move_forwards(1000);
+    delay(2000);
+    
 
-  if (easycat.BufferOut.Cust.lieferPlatine == 1) {
-    Serial.println("Moving");
-    // forward
-    schieber.move_cm(cm_is_to_drive);
-    // When done
-    Serial.println("Ready");
-    easycat.BufferIn.Cust.platineDa = 1;
-
-    while (easycat.BufferOut.Cust.lieferPlatine != 0) {
-      Serial.println("Waiting for roboter");
-      easycat.MainTask();
-    }
-
-    Serial.println("Moving back");
-    easycat.BufferIn.Cust.platineDa = 0;
-
-    schieber.calibrate();
-  }
-
-  easycat.MainTask();
 }

@@ -29,12 +29,12 @@ public class Server {
 
     /**
      * Connect to the database
-     * @throws IOException
      */
     Connection setupDB()  {
+        String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         Properties dbProps = new Properties();
         try {
-            dbProps.load(new FileInputStream("/home/stoffi05/Documents/School/4xHIT/INSY/Trigger/src/main/resources/application.properties"));
+            dbProps.load(new FileInputStream(rootPath + "db.properties"));
             return DriverManager.getConnection(dbProps.getProperty("url"), dbProps);
         } catch (Exception throwables) {
             throwables.printStackTrace();
@@ -64,6 +64,10 @@ public class Server {
         server.start();
     }
 
+    public int getPort() {
+        return this.port;
+    }
+
     /**
      * Handler for listing all articles
      */
@@ -76,8 +80,7 @@ public class Server {
             try {
                 Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery("SELECT id, description, price, amount FROM articles");
-                while (rs.next())
-                {
+                while (rs.next()) {
                     JSONObject art = new JSONObject();
                     art.put("id", rs.getInt(1));
                     art.put("description", rs.getString(2));
@@ -173,7 +176,7 @@ public class Server {
     class OrderHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange t) throws IOException {
-            Map <String,String> params  = queryToMap(t.getRequestURI().getQuery());
+            Map<String,String> params  = queryToMap(t.getRequestURI().getQuery());
             Connection conn = setupDB();
             String response = "";
 
@@ -244,6 +247,9 @@ public class Server {
             String response = "";
             int order_id = 1;
             try {
+                conn.setAutoCommit(false);
+                conn.createStatement().execute("LOCK TABLE orders IN EXCLUSIVE MODE");
+
                 Statement st1 = conn.createStatement();
 
                 // Get the next free order id
@@ -295,8 +301,14 @@ public class Server {
                 }
 
                 response = String.format("{\"order_id\": %d}", order_id);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                conn.commit();
+            } catch (SQLException e) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                e.printStackTrace();
             } catch (IllegalArgumentException iae) {
                 response = String.format("{\"error\":\"%s\"}", iae.getMessage());
             }
