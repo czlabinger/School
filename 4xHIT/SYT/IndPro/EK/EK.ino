@@ -1,3 +1,7 @@
+#define CUSTOM
+#include "stuppnig_gmbh.h"
+#include "EasyCAT.h"
+EasyCAT easycat;
 #include "Schieber.h"
 
 const int lever_pin = 4;
@@ -24,7 +28,6 @@ float cm_is_to_drive = 42;
 Schieber schieber(lever_pin, motor_direction_pin, motor_enabled_pin, motor_pulse_pin, 420, 0);
 
 void setup() {
-
   Serial.begin(9600);
   schieber.begin();
   schieber.calibrate();
@@ -32,17 +35,26 @@ void setup() {
 
 void loop() {
 
-    //schieber.move_to_mm(10);
-    schieber.move_forwards(10);
-    delay(2000);
-    schieber.move_forwards(20);
-    delay(2000);
-    schieber.move_forwards(30);
-    delay(2000);
-    schieber.move_backwards(70);
-    delay(2000);
-    schieber.move_forwards(1000);
-    delay(2000);
-    
+  Serial.println(easycat.BufferOut.Cust.lieferPlatine);
 
+  if (easycat.BufferOut.Cust.lieferPlatine == 1) {
+    Serial.println("Moving");
+    schieber.move_to_mm(450);
+    
+    // When done
+    Serial.println("Ready");
+    easycat.BufferIn.Cust.platineDa = 1;
+
+    while (easycat.BufferOut.Cust.lieferPlatine != 0) {
+      Serial.println("Waiting for roboter");
+      easycat.MainTask();
+    }
+
+    Serial.println("Moving back");
+    easycat.BufferIn.Cust.platineDa = 0;
+
+    schieber.calibrate();
+  }
+
+  easycat.MainTask();
 }

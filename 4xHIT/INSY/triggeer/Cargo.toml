@@ -1,0 +1,10 @@
+[package]
+name = "triggeer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+postgres = { version = "0.19.7", features = ["with-chrono-0_4"] }
+tabled = "0.15.0"
+chrono = "0.4.38"
+rust_decimal = { version = "1.35.0", features = ["db-postgres"] }

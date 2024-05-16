@@ -8,7 +8,10 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import median_absolute_error
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
 import math
+
+
 
 """
 Aufgabe 1
@@ -30,6 +33,9 @@ model2.fit(uempmed_train, unemploy_train)
 
 print(f"unemploy/uempmed: {model1.score(unemploy_test, uempmed_test)}")
 print(f"uempmed/unemploy: {model2.score(uempmed_test, unemploy_test)}")
+
+# Mit steigender Anzahl der Arbeitslosigkeit seitgt auch die durchschnittliche Zeit der Arbeitslosigkeit (uempmed duch enemply)
+# Mit steigender Dauer der Arbeitslosigkeit steigt nicht die Anzahl der Arbeitslosigkeit (uemply durch uempmed)
 
 """
 Aufgabe 1
@@ -69,11 +75,16 @@ Teil 3
 """
 
 uempmed_log = np.log(uempmed)
-unemploy_exp = np.exp(unemploy)
+
+# TODO: stuff
+#unemploy_exp = np.exp(unemploy)
 
 ######################## Log ##############################
 
-plt.scatter(unemploy, uempmed_log, color='blue', label='Originaldaten')
+plt.scatter(unemploy, uempmed_log, color='blue', label='Log angewendet')
+plt.xlabel('unemploy')
+plt.ylabel('log(uempmed)')
+plt.legend()
 plt.show()
 
 log = LinearRegression()
@@ -90,7 +101,9 @@ Aufgabe 1
 Teil 4
 """
 
-########################### Exp ############################
+########################### Log ############################
+
+plt.title('Auf log exp anwenden')
 
 plt.scatter(unemploy, uempmed, color='blue', label='Originaldaten')
 plt.plot(unemploy, np.exp(log_pred), color='red', label='Vorhersage des Modells')
@@ -102,7 +115,7 @@ plt.legend()
 plt.show()
 
 
-########################### Log ############################
+########################### Exp ############################
 
 # TODO: Plot
 
@@ -120,6 +133,8 @@ poly_reg_model = LinearRegression()
 poly_reg_model.fit(poly_features, uempmed)
 
 poly_pred = poly_reg_model.predict(poly_features)
+
+plt.title('Ploy')
 
 plt.scatter(unemploy, uempmed, color='blue', label='Originaldaten')
 plt.plot(unemploy, poly_pred, color='red', label='Vorhersage des Modells')
@@ -162,23 +177,31 @@ print(f'Linear: MSE: {mse}, RMSE: {rmse}, MAD: {mad}')
 Aufgabe 2
 Teil 1
 """
-train_data = pd.read_csv('Pima.tr.csv')
-test_data = pd.read_csv('Pima.te.csv')
 
-X_train = train_data.drop('type', axis=1)
-y_train = train_data['type']
-X_test = test_data.drop('type', axis=1)
-y_test = test_data['type']
+df = pd.read_csv('Pima.tr.csv')
 
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
+le = LabelEncoder()
+df['type'] = le.fit_transform(df['type'])
+
+x = df.drop('type', axis=1)
+y = df['type']
+
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
 model = LogisticRegression(max_iter=1000)
-model.fit(X_train_scaled, y_train)
+
+model.fit(X_train, y_train)
 
 logistic_pred = model.predict(X_test)
 
-plt.scatter(X_train_scaled, y_train, color='blue', label='Originaldaten')
-plt.plot(X_train_scaled, logistic_pred, color='red', label='Vorhersage des Modells')
+plt.title('Logistic Regression')
+
+plt.scatter(X_test[X_test.columns[2]].to_string(index=False), y_test.to_string(index=False), color='blue', label='Originaldaten')
+plt.plot(X_test, logistic_pred, color='red', label='Vorhersage des Modells')
+
+plt.xlabel('Daten ausser type')
+plt.ylabel('Type')
+plt.legend()
 
 plt.show()
+

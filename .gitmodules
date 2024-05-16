@@ -19,3 +19,6 @@
 [submodule "4xHIT/SEW/exercise-server"]
 	path = 4xHIT/SEW/exercise-server
 	url = git@github.com:TGM-HIT/sew8-2324-exercise-server-czlabinger.git
+[submodule "4xHIT/SYT/DZS/ORM"]
+	path = 4xHIT/SYT/DZS/ORM
+	url = git@github.com:czlabinger/WAREHOUSE_ORM.git
