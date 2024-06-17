@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* Light gray background */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff; /* White container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
+        }
+
+        h2 {
+            color: #3498db; /* Blue heading color */
+        }
+
+        p {
+            color: #333; /* Dark text color */
+        }
+
+        a {
+            color: #3498db; /* Blue link color */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db; /* Blue button color */
+            color: #ffffff; /* White button text color */
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>New invoice</h2>
+    <p>Hello <span th:text="${username}"></span>,</p>
+    <p>
+        Your newest invoice can be found under <br> <a style="margin-top: 0.5rem" th:href="${invoiceLink}" target="_blank" class="button">View invoice</a>
+    </p>
+
+    <p>
+        Feel free to reach out if you have any questions.
+    </p>
+</div>
+
+</body>
+
+</html>

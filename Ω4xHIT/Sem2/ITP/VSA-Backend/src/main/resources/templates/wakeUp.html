@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wake Up Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* Light gray background */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff; /* White container background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
+        }
+
+        h2 {
+            color: #3498db; /* Blue heading color */
+        }
+
+        p {
+            color: #333; /* Dark text color */
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db; /* Blue button color */
+            color: #ffffff; /* White button text color */
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Wake Up Verification</h2>
+    <p>Dear <span th:text="${username}"></span>,</p>
+    <p>
+        To confirm that you are still alive, please click the button below:
+    </p>
+    <p>
+        <a th:href="${verificationLink}" target="_blank" class="button">Verify Now</a>
+    </p>
+</div>
+
+</body>
+
+</html>
