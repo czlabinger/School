@@ -1,0 +1,29 @@
+syntax = "proto3";
+option java_package = "warehouseProto";
+
+service Warehouse {
+  rpc getData (WarehouseRequest) returns (WarehouseData) {}
+}
+
+message WarehouseRequest {
+  string id = 1;
+}
+
+message Product {
+  string id =  1;
+  string name =  2;
+  string category = 3;
+  string amount = 4;
+  string unit = 5;
+}
+
+message WarehouseData {
+  string id =  1;
+  string name =  2;
+  string timestamp =  3;
+  string street =  4;
+  string city =  5;
+  string country =  6;
+  string plz =  7;
+  repeated Product product_data =  8;
+}

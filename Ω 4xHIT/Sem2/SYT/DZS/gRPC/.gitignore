@@ -1,0 +1,5 @@
+*/venv/*
+server/.idea/*
+server/.settings/*
+*/target/*
+*/__pycache__/*
