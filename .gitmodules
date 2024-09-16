@@ -1,1 +1,4 @@
 
+[submodule "5xHIT/SEW/worttrainer"]
+	path = 5xHIT/SEW/worttrainer
+	url = git@github.com:TGM-HIT/sew9-2425-worttrainer-czlabinger.git
