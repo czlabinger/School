@@ -1,5 +1,3 @@
-%!TEX root=../protocol.tex	% Optional
-
 \section{Verschluesselung}
 
 Symetrisch mittels einem Key
@@ -22,3 +20,105 @@ BUS controller um collisions zu vermeiden
 
 Wenn collisions -> Beide teilnehmer warten eine zufaellige Zeit
 
+\section{Konsistenz in Datenbanken}
+\subsection{Konsistenz}
+\subsubsection{Einheitlich}
+\paragraph{Datentyp}
+Der Datentyp gibt an wie die Daten zu interpretieren sind und wie gross dieser ist.
+Fuer Konsistenz ist es wichtig dass die Interpretation gleich oder mapbar ist.
+
+\subparagraph{SQL subsprachen}
+Data Definition Language
+Data Manipulation Language
+Data Query Language
+
+\subsubsection{Regeln (Constraints)}
+z.B: NotNull, Unique
+Helfen bei Konsistenz koesten aber Zeit (Alles ueber 0.5s lade Zeit ist lange)
+
+CRUD = Create Read Update Delete
+
+\subsubsection{Deterministisch}
+Computer sind deterministisch gebaut/programmiert wesshalb es eigendlich nicht moeglich ist zufaellige Zahlen zu generieren.
+Desshalb wird PRNG (Pseudo Randon Number Generator) genutzt.
+Dieser verwendet Sensoren, deren Stand nicht vorhergesehen werden kann, wie z.B.: CPU temperatur, Fan speed, ...
+
+\section{Transaktionskonzepte}
+ACID = Atomacity Consistency Isolation Durability
+
+\paragraph{Atomar}
+Atomar bedeutet, dass eine Transaktion entweder ganz durchgefuehrt wird oder garnicht.
+
+\paragraph{CAP}
+CAP = Consistency Availability Partitiontolerant
+Es koennen hoechstens zwei dieser Ziele gleichzeitig erfuellt sein. Bei ACID muessen alle fier Ziele erfuellt sein.
+
+Damit Daten konsitent sind muessen sie am Anfang und am Ende konsitent sein aber mussen bzw. koennen in der Mitte nicht konsitent sein.
+
+\subsection{Isolation Levels (psql)}
+
+\begin{tabular}{||c c c c||} 
+    \hline
+    Isolation Level & Diry Read & Nonrepeatable Read & Phantom Read & Serialization Anomaly \\ [0.5ex] 
+    \hline
+    
+    \hline
+    Read uncommited (Deadlocks moeglich) & Allowed, but not in PG & Possible & Possible & Possible \\ 
+    \hline
+    Read commited & Not possible & Possible & Possible & Possible \\
+    \hline
+    Repeatable read & Not possible & Not possible & Allowed, but not in PG & Possible \\
+    \hline
+    Serializable & Not possible & Not possible & Not possible & Not Possible \\
+    \hline
+\end{tabular}
+
+Es gibt einen Unterschied zwischen Lesen zum anzeigen und Lesen zum schreiben. Beim Lesen zum schreiben muessen die gelesenen Daten gesperrt werden.
+
+\subsection{Durability}
+Dauerhaftes Spechern der Daten.
+Wird sichergestellt dadurch dass die veraenderten Daten welche im RAM sind gespechert werden, dann auf die DB uebernommen werden und dann ueberprueft wird ob diese korrekt gespeichert werden koennen.
+Falls dies nicht der fall ist wird ein rollback durchgefuehrt.
+
+\subsection{Geschwindigkeit}
+ACID ist am sichersten aber ist auch am langsamsten.
+BASE = Basically Available Soft-state Eventually consistant
+
+BA: Atomates speichern der Anfang in einer Queue und deren sequenzielle ausfuehrung.
+S: Nach einer gewissen Zeit in der queue werden die Anfragen getimeouted.
+E: Wenn alle Anfragen bearbeitet wurden ist die Datenbank konsitent.
+
+Jede Anfrage kann von BASE mit der Hilfe von ACID bearbeitet werden.
+
+\section{Build prozess}
+
+.h/.hpp files (Header files) beinhalten die Struktur des dazugehoerigen .c/.cpp files.
+Der inhalt der header files wird vom pre processor in das C/C++ file kopiert.
+Da C nicht objekt orientiert ist gibt es kein method overloading.
+
+\subsection{Prozess}
+Das .h/.hpp file wird vom pre processor in das .c/.cpp file kopiert. Der compiler verwandelt dieses dann in .o/.obj files.
+Der Assembler verwaltet das startup.a/.s file woraus der Linker dann ausfuehrbaren code macht welche mittels des Flash tools geflashed werden.
+
+\section{CAP-Theorie}
+Server = Diener
+
+RPC, RMI, gRPC sind remote prozedure call implementationen welche fuer mittelware verwendet werden koennen.
+MVC = Model View Controller
+MVVM wird fuer web based implementations verwendet. 
+DAO = Data Acess Object welches ueberprueft ob bestimmte Daten korrekt sind.
+
+\subsection{CAP}
+Consistency, Availability wurden bereits gemacht
+Partition tolerance bedeutet das sub-systeme eigenstaendig funktionieren und die Daten nach einem Ausfall wieder miteinander syncen.
+Es sind immer nur 2 der 3 CAP Ziele gleichzeitig moeglich.
+
+\section{Timer, Delay, FPU}
+\subsection{Cpu Cycles}
+Ein delay kann mittels zaehlen von CPU Cycles hergestellt werden.
+CPU clock speed / f/2
+\subsection{Timer}
+Timers haben ein Limit wie klein der delay sein kann wodurch ein offset entstehen kann der dann haendisch ausgebessert werden muss.
+\section{MCP2515}
+CAN Controller
+CAN = Controler Area Network

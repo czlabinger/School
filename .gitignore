@@ -1,4 +1,6 @@
 .vscode/
 target/
-4xHIT/DS/grundlagenDesMaschinellenLernens/.venv/*
-4xHIT/DS/grundlagenDesMaschinellenLernens/.idea/*
+4xHIT/DS/grundlagenDesMaschinellenLernens/.idea/
+5xHIT/DS/Bildklassifikation/archive/
+5xHIT/DS/Bildklassifikation/archive.tar.gz
+.venv/

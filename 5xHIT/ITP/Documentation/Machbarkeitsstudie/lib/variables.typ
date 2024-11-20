@@ -1,0 +1,1 @@
+#let projectname = "Digital Stroke Doctor"

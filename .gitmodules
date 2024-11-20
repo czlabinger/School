@@ -1,4 +1,12 @@
-
 [submodule "5xHIT/SEW/worttrainer"]
 	path = 5xHIT/SEW/worttrainer
 	url = git@github.com:TGM-HIT/sew9-2425-worttrainer-czlabinger.git
+[submodule "5xHIT/SYT/diff-sync-czlabinger"]
+	path = 5xHIT/SYT/diff-sync-czlabinger
+	url = git@github.com:czlabinger/diff-sync-js.git
+[submodule "5xHIT/SEW/currency-converter"]
+	path = 5xHIT/SEW/currency-converter
+	url = git@github.com:TGM-HIT/currency-converter-czlabinger.git
+[submodule "5xHIT/SEW/schere-stein-papier"]
+	path = 5xHIT/SEW/schere-stein-papier
+	url = git@github.com:TGM-HIT/schere-stein-papier-czlabinger.git

@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: datenmanagement
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - spring
+
+  datenmanagement:
+      image: jelastic/maven:3.9.9-temurinjdk-21.0.2-almalinux-9
+      container_name: datenmanagement
+      command: >
+        sh -c "git clone https://github.com/TGM-HIT/syt5-gek961-cloud-datenmanagement-kurz_zlabinger.git && cd syt5-gek961-cloud-datenmanagement-kurz_zlabinger && mvn clean package && mv default_users.json target/default_users.json && cd target && java -jar Datenmanagement-1.0-SNAPSHOT.jar"
+      depends_on:
+        - postgres
+      ports:
+        - "8080:8080"
+      networks:
+        - spring
+
+networks:
+    spring:
+      driver: bridge
