@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  webtop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webtop-xfce
+    privileged: true
+    volumes:
+      - ./user-data:/config
+      - /dev/shm:/dev/shm
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - TITLE=Webtop XFCE Desktop
+      - CUSTOM_USER=user
+      - PASSWORD=password
