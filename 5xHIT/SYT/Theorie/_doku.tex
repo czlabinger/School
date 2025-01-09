@@ -1,3 +1,4 @@
+\usepackage{lisitings}
 \section{Verschluesselung}
 
 Symetrisch mittels einem Key
@@ -119,6 +120,245 @@ Ein delay kann mittels zaehlen von CPU Cycles hergestellt werden.
 CPU clock speed / f/2
 \subsection{Timer}
 Timers haben ein Limit wie klein der delay sein kann wodurch ein offset entstehen kann der dann haendisch ausgebessert werden muss.
-\section{MCP2515}
+
+\section{DiffSync}
+
+\subsection{Introduction}
+Collaborate in real time
+Syncronization algorithm in an application is hard to change
+DS can be used in existing applications
+
+Suited for:
+\begin{itemize}
+    \item unreliable/slow networks
+    \item identical code on server/client
+    \item No history required
+    \item Scalable
+\end{itemize}
+
+Use cases:
+\begin{itemize}
+\item Pair programming on different systems
+\item Remote debugging 
+\end{itemize}
+
+No problem when collaborating with someone or yourself with autosave feature because all versions are kept in sync
+
+\subsection{Alternatives}
+
+\paragraph{Pessemistic}
+Only edit by one user at a time
+Whole file is locked for other users
+Refined version would be to only lock subsections but created problems for small files
+\begin{itemize}
+    \item Has to be supported by the application
+\end{itemize}
+Not good for unreliable networks
+
+\paragraph{Edit-Based}
+Capture *all* edits (Typing, cut, paste, formatting, ...) and mirror them across all devices
+If an edit is lost it will create a fork -> two different files
+
+\paragraph{Three way merge}
+
+Client sends changes to server -> server performs 3 way merge -> merge gets send to the clients
+If someone changes something while someone else is changing something it will result in a conflict
+Not scalable
+
+\subsection{Dual shadow method}
+
+Client text and server shadow must be identical every half syncronization or server text and client shadow
+
+Checksums after patch must be identical otherwise entire body must be sent again
+
+\subsection{Topology}
+
+Multiple clients connected to a single server.
+The number of clients can become an issue -> load balanced servers with shared DB
+Or server to server communication (two or more servers are connected with eachother). Servers can be added without a problem but can only be disconnected if no client is connected.
+Latency may become an issue -> Can lead to complicated collisions. 
+Can be reduced by avoiding long server chains and by increasing the sync time between servers
+
+\subsection{Diff/Patch}
+Diff/Patch algorithms are crucial. Efficiency improvements in these algorithms boost system performance. Can be used for plaintext and many more. Diff updates server shadows with client changes. It needs to differentiate minimal edits from semantic intent ensuring meaningful updates. Compares identical texts efficiently. Identifies shared starting/ending strings to speed up comparisons. Detects if a change is an addition or removal bypassing complex calculations.
+
+
+Patches apply accurately, even if texts aren’t exact matches, using the Bitap algorithm for efficient near-match location. Merging non-text content may use a "last user wins" approach to prevent incorrect combinations.
+Handling Collisions: Systems can address patch errors either by frequent, silent synchronization or user intervention on failed patches, balancing usability with data accuracy.
+
+\subsection{Adaptive timing}
+Client update frequency is critical for system responsiveness. Infrequent updates lead to costly operations and edit conflicts, while overly frequent updates strain the network. The Guaranteed Delivery Method reduces resource use by batching diffs for transmission. An adaptive system adjusts update frequency based on user activity, keeping updates efficient and responsive by shortening intervals during high activity and lengthening them when activity is low.
+
+\subsection{Future work}
+The fuzzy patch operation uses a three-way merge comparing Server Text and two versions of the Server Shadow. It only supports single synchronization packets limiting performance in high-latency connections. Additionally edits from all users are blended making attribution and individual rollbacks difficult.
+
+\section{Pico & CAN}
+
 CAN Controller
 CAN = Controler Area Network
+
+\subsection{Pico Dev env for NixOS}
+
+Repo: https://github.com/czlabinger/NixPicoEnv/
+
+
+In VSCode oeffnen und devpods extention installieren und starten. SSH auf den erstellten container.
+Das Template befindet sich in src und alles ausserhalb von src kann ignoriert werden.
+Die CMakeLists.txt anpassen um die gewuenschten projects zu importieren.
+
+Building: 
+
+`sh src/build.sh`
+
+\subsection{Operation-Modes MCP2515}
+\begin{itemize}
+    \item \textbf{Normal Mode:} Standardmodus, in dem der Controller Nachrichten senden und empfangen kann.
+    \item \textbf{Sleep Mode:} Energiesparmodus, in dem der Controller minimalen Strom verbraucht und keine Nachrichten verarbeitet. Ein externer Wake-Up kann den Controller wieder aktivieren.
+    \item \textbf{Loopback Mode:} Interner Testmodus, bei dem gesendete Nachrichten direkt empfangen werden, ohne dass sie den CAN-Bus verlassen. Ideal für Tests ohne externes CAN-Netzwerk.
+    \item \textbf{Listen-Only Mode:} Empfängermodus, in dem der Controller nur empfangene Nachrichten liest, ohne ACK-Bits zu senden. Wird oft für die Busdiagnose verwendet.
+    \item \textbf{Configuration Mode:} Konfigurationsmodus, in dem Einstellungen wie Bitrate und Filter des Controllers festgelegt werden können.
+\end{itemize}
+
+\subsection{Pins}
+
+\begin{tabular}{||c c||} 
+  \hline
+  MCP2515 & Pico \\ [0.5ex] 
+  \hline
+  
+  \hline
+  VCC1(5V) & VBUS \\ 
+  \hline
+  3,3V(OUT) & VCC(3,3V) \\
+  \hline
+  PIN\_MISO & GP4 \\
+  \hline
+  PIN\_CS\_A & GP5 \\
+  \hline
+  PIN\_SCK & GP6 \\
+  \hline
+  PIN\_MOSI & GP7 \\
+  \hline
+\end{tabular}
+
+\subsection{Logic analyzer}
+
+
+
+
+\section{Firebase}
+
+\subsection{Clonen des Repos}
+\begin{verbatim}
+git clone https://github.com/firebase/friendlychat
+\end{verbatim}
+
+\subsection{Erstellen der flake.nix für NixOS specific behavior}
+\begin{verbatim}
+# flake.nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    systems.url = "github:nix-systems/default";
+  };
+
+  outputs =
+    { systems, nixpkgs, ... }@inputs:
+    let
+      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+    in
+    {
+      devShells = eachSystem (pkgs: {
+        default = pkgs.mkShell {
+          buildInputs = [
+            pkgs.nodejs
+            pkgs.nodePackages.firebase-tools
+          ];
+        };
+      });
+    };
+}
+\end{verbatim}
+
+Wird benötigt, um Dynamically Linked Libraries auf NixOS Systems verwenden zu können.
+
+Im Directory der flake ausführen:
+\begin{verbatim}
+nix develop
+\end{verbatim}
+
+\section{Start}
+
+\subsection{Login in Account}
+\begin{verbatim}
+firebase login
+\end{verbatim}
+
+\subsection{Authorize Firebase CLI}
+\begin{verbatim}
+firebase use --add
+\end{verbatim}
+
+\subsection{Deploy App}
+\begin{verbatim}
+firebase deploy --except functions
+\end{verbatim}
+
+\section{Install Dependencies}
+\begin{verbatim}
+npm i
+\end{verbatim}
+ausführen, um alle Dependencies zu installieren.
+
+\section{Setup im Webinterface}
+Im Firebase Webinterface musste der Storage erstellt werden und das Project angelegt werden.
+
+\section{Implement Functions}
+
+\subsection{Enable Functions in Cloud Console}
+\begin{verbatim}
+// Import the Firebase SDK for Google Cloud Functions.
+const functions = require('firebase-functions');
+// Import and initialize the Firebase Admin SDK.
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+// TODO(DEVELOPER): Write the blurImages Function here.
+
+// TODO(DEVELOPER): Write the sendNotification Function here.
+\end{verbatim}
+
+\subsection{Welcome Message}
+\begin{verbatim}
+// Adds a message that welcomes new users into the chat.
+exports.addWelcomeMessages = functions.auth.user().onCreate(async (user) => {
+  functions.logger.log('A new user signed in for the first time.');
+  const fullName = user.displayName || 'Anonymous';
+
+  // Saves the new welcome message into the database
+  // which then displays it in the FriendlyChat clients.
+  await admin.firestore().collection('messages').add({
+    name: 'Firebase Bot',
+    profilePicUrl: '/images/firebase-logo.png', // Firebase logo
+    text: `${fullName} signed in for the first time! Welcome!`,
+    timestamp: admin.firestore.FieldValue.serverTimestamp(),
+  });
+  functions.logger.log('Welcome message written to database.');
+});
+\end{verbatim}
+
+Deploy der neu erstellten functions:
+\begin{verbatim}
+firebase deploy --only functions
+\end{verbatim}
+
+\subsection{Exception beim Deployen}
+Dieser Befehl wirft eine Exception: 
+\texttt{No targets in firebase.json match ‘--only functions’}
+
+Versuchte Lösungswege:
+\begin{itemize}
+    \item \texttt{firebase deploy functions}: Keine Error Message, nur ein Hinweis auf \texttt{firebase [command] --help}
+    \item \texttt{firebase deploy}: Wirft zwar keinen Error, aber die Funktion erscheint nicht im Webinterface und wird auch nicht ausgeführt.
+    \item \texttt{firebase deploy functions --add}: \texttt{unknown option --add}
+\end{itemize}

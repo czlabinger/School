@@ -1,85 +1,129 @@
 import tensorflow as tf
 import numpy as np
+from tensorflow._api.v2.random import set_seed
 from tensorflow.keras.preprocessing import image
-import os
-from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from tensorflow.keras.layers import Dense, Flatten
+from sklearn.model_selection import train_test_split
+import kagglehub
+import os
 
-def load_images_from_folder(folder_path, num_images):
-    images_array = []
-    image_files = [file for file in os.listdir(folder_path) if os.path.splitext(file)[1].lower() == ".jpg"]
-    for index, image_file in enumerate(image_files[:num_images]):
-        image_path = os.path.join(folder_path, image_file)
-        print(f"Processing image {index + 1}: {image_file}")
-        img = image.load_img(image_path, target_size=(45, 45))
-        img_array = image.img_to_array(img)
-        images_array.append(img_array)
-    return np.array(images_array)
+path = kagglehub.dataset_download("xainano/handwrittenmathsymbols")
+print("Path to dataset files:", path)
 
-# Load data
-zero_folder = "./archive/extracted_images/0/"
-exclamation_folder = "./archive/extracted_images/!/"
+path_open = os.path.join(path, "extracted_images", "(")
+path_close = os.path.join(path, "extracted_images", ")")
 
-exclamation_images = load_images_from_folder(zero_folder, 30)
-open_images = load_images_from_folder(exclamation_folder, 30)
+images_open = []
+images_close = []
 
-# Create labels
-labels_exclamation = np.zeros(30)  # Label 0 for exclamation mark
-labels_open = np.ones(30)  # Label 1 for open bracket
+for file in os.listdir(path_open):
+    img_path = os.path.join(path_open, file)
+    if not os.path.isfile(img_path):
+        continue
+    img = image.load_img(img_path, target_size=(150, 150))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    images_open.append(img_array)
+    if len(images_open) >= 30:
+        break
 
-X = np.concatenate((exclamation_images, open_images), axis=0)
-y = np.concatenate((labels_exclamation, labels_open), axis=0)
+print("Loaded all ( images")
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, stratify=y)
+for file in os.listdir(path_close):
+    img_path = os.path.join(path_close, file)
+    if not os.path.isfile(img_path):
+        continue
+    img = image.load_img(img_path, target_size=(150, 150))
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)
+    images_close.append(img_array)
+    if len(images_close) >= 30:
+        break
+
+print("Loaded all ) images")
+
+images_open = np.vstack(images_open)
+images_close = np.vstack(images_close)
+
+labels_open = np.ones(len(images_open)) # ( = 1
+labels_close = np.zeros(len(images_close)) # ) = 0
+
+X = np.vstack((images_open, images_close))
+y = np.concatenate((labels_open, labels_close))
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 
 X_train = X_train / 255.0
 X_test = X_test / 255.0
 
+def train_sequentially(X_train, y_train, epochs=50):
 
-def create_model():
     model = Sequential([
-        Conv2D(32, (3, 3), activation='relu', input_shape=(45, 45, 3)),
-        MaxPooling2D((2, 2)),
-        Conv2D(64, (3, 3), activation='relu'),
-        MaxPooling2D((2, 2)),
-        Flatten(),
-        Dense(128, activation='relu'),
-        Dropout(0.5),
+        Flatten(input_shape=(150, 150, 3)),
+        Dense(64, activation='relu'), # ReLU = Rectified Linear Unit
         Dense(1, activation='sigmoid')
     ])
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+    for i in range(len(X_train)):
+        print(f"{i}/{len(X_train)}")
+        model.fit(X_train[i:i+1], y_train[i:i+1], epochs=epochs)
+
     return model
 
-# Ansatz 1: Jedes Symbol in 1000 Durchläufen anpassen
-def train_each_symbol_separately(model, epochs=1000):
-    for label in np.unique(y_train):
-        print(f"Training on symbol with label: {label}")
-        mask = y_train == label
-        model.fit(X_train[mask], y_train[mask], epochs=epochs, verbose=0)
 
-# Ansatz 2: Durchmischen der Symbole
-def train_random_symbols(model, epochs=1000):
-    model.fit(X_train, y_train, epochs=epochs, verbose=0)
 
-# Create model
-model = create_model()
+def train_randomly(X_train, y_train, epochs=50):
 
-# Ansatz 1: Trainiere jedes Symbol separat
-print("Training each symbol separately...")
-train_each_symbol_separately(model)
+    model = Sequential([
+        Flatten(input_shape=(150, 150, 3)),
+        Dense(64, activation='relu'),
+        Dense(1, activation='sigmoid')
+    ])
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-# Evaluate the model
-test_loss, test_acc = model.evaluate(X_test, y_test)
-print(f"Test accuracy after separate training: {test_acc:.4f}")
+    indices = np.arange(len(X_train))
+    for epoch in range(epochs):
+        np.random.shuffle(indices)
+        for i in indices:
+            print(f"{epoch}/{epochs}")
+            model.fit(X_train[i:i+1], y_train[i:i+1], epochs=1)
 
-# Reset model for the next training approach
-model = create_model()
+    return model
 
-# Ansatz 2: Trainiere zufällige Symbole
-print("Training with mixed symbols...")
-train_random_symbols(model)
 
-# Evaluate the model
-test_loss, test_acc = model.evaluate(X_test, y_test)
-print(f"Test accuracy after random training: {test_acc:.4f}")
+def build_model_with_hidden_layers(hidden_layers):
+
+    model = Sequential([Flatten(input_shape=(150, 150, 3))])
+    for _ in range(hidden_layers):
+        model.add(Dense(64, activation='relu'))
+    model.add(Dense(1, activation='sigmoid'))
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+    model.fit(X_train, y_train, epochs=500, verbose=0)
+    return model
+
+
+def evaluate_model(model, X_test, y_test):
+    loss, accuracy = model.evaluate(X_test, y_test, verbose=0)
+    print(f"Loss: {loss}, Accuracy: {accuracy}")
+    return (loss, accuracy)
+
+model_seq = train_sequentially(X_train, y_train)
+model_ran = train_randomly(X_train, y_train)
+
+model1 = build_model_with_hidden_layers(1)
+model3 = build_model_with_hidden_layers(3)
+model10 = build_model_with_hidden_layers(10)
+
+
+print("Seq: ")
+evaluate_model(model_seq, X_test, y_test)
+print("Random: ")
+evaluate_model(model_ran, X_test, y_test)
+
+print("Hidden layers: ")
+evaluate_model(model1, X_test, y_test)
+evaluate_model(model3, X_test, y_test)
+evaluate_model(model10, X_test, y_test)

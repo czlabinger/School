@@ -1,8 +1,5 @@
 tensorflow
-keras
-scikit-learn
 numpy
+kagglehub
+scikit-learn
 pillow
-torch
-torchvision
-matplotlib

@@ -10,3 +10,6 @@
 [submodule "5xHIT/SEW/schere-stein-papier"]
 	path = 5xHIT/SEW/schere-stein-papier
 	url = git@github.com:TGM-HIT/schere-stein-papier-czlabinger.git
+[submodule "5xHIT/ITP/DIP"]
+	path = 5xHIT/ITP/DIP
+	url = git@github.com:Digitaler-Notarzt/dn_llm.git
