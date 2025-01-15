@@ -1,132 +1,54 @@
-\usepackage{lisitings}
-\section{Verschluesselung}
+\section{Distributed Computing}
+\subsection{ACID and BASE}
+\subsubsection{ACID}
+Transactions are used to ensure data is consitent.
+These transactions consist of multiple commands that are either all executed or are not executed at all.
 
-Symetrisch mittels einem Key
+\paragraph{Atomicity} \mbox{}\\
+Atomicity means that either the entire transaction is executed or it is not executed at all.
+This prevents some statements to be executed while others aren't, which could lead to errors.
 
-Asymetrische als verstaerkung mittels public/private key
+\paragraph{Consistency} \mbox{}\\
+Consistency means that before and after a transaction is executed all the rules or contraints are met.
 
-Checksums z.B.: Sha256, Sha512, md5, \ldots
+\paragraph{Isolation} \mbox{}\\
+This means that transactions should be seperated from another but still be executed at the same time and should give the same result if they were run one after the other.
+There are different isolation levels. Each level isolates some part of or the entire database from other transactions with the drawback that transactions can't be concurrent.
 
-Bei veraenderung komplett anderer Hash
+\paragraph{Durability} \mbox{}\\
+This means that the data is stored persistently.
 
-Es kann trozedem sein dass 2 verschiedene daten gleichen Hash haben
+\subsubsection{BASE}
+BASE is an alternative to ACID.
 
-Bei Sha256 groessere wahrscheinlichkeit als bei Sha512 weil weniger bits
+\paragraph{Basically-Available} \mbox{}\\
+Transactions are atomically safed in a queue and are executed sequentially.
 
-\section{BUS}
+\paragraph{Soft-State} \mbox{}\\
+After a specific time that a transaction has been in the queue it will be timeouted.
 
-SPI I2C BUS 
-
-BUS controller um collisions zu vermeiden
-
-Wenn collisions -> Beide teilnehmer warten eine zufaellige Zeit
-
-\section{Konsistenz in Datenbanken}
-\subsection{Konsistenz}
-\subsubsection{Einheitlich}
-\paragraph{Datentyp}
-Der Datentyp gibt an wie die Daten zu interpretieren sind und wie gross dieser ist.
-Fuer Konsistenz ist es wichtig dass die Interpretation gleich oder mapbar ist.
-
-\subparagraph{SQL subsprachen}
-Data Definition Language
-Data Manipulation Language
-Data Query Language
-
-\subsubsection{Regeln (Constraints)}
-z.B: NotNull, Unique
-Helfen bei Konsistenz koesten aber Zeit (Alles ueber 0.5s lade Zeit ist lange)
-
-CRUD = Create Read Update Delete
-
-\subsubsection{Deterministisch}
-Computer sind deterministisch gebaut/programmiert wesshalb es eigendlich nicht moeglich ist zufaellige Zahlen zu generieren.
-Desshalb wird PRNG (Pseudo Randon Number Generator) genutzt.
-Dieser verwendet Sensoren, deren Stand nicht vorhergesehen werden kann, wie z.B.: CPU temperatur, Fan speed, ...
-
-\section{Transaktionskonzepte}
-ACID = Atomacity Consistency Isolation Durability
-
-\paragraph{Atomar}
-Atomar bedeutet, dass eine Transaktion entweder ganz durchgefuehrt wird oder garnicht.
-
-\paragraph{CAP}
-CAP = Consistency Availability Partitiontolerant
-Es koennen hoechstens zwei dieser Ziele gleichzeitig erfuellt sein. Bei ACID muessen alle fier Ziele erfuellt sein.
-
-Damit Daten konsitent sind muessen sie am Anfang und am Ende konsitent sein aber mussen bzw. koennen in der Mitte nicht konsitent sein.
-
-\subsection{Isolation Levels (psql)}
-
-\begin{tabular}{||c c c c||} 
-    \hline
-    Isolation Level & Diry Read & Nonrepeatable Read & Phantom Read & Serialization Anomaly \\ [0.5ex] 
-    \hline
-    
-    \hline
-    Read uncommited (Deadlocks moeglich) & Allowed, but not in PG & Possible & Possible & Possible \\ 
-    \hline
-    Read commited & Not possible & Possible & Possible & Possible \\
-    \hline
-    Repeatable read & Not possible & Not possible & Allowed, but not in PG & Possible \\
-    \hline
-    Serializable & Not possible & Not possible & Not possible & Not Possible \\
-    \hline
-\end{tabular}
-
-Es gibt einen Unterschied zwischen Lesen zum anzeigen und Lesen zum schreiben. Beim Lesen zum schreiben muessen die gelesenen Daten gesperrt werden.
-
-\subsection{Durability}
-Dauerhaftes Spechern der Daten.
-Wird sichergestellt dadurch dass die veraenderten Daten welche im RAM sind gespechert werden, dann auf die DB uebernommen werden und dann ueberprueft wird ob diese korrekt gespeichert werden koennen.
-Falls dies nicht der fall ist wird ein rollback durchgefuehrt.
-
-\subsection{Geschwindigkeit}
-ACID ist am sichersten aber ist auch am langsamsten.
-BASE = Basically Available Soft-state Eventually consistant
-
-BA: Atomates speichern der Anfang in einer Queue und deren sequenzielle ausfuehrung.
-S: Nach einer gewissen Zeit in der queue werden die Anfragen getimeouted.
-E: Wenn alle Anfragen bearbeitet wurden ist die Datenbank konsitent.
-
-Jede Anfrage kann von BASE mit der Hilfe von ACID bearbeitet werden.
-
-\section{Build prozess}
-
-.h/.hpp files (Header files) beinhalten die Struktur des dazugehoerigen .c/.cpp files.
-Der inhalt der header files wird vom pre processor in das C/C++ file kopiert.
-Da C nicht objekt orientiert ist gibt es kein method overloading.
-
-\subsection{Prozess}
-Das .h/.hpp file wird vom pre processor in das .c/.cpp file kopiert. Der compiler verwandelt dieses dann in .o/.obj files.
-Der Assembler verwaltet das startup.a/.s file woraus der Linker dann ausfuehrbaren code macht welche mittels des Flash tools geflashed werden.
-
-\section{CAP-Theorie}
-Server = Diener
-
-RPC, RMI, gRPC sind remote prozedure call implementationen welche fuer mittelware verwendet werden koennen.
-MVC = Model View Controller
-MVVM wird fuer web based implementations verwendet. 
-DAO = Data Acess Object welches ueberprueft ob bestimmte Daten korrekt sind.
+\paragraph{Eventually Consistent} \mbox{}\\
+After all transactions have been executed the database is consistent.
 
 \subsection{CAP}
-Consistency, Availability wurden bereits gemacht
-Partition tolerance bedeutet das sub-systeme eigenstaendig funktionieren und die Daten nach einem Ausfall wieder miteinander syncen.
-Es sind immer nur 2 der 3 CAP Ziele gleichzeitig moeglich.
+It is only possible to achieve two out of the three following goals.
 
-\section{Timer, Delay, FPU}
-\subsection{Cpu Cycles}
-Ein delay kann mittels zaehlen von CPU Cycles hergestellt werden.
-CPU clock speed / f/2
-\subsection{Timer}
-Timers haben ein Limit wie klein der delay sein kann wodurch ein offset entstehen kann der dann haendisch ausgebessert werden muss.
+\subsubsection{Consistency}
+All locations have the same data.
 
-\section{DiffSync}
+\subsubsection{Availability}
+The system is available.
 
-\subsection{Introduction}
-Collaborate in real time
-Syncronization algorithm in an application is hard to change
-DS can be used in existing applications
+\subsubsection{Partition Tolerance}
+This describes the system to be able to function even if some parts of it are cut off network wise.
+
+\subsection{DiffSync}
+Differential Syncronisation is an algorithm designed to syncronize documents across multiple devices. There must be an diff and patch algorithm for the type of data that should synced.
+
+\subsubsection{Introduction}
+DiffSync enables collaboration in real time.
+The syncronization algorithm in an application is hard to change.
+DiffSync can be used in existing applications.
 
 Suited for:
 \begin{itemize}
@@ -142,11 +64,11 @@ Use cases:
 \item Remote debugging 
 \end{itemize}
 
-No problem when collaborating with someone or yourself with autosave feature because all versions are kept in sync
+No problem when collaborating with someone or yourself with autosave feature because all versions are kept in sync.
 
 \subsection{Alternatives}
 
-\paragraph{Pessemistic}
+\subsubsection{Pessemistic}
 Only edit by one user at a time
 Whole file is locked for other users
 Refined version would be to only lock subsections but created problems for small files
@@ -155,11 +77,11 @@ Refined version would be to only lock subsections but created problems for small
 \end{itemize}
 Not good for unreliable networks
 
-\paragraph{Edit-Based}
+\subsubsection{Edit-Based}
 Capture *all* edits (Typing, cut, paste, formatting, ...) and mirror them across all devices
 If an edit is lost it will create a fork -> two different files
 
-\paragraph{Three way merge}
+\subsubsection{Three way merge}
 
 Client sends changes to server -> server performs 3 way merge -> merge gets send to the clients
 If someone changes something while someone else is changing something it will result in a conflict
@@ -192,68 +114,39 @@ Client update frequency is critical for system responsiveness. Infrequent update
 \subsection{Future work}
 The fuzzy patch operation uses a three-way merge comparing Server Text and two versions of the Server Shadow. It only supports single synchronization packets limiting performance in high-latency connections. Additionally edits from all users are blended making attribution and individual rollbacks difficult.
 
-\section{Pico & CAN}
+\subsection{JavaScript implementation}
+\subsubsection{Which implementation of diff-patch algorithms are used? How is it copied?}
+It uses json-fast-patch.
 
-CAN Controller
-CAN = Controler Area Network
+\subsubsection{Where are the documents and shadows?}
+The shadow and the backup are saved in `container.shadow`' or `container.backup` and the document in mainText. 
+It can be copied by using `jsonpatch.deepClone\(mainText\)`.
 
-\subsection{Pico Dev env for NixOS}
+\subsubsection{How and why can we ajust the sync-cycle? What are the advantage/disadvantages?}
+We can adjust them to either have lower network traffic if we lower the cycles or faster syncronization if we increase the cycles.
 
-Repo: https://github.com/czlabinger/NixPicoEnv/
+\subsubsection{Where/How is the edit stack implemented?}
+It is implemented as an array that is saved in the container as `container.edits`.
 
+\subsubsection{It is possible to deploy a peer to peer version?}
+Yes since the code of the client and server are nearly identical.
 
-In VSCode oeffnen und devpods extention installieren und starten. SSH auf den erstellten container.
-Das Template befindet sich in src und alles ausserhalb von src kann ignoriert werden.
-Die CMakeLists.txt anpassen um die gewuenschten projects zu importieren.
+\subsubsection{How is it possible to use the API in other JS projects?}
 
-Building: 
+\subsubsection{Are the JSON documents interchangable with other kinds of documents?}
+It is possible but it would require the change from the json-fast-patch package to another one.
 
-`sh src/build.sh`
+\subsubsection{How are conflicts handled?}
+It just gets discarded.
 
-\subsection{Operation-Modes MCP2515}
-\begin{itemize}
-    \item \textbf{Normal Mode:} Standardmodus, in dem der Controller Nachrichten senden und empfangen kann.
-    \item \textbf{Sleep Mode:} Energiesparmodus, in dem der Controller minimalen Strom verbraucht und keine Nachrichten verarbeitet. Ein externer Wake-Up kann den Controller wieder aktivieren.
-    \item \textbf{Loopback Mode:} Interner Testmodus, bei dem gesendete Nachrichten direkt empfangen werden, ohne dass sie den CAN-Bus verlassen. Ideal für Tests ohne externes CAN-Netzwerk.
-    \item \textbf{Listen-Only Mode:} Empfängermodus, in dem der Controller nur empfangene Nachrichten liest, ohne ACK-Bits zu senden. Wird oft für die Busdiagnose verwendet.
-    \item \textbf{Configuration Mode:} Konfigurationsmodus, in dem Einstellungen wie Bitrate und Filter des Controllers festgelegt werden können.
-\end{itemize}
+\subsection{Firebase}
 
-\subsection{Pins}
-
-\begin{tabular}{||c c||} 
-  \hline
-  MCP2515 & Pico \\ [0.5ex] 
-  \hline
-  
-  \hline
-  VCC1(5V) & VBUS \\ 
-  \hline
-  3,3V(OUT) & VCC(3,3V) \\
-  \hline
-  PIN\_MISO & GP4 \\
-  \hline
-  PIN\_CS\_A & GP5 \\
-  \hline
-  PIN\_SCK & GP6 \\
-  \hline
-  PIN\_MOSI & GP7 \\
-  \hline
-\end{tabular}
-
-\subsection{Logic analyzer}
-
-
-
-
-\section{Firebase}
-
-\subsection{Clonen des Repos}
+\subsubsection{Cloning the Repository}
 \begin{verbatim}
 git clone https://github.com/firebase/friendlychat
 \end{verbatim}
 
-\subsection{Erstellen der flake.nix für NixOS specific behavior}
+\subsubsection{Creating flake.nix for NixOS Specific Behavior}
 \begin{verbatim}
 # flake.nix
 {
@@ -280,42 +173,43 @@ git clone https://github.com/firebase/friendlychat
 }
 \end{verbatim}
 
-Wird benötigt, um Dynamically Linked Libraries auf NixOS Systems verwenden zu können.
+This is required to use dynamically linked libraries on NixOS systems.
 
-Im Directory der flake ausführen:
+Execute in the directory of the flake:
 \begin{verbatim}
 nix develop
 \end{verbatim}
 
-\section{Start}
+\subsubsection{Start}
 
-\subsection{Login in Account}
+\subsubsection{Login to Account}
 \begin{verbatim}
 firebase login
 \end{verbatim}
 
-\subsection{Authorize Firebase CLI}
+\subsubsection{Authorize Firebase CLI}
 \begin{verbatim}
 firebase use --add
 \end{verbatim}
 
-\subsection{Deploy App}
+\subsubsection{Deploy App}
 \begin{verbatim}
 firebase deploy --except functions
 \end{verbatim}
 
-\section{Install Dependencies}
+\subsection{Install Dependencies}
+Run:
 \begin{verbatim}
 npm i
 \end{verbatim}
-ausführen, um alle Dependencies zu installieren.
+to install all dependencies.
 
-\section{Setup im Webinterface}
-Im Firebase Webinterface musste der Storage erstellt werden und das Project angelegt werden.
+\subsection{Setup in the Web Interface}
+In the Firebase web interface, the storage had to be created and the project set up.
 
-\section{Implement Functions}
+\subsection{Implement Functions}
 
-\subsection{Enable Functions in Cloud Console}
+\subsubsection{Enable Functions in Cloud Console}
 \begin{verbatim}
 // Import the Firebase SDK for Google Cloud Functions.
 const functions = require('firebase-functions');
@@ -328,7 +222,7 @@ admin.initializeApp();
 // TODO(DEVELOPER): Write the sendNotification Function here.
 \end{verbatim}
 
-\subsection{Welcome Message}
+\subsubsection{Welcome Message}
 \begin{verbatim}
 // Adds a message that welcomes new users into the chat.
 exports.addWelcomeMessages = functions.auth.user().onCreate(async (user) => {
@@ -347,18 +241,85 @@ exports.addWelcomeMessages = functions.auth.user().onCreate(async (user) => {
 });
 \end{verbatim}
 
-Deploy der neu erstellten functions:
+Deploy the newly created functions:
 \begin{verbatim}
 firebase deploy --only functions
 \end{verbatim}
 
-\subsection{Exception beim Deployen}
-Dieser Befehl wirft eine Exception: 
+\subsubsection{Exception During Deployment}
+This command throws an exception: 
 \texttt{No targets in firebase.json match ‘--only functions’}
 
-Versuchte Lösungswege:
+Attempted solutions:
 \begin{itemize}
-    \item \texttt{firebase deploy functions}: Keine Error Message, nur ein Hinweis auf \texttt{firebase [command] --help}
-    \item \texttt{firebase deploy}: Wirft zwar keinen Error, aber die Funktion erscheint nicht im Webinterface und wird auch nicht ausgeführt.
-    \item \texttt{firebase deploy functions --add}: \texttt{unknown option --add}
+    \item \texttt{firebase deploy functions}: No error message, only a note about \texttt{firebase [command] --help}.
+    \item \texttt{firebase deploy}: Does not throw an error, but the function does not appear in the web interface and is not executed.
+    \item \texttt{firebase deploy functions --add}: \texttt{unknown option --add}.
 \end{itemize}
+
+\section{Embedded Systems}
+
+\subsection{Pico Development Environment for NixOS}
+
+Repository: https://github.com/czlabinger/NixPicoEnv/
+
+Open in VSCode, install and start the DevPods extension. SSH into the created container.
+The template is located in \texttt{src}, and everything outside of \texttt{src} can be ignored.
+Modify \texttt{CMakeLists.txt} to import the desired projects.
+
+
+Building: 
+
+`sh src/build.sh`
+
+\subsection{Setup pico SDK}
+`git clone https://github.com/raspberrypi/pico-sdk.git?submodules=1`\mbox{}\\
+`cd pico-sdk`\mbox{}\\
+`echo 'export PICO\_SDK\_PATH=/pico-sdk' >> ~/.bashrc`\mbox{}\\
+
+\subsection{Blink}
+
+The blink delay in the `blink.h` file had to be set to 25 to achieve the targeted frequency.
+
+While pressing the BOOTSEL button on the pi while plugging it in it can be mounted via:
+
+`sudo dmesg | tail` this should show a new drive sdX. Now mount this drive using `sudo mount /dev/sdX /mnt`. Now the generated uf2 file can be copied onto the pi. Lastly execute `sudo sync` for the pi to acknowlege the changes.
+
+\subsection{CAN}
+\subsubsection{Operation-Modes MCP2515}
+\begin{itemize}
+  \item \textbf{Normal Mode:} Standard mode in which the controller can send and receive messages.
+  \item \textbf{Sleep Mode:} Power-saving mode in which the controller consumes minimal current and does not process messages. An external wake-up can reactivate the controller.
+  \item \textbf{Loopback Mode:} Internal test mode where sent messages are directly received without leaving the CAN bus. Ideal for tests without an external CAN network.
+  \item \textbf{Listen-Only Mode (Default):} Receive-only mode where the controller reads received messages without sending ACK bits. Often used for bus diagnostics.
+  \item \textbf{Configuration Mode:} Configuration mode where settings such as bitrate and filters of the controller can be configured.
+\end{itemize}
+
+\subsubsection{Pins}
+
+\begin{tabular}{||c c||} 
+  \hline
+  MCP2515 & Pico \\ [0.5ex] 
+  \hline
+  
+  \hline
+  VCC1(5V) & VBUS \\ 
+  \hline
+  3,3V(OUT) & VCC(3,3V) \\
+  \hline
+  PIN\_MISO & GP4 \\
+  \hline
+  PIN\_CS\_A & GP5 \\
+  \hline
+  PIN\_SCK & GP6 \\
+  \hline
+  PIN\_MOSI & GP7 \\
+  \hline
+\end{tabular}
+
+\subsubsection{Code}
+After connecting the pins as described above the code from https://github.com/a-kipp/RP2040-CAN-Driver and changing the pins and setting the mode to normal mode it is now possible to connect two picos over a logic analyzer where one is connected to CANH and one to CANL.
+
+
+\subsection{Hello USB}
+Using `minicom -D /dev/ttyACM0 -b 115200` it is possible to read the output from printf calls on the another device that is connected via usb.
