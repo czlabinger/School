@@ -13,3 +13,6 @@
 [submodule "5xHIT/ITP/DIP"]
 	path = 5xHIT/ITP/DIP
 	url = git@github.com:Digitaler-Notarzt/dn_llm.git
+[submodule "5xHIT/SYT/Raft/src/github.com/otoolep/hraftd"]
+	path = 5xHIT/SYT/Raft/src/github.com/otoolep/hraftd
+	url = git@github.com:otoolep/hraftd.git

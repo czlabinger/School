@@ -1,0 +1,19 @@
+name: Failpoint test
+on: [push, pull_request]
+permissions: read-all
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: goversion
+        run: echo "goversion=$(cat .go-version)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ${{ steps.goversion.outputs.goversion }}
+      - run: |
+          make gofail-enable
+          make test-failpoint
