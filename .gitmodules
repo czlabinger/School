@@ -1,18 +1,18 @@
-[submodule "5xHIT/SEW/worttrainer"]
-	path = 5xHIT/SEW/worttrainer
+[submodule "5xHIT/Ω Sem1/SEW/worttrainer"]
+	path = 5xHIT/Ω Sem1/SEW/worttrainer
 	url = git@github.com:TGM-HIT/sew9-2425-worttrainer-czlabinger.git
-[submodule "5xHIT/SYT/diff-sync-czlabinger"]
-	path = 5xHIT/SYT/diff-sync-czlabinger
+[submodule "5xHIT/Ω Sem1/SYT/diff-sync-czlabinger"]
+	path = 5xHIT/Ω Sem1/SYT/diff-sync-czlabinger
 	url = git@github.com:czlabinger/diff-sync-js.git
-[submodule "5xHIT/SEW/currency-converter"]
-	path = 5xHIT/SEW/currency-converter
+[submodule "5xHIT/Ω Sem1/SEW/currency-converter"]
+	path = 5xHIT/Ω Sem1/SEW/currency-converter
 	url = git@github.com:TGM-HIT/currency-converter-czlabinger.git
-[submodule "5xHIT/SEW/schere-stein-papier"]
-	path = 5xHIT/SEW/schere-stein-papier
+[submodule "5xHIT/Ω Sem1/SEW/schere-stein-papier"]
+	path = 5xHIT/Ω Sem1/SEW/schere-stein-papier
 	url = git@github.com:TGM-HIT/schere-stein-papier-czlabinger.git
-[submodule "5xHIT/ITP/DIP"]
-	path = 5xHIT/ITP/DIP
+[submodule "5xHIT/Ω Sem1/ITP/DIP"]
+	path = 5xHIT/Ω Sem1/ITP/DIP
 	url = git@github.com:Digitaler-Notarzt/dn_llm.git
-[submodule "5xHIT/SYT/Raft/src/github.com/otoolep/hraftd"]
-	path = 5xHIT/SYT/Raft/src/github.com/otoolep/hraftd
+[submodule "5xHIT/Ω Sem1/SYT/Raft/src/github.com/otoolep/hraftd"]
+	path = 5xHIT/Ω Sem1/SYT/Raft/src/github.com/otoolep/hraftd
 	url = git@github.com:otoolep/hraftd.git
