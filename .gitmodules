@@ -16,3 +16,6 @@
 [submodule "5xHIT/Ω Sem1/SYT/Raft/src/github.com/otoolep/hraftd"]
 	path = 5xHIT/Ω Sem1/SYT/Raft/src/github.com/otoolep/hraftd
 	url = git@github.com:otoolep/hraftd.git
+[submodule "5xHIT/SYT/ShopStorm"]
+	path = 5xHIT/SYT/ShopStorm
+	url = git@github.com:TGM-HIT/syt5-gek1051-mobile-application-shopstorm.git
