@@ -47,7 +47,7 @@ fn teil3() {
     let mut result: Result = r1.play(&r2);
     r2.play(&r3);
     println!("{:?}", result);
-    println!("{:?}", result.swap())
+    println!("{:?}", result.swap());
 }
 
 //// This struct represents a point with a x and y coordinate
